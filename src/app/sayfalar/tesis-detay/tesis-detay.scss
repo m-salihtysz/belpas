@@ -340,3 +340,14 @@
     background: #059669;
   }
 }
+
+/* Dijital Menü Sekme Butonları */
+.menu-sekme-btn {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+
+  &:hover {
+    transform: translateY(-2px);
+    background-color: #ecfdf5 !important;
+    color: #047857 !important;
+  }
+}

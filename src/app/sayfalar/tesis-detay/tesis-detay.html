@@ -108,13 +108,14 @@
 
             <!-- SEÇENEK A: İNTERAKTİF FİYAT VE LİSTE MENÜSÜ -->
             @if (menuModu() === 'interaktif') {
-              <!-- Kategori Sekmeleri -->
-              <div class="flex gap-2 overflow-x-auto pb-2 mb-4">
+              <!-- Kategori Sekmeleri (Kayma Önleme ve Canlı Yeşil Vurgu) -->
+              <div class="flex flex-wrap gap-2 mb-4 align-items-center">
                 @for (kat of menuKategorileri(); track kat.id; let idx = $index) {
                   <button type="button" 
-                          class="menu-sekme-btn px-3 py-2 border-round-2xl text-xs md:text-sm font-bold white-space-nowrap cursor-pointer transition-all border-none"
-                          [class.bg-emerald-500]="aktifSekme() === idx"
+                          class="menu-sekme-btn px-4 py-2 border-round-3xl text-xs md:text-sm font-bold cursor-pointer transition-all border-none"
+                          [class.bg-emerald-600]="aktifSekme() === idx"
                           [class.text-white]="aktifSekme() === idx"
+                          [class.shadow-3]="aktifSekme() === idx"
                           [class.bg-gray-100]="aktifSekme() !== idx"
                           [class.text-700]="aktifSekme() !== idx"
                           (click)="sekmeDegistir(idx)">
