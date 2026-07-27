@@ -1,0 +1,30 @@
+<section class="sayfa">
+  
+  <!-- Modern Şablon Başlık Kutusu -->
+  <div class="baslik-kutusu">
+    <h1>Haberler</h1>
+    <p class="alt-baslik">Güncel gelişmeleri ve kurumsal duyuruları takip edebilirsiniz.</p>
+  </div>
+
+  <!-- Haberleri Saran Ana Beyaz Kart -->
+  <div class="ana-kart">
+    
+    <div class="haberler-listesi">
+      @for (haber of haberler(); track haber.id) {
+        <article class="haberler-satiri">
+          <div class="haberler-gorsel">
+            <img [src]="haber.resimUrl" [alt]="haber.baslik">
+          </div>
+          <div class="haberler-icerik">
+            <h2>{{ haber.baslik }}</h2>
+            <p>{{ haber.ozet }}</p>
+            <a [routerLink]="['/haberler', haber.id]" class="devamini-oku">Devamını Oku <span>&rarr;</span></a>
+          </div>
+        </article>
+      } @empty {
+        <div class="veri-yok">Henüz haber eklenmemiş.</div>
+      }
+    </div>
+
+  </div>
+</section>

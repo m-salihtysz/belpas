@@ -1,0 +1,35 @@
+<section class="sayfa">
+  
+  <!-- Yeni Şablon Başlık Kutusu -->
+  <div class="baslik-kutusu">
+    <h1>Tesislerimiz</h1>
+  </div>
+
+  <!-- Tesisler Kart Izgarası -->
+  <div class="tesisler-grid">
+    @for (tesis of tesisler(); track tesis.id) {
+      <a [routerLink]="['/tesisler', tesis.id]" class="tesis-kart tesis-kart-link">
+        <div class="logo-kutu">
+          <img [src]="tesis.resimUrl" [alt]="tesis.ad">
+        </div>
+        <h3 class="tesis-isim">{{ tesis.ad }}</h3>
+        <p class="tesis-aciklama" style="font-size: 0.85rem; color: #667085; text-align: center; margin: 8px 0; padding: 0 12px; line-height: 1.4;">{{ tesis.aciklama }}</p>
+        <div class="ikonlar">
+          @if (tesis.ad !== 'Kocaali Sosyal Tesisleri') {
+            <span class="ikon-daire" title="Restoran Hizmeti">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#667085" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path><path d="M7 2v20"></path><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path></svg>
+            </span>
+          }
+          <a [href]="tesis.konumUrl" target="_blank" class="ikon-daire" title="Konum">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#e02424" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          </a>
+          <span class="ikon-daire" title="Çalışma Saatleri">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#3f83f8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          </span>
+        </div>
+      </a>
+    } @empty {
+      <div class="veri-yok" style="grid-column: 1 / -1; text-align: center; padding: 40px; color: #667085; font-size: 1.1rem;">Henüz tesis eklenmemiş.</div>
+    }
+  </div>
+</section>

@@ -1,0 +1,16 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: belpas_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: belpas_user
+      POSTGRES_PASSWORD: belpas_password123
+      POSTGRES_DB: belpas_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

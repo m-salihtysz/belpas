@@ -1,0 +1,183 @@
+/* --- ANA ŞABLON (Haberler sayfasıyla uyumlu) --- */
+.sayfa {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 48px 24px 96px;
+}
+
+/* --- BAŞLIK KUTUSU --- */
+.baslik-kutusu {
+  background: linear-gradient(120deg, #eaf1ff 0%, #ffffff 60%, #eef4ff 100%);
+  border: 1px solid #e2e9fb;
+  border-radius: 28px;
+  padding: 40px 48px;
+  margin-bottom: 32px;
+
+  .geri-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #0d6efd;
+    text-decoration: none;
+    margin-bottom: 20px;
+    transition: gap 0.2s ease, color 0.2s ease;
+
+    &:hover {
+      color: #0b5ed7;
+      gap: 10px;
+    }
+  }
+
+  .kategori-badge {
+    display: inline-block;
+    background: #e8f0fe;
+    color: #3b5bdb;
+    font-family: 'Outfit', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 100px;
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: clamp(22px, 3.5vw, 34px);
+    color: #101828;
+    margin: 0 0 16px 0;
+    line-height: 1.25;
+  }
+
+  .meta-bilgi {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+
+    .tarih {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: #667085;
+    }
+  }
+}
+
+/* --- ANA İÇERİK KARTI --- */
+.ana-kart {
+  background: #ffffff;
+  border: 1px solid #e2e9fb;
+  border-radius: 28px;
+  padding: 48px;
+  box-shadow: 0px 12px 32px rgba(16, 24, 40, 0.03);
+
+  .gorsel-alani {
+    margin-bottom: 36px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+
+    .kapak-gorsel {
+      width: 100%;
+      max-height: 480px;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  .ozet-alani {
+    background: linear-gradient(120deg, #f0f5ff 0%, #f8faff 100%);
+    border-left: 4px solid #3b5bdb;
+    border-radius: 0 12px 12px 0;
+    padding: 20px 24px;
+    margin-bottom: 32px;
+
+    .ozet-metin {
+      font-family: 'Outfit', sans-serif;
+      font-size: 17px;
+      font-weight: 600;
+      color: #344054;
+      line-height: 1.6;
+      margin: 0;
+    }
+  }
+
+  .icerik-alani {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    color: #344054;
+    line-height: 1.8;
+
+    p {
+      margin: 0 0 20px 0;
+    }
+
+    h2, h3 {
+      font-family: 'Outfit', sans-serif;
+      color: #101828;
+      margin: 32px 0 12px;
+    }
+
+    img {
+      max-width: 100%;
+      border-radius: 12px;
+      margin: 16px 0;
+    }
+
+    a {
+      color: #0d6efd;
+    }
+  }
+}
+
+/* --- YÜKLENİYOR DURUMU --- */
+.yukleniyor-alani {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+
+  .yukleniyor-spinner {
+    font-family: 'Outfit', sans-serif;
+    font-size: 18px;
+    color: #667085;
+    padding: 40px;
+    background: #f8faff;
+    border-radius: 20px;
+    border: 1px solid #e2e9fb;
+  }
+}
+
+/* --- HATA DURUMU --- */
+.hata-kutusu {
+  font-family: 'Outfit', sans-serif;
+  font-size: 16px;
+  color: #667085;
+  padding: 40px;
+  background: #fff5f5;
+  border: 1px solid #fecdca;
+  border-radius: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* --- MOBİL UYUMLULUK --- */
+@media (max-width: 768px) {
+  .sayfa {
+    padding: 24px 16px 64px;
+  }
+
+  .baslik-kutusu,
+  .ana-kart {
+    padding: 24px;
+    border-radius: 20px;
+  }
+}

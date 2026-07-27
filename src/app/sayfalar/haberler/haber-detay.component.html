@@ -1,0 +1,50 @@
+<!-- Yükleniyor Durumu -->
+@if (yukleniyor()) {
+  <section class="sayfa yukleniyor-alani">
+    <div class="yukleniyor-spinner">Haber yükleniyor...</div>
+  </section>
+}
+
+<!-- Hata Durumu -->
+@if (hata()) {
+  <section class="sayfa yukleniyor-alani">
+    <div class="hata-kutusu">
+      <p>❌ Haber bulunamadı veya yüklenirken hata oluştu.</p>
+      <a routerLink="/haberler" class="geri-btn"><span>←</span> Tüm Haberlere Dön</a>
+    </div>
+  </section>
+}
+
+<!-- İçerik -->
+@if (haber(); as h) {
+  <section class="sayfa">
+
+    <!-- Üst Başlık Kutusu -->
+    <div class="baslik-kutusu">
+      <a routerLink="/haberler" class="geri-btn">
+        <span>←</span> Tüm Haberlere Dön
+      </a>
+      <div class="kategori-badge">{{ h.kategori }}</div>
+      <h1>{{ h.baslik }}</h1>
+      <div class="meta-bilgi">
+        <span class="tarih">📅 {{ h.olusturmaTarihi | date:'d MMMM yyyy' : '' : 'tr-TR' }}</span>
+      </div>
+    </div>
+
+    <!-- Ana İçerik Kartı -->
+    <div class="ana-kart">
+      @if (h.resimUrl) {
+        <div class="gorsel-alani">
+          <img [src]="h.resimUrl" [alt]="h.baslik" class="kapak-gorsel">
+        </div>
+      }
+
+      <div class="ozet-alani">
+        <p class="ozet-metin">{{ h.ozet }}</p>
+      </div>
+
+      <div class="icerik-alani" [innerHTML]="h.icerik"></div>
+    </div>
+
+  </section>
+}

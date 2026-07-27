@@ -1,0 +1,100 @@
+.sayfa {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px 24px 96px;
+}
+
+.baslik-kutusu {
+  background: linear-gradient(120deg, #eaf1ff 0%, #ffffff 60%, #eef4ff 100%);
+  border: 1px solid #e2e9fb;
+  border-radius: 28px;
+  padding: 40px 48px;
+  margin-bottom: 48px; /* Şemayla arayı biraz daha açtık */
+
+  h1 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: clamp(28px, 4vw, 40px);
+    color: #101828;
+    margin: 0;
+  }
+}
+
+/* --- YENİ EKLENEN ORGANİZASYON ŞEMASI KODLARI --- */
+
+.sema-kapsayici {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px; /* Kartlar arasındaki boşluk */
+  padding: 10px 0;
+}
+
+.sema-kart {
+  background: #ffffff;
+  border: 1px solid #e2e9fb;
+  border-radius: 24px; /* Şablona uygun yumuşak köşeler */
+  padding: 32px 48px;
+  width: 100%;
+  max-width: 500px; /* Kartların maksimum genişliği */
+  text-align: center;
+  box-shadow: 0px 12px 32px rgba(16, 24, 40, 0.04); /* Modern ve çok hafif gölge */
+  position: relative;
+  transition: transform 0.2s ease;
+
+  /* Kartların arasındaki dikey bağlantı çizgisi */
+  &:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; /* gap değeri ile aynı olmalı */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 40px;
+    background-color: #dce5f9; /* Görseldeki gibi uçuk mavi bağlayıcı çizgi */
+  }
+
+  &:hover {
+    transform: translateY(-2px); /* Mouse ile üzerine gelince çok hafif yukarı kalkma efekti */
+  }
+
+  .unvan {
+    font-family: 'Inter', sans-serif;
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: #667085;
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+  }
+
+  .isim {
+    font-family: 'Outfit', sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+    color: #101828;
+    margin: 0;
+  }
+}
+
+/* Mobil Uyumluluk */
+@media (max-width: 640px) {
+  .sayfa {
+    padding: 24px 16px 64px;
+  }
+
+  .baslik-kutusu {
+    padding: 28px 24px;
+    border-radius: 20px;
+    margin-bottom: 32px;
+  }
+
+  .sema-kart {
+    padding: 24px;
+    border-radius: 20px;
+    
+    .isim {
+      font-size: 20px;
+    }
+  }
+}

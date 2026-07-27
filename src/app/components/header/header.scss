@@ -1,0 +1,443 @@
+// =========================================
+// Üst Menü Stilleri
+// =========================================
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: var(--header-y);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 102, 204, 0.08);
+  transition: all var(--gecis-normal);
+
+  &--kaydiraldi {
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 2px 24px rgba(0, 0, 0, 0.08);
+    border-bottom-color: rgba(0, 102, 204, 0.12);
+
+    .logo-alt {
+      opacity: 0;
+      max-height: 0;
+    }
+  }
+
+  &__ic {
+    display: flex;
+    align-items: center;
+    height: var(--header-y);
+    gap: 40px;
+  }
+
+  // --- Logo ---
+  &__logo {
+    flex-shrink: 0;
+    color: inherit;
+    text-decoration: none;
+
+    .logo-metin {
+      font-family: var(--font-baslik);
+      font-weight: 800;
+      font-size: 1.75rem;
+      letter-spacing: -0.5px;
+      line-height: 1;
+
+      .logo-bel { color: var(--renk-mavi); }
+      .logo-pas { color: var(--renk-mavi-koyu); }
+    }
+
+    .logo-alt {
+      font-size: 0.62rem;
+      color: var(--renk-gri-500);
+      letter-spacing: 0.3px;
+      overflow: hidden;
+      max-height: 20px;
+      transition: all var(--gecis-normal);
+    }
+
+    &:hover .logo-metin {
+      .logo-bel { color: var(--renk-mavi-orta); }
+    }
+  }
+
+  // --- Nav ---
+  &__nav {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex: 1;
+    justify-content: center;
+  }
+
+  // --- Sağ Alan ---
+  &__sag {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+}
+
+// --- Nav Link ---
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--renk-gri-700);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all var(--gecis-hizli);
+
+  &:hover,
+  &--secili {
+    color: var(--renk-mavi);
+    background: var(--renk-mavi-acik);
+  }
+
+  &--dropdown {
+    font-family: var(--font-metin);
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+}
+
+.dropdown-ok {
+  transition: transform var(--gecis-hizli);
+}
+
+// --- Dropdown ---
+.nav-oge {
+  position: relative;
+
+  &--dropdown:hover > .nav-link--dropdown,
+  &--aktif > .nav-link--dropdown {
+    color: var(--renk-mavi);
+    background: var(--renk-mavi-acik);
+
+    .dropdown-ok {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.dropdown-panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  min-width: 220px;
+  background: white;
+  border-radius: var(--radius-md);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.05);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 100;
+
+  &__ic {
+    padding: 8px;
+  }
+}
+
+.nav-oge--aktif .dropdown-panel,
+.nav-oge--dropdown:hover .dropdown-panel {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.dropdown-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: var(--renk-gri-700);
+  text-decoration: none;
+  transition: all var(--gecis-hizli);
+
+  svg {
+    color: var(--renk-gri-300);
+    flex-shrink: 0;
+    transition: all var(--gecis-hizli);
+  }
+
+  &:hover {
+    background: var(--renk-mavi-acik);
+    color: var(--renk-mavi);
+
+    svg {
+      color: var(--renk-mavi);
+      transform: translateX(3px);
+    }
+  }
+}
+
+// --- Arama Butonu ---
+.arama-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  background: var(--renk-mavi);
+  color: white;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all var(--gecis-normal);
+  box-shadow: 0 4px 16px rgba(0, 102, 204, 0.3);
+
+  &:hover {
+    background: var(--renk-mavi-koyu);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 24px rgba(0, 102, 204, 0.4);
+  }
+}
+
+// --- Hamburger ---
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px;
+  border-radius: 8px;
+  transition: background var(--gecis-hizli);
+
+  span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--renk-gri-700);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+  }
+
+  &:hover {
+    background: var(--renk-gri-100);
+  }
+
+  &--acik {
+    span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+    span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+  }
+}
+
+// --- Mobil Menü ---
+.mobil-menu {
+  position: fixed;
+  top: var(--header-y);
+  right: 0;
+  width: 300px;
+  height: calc(100vh - var(--header-y));
+  background: white;
+  z-index: 999;
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: -8px 0 40px rgba(0, 0, 0, 0.12);
+
+  &--acik {
+    transform: translateX(0);
+  }
+
+  &__ic {
+    padding: 16px;
+  }
+}
+
+.mobil-overlay {
+  position: fixed;
+  inset: 0;
+  top: var(--header-y);
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 998;
+  backdrop-filter: blur(2px);
+  animation: fadeIn 0.2s ease;
+}
+
+.mobil-link {
+  display: block;
+  padding: 14px 16px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--renk-gri-700);
+  text-decoration: none;
+  border-radius: 10px;
+  transition: all var(--gecis-hizli);
+  border-bottom: 1px solid var(--renk-gri-200);
+
+  &:last-child { border-bottom: none; }
+
+  &:hover {
+    background: var(--renk-mavi-acik);
+    color: var(--renk-mavi);
+  }
+}
+
+.mobil-grup {
+  border-bottom: 1px solid var(--renk-gri-200);
+
+  &:last-child { border-bottom: none; }
+
+  &__baslik {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 14px 16px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--renk-gri-700);
+    border-radius: 10px;
+    text-align: left;
+    transition: all var(--gecis-hizli);
+
+    &:hover {
+      background: var(--renk-mavi-acik);
+      color: var(--renk-mavi);
+    }
+
+    svg {
+      transition: transform var(--gecis-normal);
+      flex-shrink: 0;
+    }
+
+    .ok-don {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.mobil-alt-menu {
+  background: var(--renk-gri-100);
+  border-radius: 8px;
+  margin: 0 8px 8px;
+  overflow: hidden;
+  animation: fadeInUp 0.2s ease;
+}
+
+.mobil-alt-link {
+  display: block;
+  padding: 10px 20px;
+  font-size: 0.875rem;
+  color: var(--renk-gri-700);
+  text-decoration: none;
+  border-bottom: 1px solid var(--renk-gri-200);
+  transition: all var(--gecis-hizli);
+
+  &:last-child { border-bottom: none; }
+
+  &:hover {
+    color: var(--renk-mavi);
+    padding-left: 26px;
+  }
+}
+
+// --- Arama Overlay ---
+.arama-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 20, 60, 0.7);
+  backdrop-filter: blur(12px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.2s ease;
+  padding: 24px;
+}
+
+.arama-kutu {
+  position: relative;
+  width: 100%;
+  max-width: 680px;
+  animation: fadeInUp 0.25s ease;
+
+  &__ipucu {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.875rem;
+    text-align: center;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+  }
+}
+
+.arama-form {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 50px;
+  padding: 6px 6px 6px 24px;
+  box-shadow: 0 16px 60px rgba(0, 0, 0, 0.3);
+  gap: 12px;
+
+  svg {
+    color: var(--renk-gri-500);
+    flex-shrink: 0;
+  }
+
+  input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 1.1rem;
+    font-family: var(--font-metin);
+    color: var(--renk-metin);
+    background: transparent;
+
+    &::placeholder {
+      color: var(--renk-gri-500);
+    }
+  }
+
+  &__btn {
+    background: var(--renk-mavi);
+    color: white;
+    padding: 10px 28px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all var(--gecis-hizli);
+
+    &:hover {
+      background: var(--renk-mavi-koyu);
+    }
+  }
+}
+
+.arama-kapat {
+  position: absolute;
+  top: -60px;
+  right: 0;
+  color: rgba(255,255,255,0.7);
+  padding: 8px;
+  border-radius: 50%;
+  transition: all var(--gecis-hizli);
+
+  &:hover {
+    color: white;
+    background: rgba(255,255,255,0.15);
+  }
+}

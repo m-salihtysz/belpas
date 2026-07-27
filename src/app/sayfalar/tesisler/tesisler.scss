@@ -1,0 +1,138 @@
+/* --- ANA ŞABLON (Diğer sayfalarla aynı) --- */
+.sayfa {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px 24px 96px;
+}
+
+.baslik-kutusu {
+  background: linear-gradient(120deg, #eaf1ff 0%, #ffffff 60%, #eef4ff 100%);
+  border: 1px solid #e2e9fb;
+  border-radius: 28px;
+  padding: 40px 48px;
+  margin-bottom: 48px;
+
+  h1 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: clamp(28px, 4vw, 40px);
+    color: #101828;
+    margin: 0;
+  }
+}
+
+/* --- TESİSLER GRID VE KART TASARIMI --- */
+.tesisler-grid {
+  display: grid;
+  /* Masaüstünde 4 sütun, ekran küçüldükçe otomatik alta geçer */
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+.tesis-kart {
+  background: #ffffff;
+  border: 1px solid #e2e9fb;
+  border-radius: 24px; /* Şablona uygun yumuşak köşeler */
+  padding: 32px 24px;
+  text-align: center;
+  box-shadow: 0px 12px 32px rgba(16, 24, 40, 0.04);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* İkonların hep en altta kalmasını sağlar */
+  height: 100%;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0px 16px 40px rgba(16, 24, 40, 0.08);
+  }
+
+  /* Logoyu saran gölgeli iç kutu (Görseldeki gibi) */
+  .logo-kutu {
+    width: 130px;
+    height: 130px;
+    margin: 0 auto 24px;
+    background: #ffffff;
+    border-radius: 20px;
+    border: 1px solid #f0f4fd;
+    /* İçeriye ve dışarıya doğru hafif gölgeler */
+    box-shadow: inset 0px 4px 12px rgba(0,0,0,0.02), 0px 8px 16px rgba(16,24,40,0.04);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  .tesis-isim {
+    font-family: 'Outfit', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: #101828;
+    margin: 0 0 24px 0;
+    line-height: 1.4;
+    flex-grow: 1; /* İsimlerin satır uzunlukları farklı olsa da düzeni bozmaz */
+  }
+
+  .ikonlar {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+
+    .ikon-daire {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid #e2e9fb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fafcff;
+      transition: background 0.2s ease;
+
+      svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      &:hover {
+        background: #f0f4fd;
+      }
+    }
+  }
+}
+
+/* Mobil Uyumluluk */
+@media (max-width: 640px) {
+  .sayfa {
+    padding: 24px 16px 64px;
+  }
+
+  .baslik-kutusu {
+    padding: 28px 24px;
+    border-radius: 20px;
+    margin-bottom: 32px;
+  }
+}
+
+/* Link olarak kullanıldığında stil düzeltmesi */
+.tesis-kart-link {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: 0px 20px 48px rgba(16, 24, 40, 0.12);
+    border-color: #c3d4f8;
+  }
+
+  .tesis-isim {
+    color: #101828;
+  }
+}

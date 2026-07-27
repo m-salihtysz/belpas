@@ -1,0 +1,139 @@
+<header class="header" [class.header--kaydiraldi]="kaydirildimi()">
+  <div class="container">
+    <div class="header__ic">
+
+      <!-- Logo -->
+      <a routerLink="/" class="header__logo" (click)="mobilMenuKapat()">
+        <div class="logo-metin">
+          <span class="logo-bel">BEL</span><span class="logo-pas">PAŞ</span>
+        </div>
+        <div class="logo-alt">Sakarya Büyükşehir Belediyesi</div>
+      </a>
+
+      <!-- Masaüstü Navigasyon -->
+      <nav class="header__nav gizle-mobil" role="navigation" aria-label="Ana Navigasyon">
+        @for (oge of menuOgeleri; track oge.etiket) {
+          @if (oge.altMenuler) {
+            <!-- Dropdown Menü -->
+            <div class="nav-oge nav-oge--dropdown"
+                 [class.nav-oge--aktif]="aktifDropdown() === oge.etiket"
+                 (mouseenter)="aktifDropdown.set(oge.etiket)"
+                 (mouseleave)="dropdownKapat()">
+              <button class="nav-link nav-link--dropdown">
+                {{ oge.etiket }}
+                <svg class="dropdown-ok" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+              <div class="dropdown-panel" role="menu">
+                <div class="dropdown-panel__ic">
+                  @for (alt of oge.altMenuler; track alt.etiket) {
+                    <a [routerLink]="alt.link" class="dropdown-link" role="menuitem" (click)="dropdownKapat()">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                      </svg>
+                      {{ alt.etiket }}
+                    </a>
+                  }
+                </div>
+              </div>
+            </div>
+          } @else {
+            <!-- Normal Link -->
+            <a [routerLink]="oge.link" class="nav-link" routerLinkActive="nav-link--secili">
+              {{ oge.etiket }}
+            </a>
+          }
+        }
+      </nav>
+
+      <!-- Sağ Alan -->
+      <div class="header__sag">
+        <!-- Arama Butonu -->
+        <button class="arama-btn" (click)="aramaAc()" aria-label="Ara">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <span class="gizle-mobil">Ara</span>
+        </button>
+
+        <!-- Mobil Hamburger -->
+        <button class="hamburger gizle-masaustu"
+                [class.hamburger--acik]="mobilMenuAcik()"
+                (click)="mobilMenuToggle()"
+                aria-label="Menüyü Aç/Kapat">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+<!-- Mobil Menü -->
+<div class="mobil-menu gizle-masaustu" [class.mobil-menu--acik]="mobilMenuAcik()">
+  <div class="mobil-menu__ic">
+    @for (oge of menuOgeleri; track oge.etiket) {
+      @if (oge.altMenuler) {
+        <div class="mobil-grup">
+          <button class="mobil-grup__baslik" (click)="dropdownToggle(oge.etiket)">
+            {{ oge.etiket }}
+            <svg [class.ok-don]="aktifDropdown() === oge.etiket"
+                 width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          @if (aktifDropdown() === oge.etiket) {
+            <div class="mobil-alt-menu">
+              @for (alt of oge.altMenuler; track alt.etiket) {
+                <a [routerLink]="alt.link" class="mobil-alt-link" (click)="mobilMenuKapat()">
+                  {{ alt.etiket }}
+                </a>
+              }
+            </div>
+          }
+        </div>
+      } @else {
+        <a [routerLink]="oge.link" class="mobil-link" (click)="mobilMenuKapat()">
+          {{ oge.etiket }}
+        </a>
+      }
+    }
+  </div>
+</div>
+
+<!-- Mobil menü arka planı -->
+@if (mobilMenuAcik()) {
+  <div class="mobil-overlay gizle-masaustu" (click)="mobilMenuKapat()"></div>
+}
+
+<!-- Arama Overlay -->
+@if (aramaAcik()) {
+  <div class="arama-overlay" (click)="aramaKapat()">
+    <div class="arama-kutu" (click)="$event.stopPropagation()">
+      <p class="arama-kutu__ipucu">Ne aramak istersiniz?</p>
+      <div class="arama-form">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input id="arama-input"
+               type="text"
+               placeholder="Aramak istediğiniz kelimeyi yazın..."
+               [value]="aramaMetni()"
+               (input)="aramaMetni.set($any($event.target).value)"
+               (keydown.enter)="aramaYap()">
+        <button class="arama-form__btn" (click)="aramaYap()">Ara</button>
+      </div>
+      <button class="arama-kapat" (click)="aramaKapat()" aria-label="Aramayı Kapat">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+}

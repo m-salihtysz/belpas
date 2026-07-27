@@ -1,0 +1,142 @@
+<!-- 1. HERO SLIDER -->
+<section class="hero" aria-label="Ana Slider">
+  <div class="slider">
+    @for (slide of sliderlar; track slide.id; let i = $index) {
+      <div class="slider__kart"
+           [class.slider__kart--aktif]="aktifSlide() === i"
+           [style.background-image]="'url(' + slide.resimYolu + ')'"
+           style="background-size: cover; background-position: center; background-blend-mode: multiply; background-color: rgba(13, 27, 62, 0.7);"> 
+        
+        <div class="slider__ic">
+          <!-- Sadece Yazı İçerikleri -->
+          <div class="slider__icerik">
+            <span class="rozet rozet-slider">{{ slide.kategori }}</span>
+            <h1 class="slider__baslik">
+              {{ slide.baslik }}
+              <em>{{ slide.altyazi }}</em>
+            </h1>
+            <p class="slider__aciklama">{{ slide.aciklama }}</p>
+            <a [routerLink]="slide.btnLink" class="btn btn-beyaz slider__btn">
+              {{ slide.btnMetni }}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    }
+
+    <!-- Slider Kontroller -->
+    <button class="slider__ok slider__ok--sol" (click)="oncekiSlide()" aria-label="Önceki">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+    <button class="slider__ok slider__ok--sag" (click)="sonrakiSlide()" aria-label="Sonraki">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+
+    <!-- Slider Noktaları -->
+    <div class="slider__noktalar">
+      @for (slide of sliderlar; track slide.id; let i = $index) {
+        <button class="slider__nokta"
+                [class.slider__nokta--aktif]="aktifSlide() === i"
+                (click)="sliderGit(i)"
+                [attr.aria-label]="'Slide ' + (i + 1)">
+        </button>
+      }
+    </div>
+  </div>
+</section>
+<!-- 2. TESİSLER CAROUSEL -->
+<section class="tesisler-carousel section">
+  <div class="container">
+    <div class="section-baslik">
+      <h2>Tesislerimiz</h2>
+      <p>BELPAŞ çatısı altında şehre değer katan mekan ve hizmetlerimiz</p>
+    </div>
+
+    <div class="carousel">
+      <button class="carousel__ok carousel__ok--sol"
+              (click)="tesisSol()"
+              [disabled]="aktifTesisBaslangic() === 0"
+              aria-label="Sola Kaydır">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+
+      <div class="carousel__liste">
+        @for (tesis of goruntelenecekTesisler(); track tesis.id) {
+          <a [routerLink]="['/tesisler', tesis.id]" class="tesis-kart kart tesis-kart--link" [style.--tesis-renk]="tesis.renk">
+            <div class="tesis-kart__ikon">
+              <span>{{ tesis.harf }}</span>
+            </div>
+            <div class="tesis-kart__bilgi">
+              <span class="tesis-kart__kategori">{{ tesis.kategori }}</span>
+              <h3 class="tesis-kart__ad">{{ tesis.ad }}</h3>
+            </div>
+          </a>
+        }
+      </div>
+
+      <button class="carousel__ok carousel__ok--sag"
+              (click)="tesisSag()"
+              [disabled]="aktifTesisBaslangic() >= tesisler.length - tesisGoruntulenen"
+              aria-label="Sağa Kaydır">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- 3. HABERLER -->
+<section class="haberler section" style="background: var(--renk-gri-100)">
+  <div class="container">
+    <div class="section-baslik">
+      <h2>Belpaş'tan Haberler</h2>
+      <p>Güncel gelişmeleri, kurumsal duyuruları ve toplumsal etkinlikleri takip edin</p>
+    </div>
+
+    <div class="haberler__grid">
+      @for (haber of haberler; track haber.id) {
+        <article class="haberler-kart kart">
+          <div class="haberler-kart__resim">
+            <div class="haberler-kart__yer-tutucu">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.3">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                <polyline points="21 15 16 10 5 21"></polyline>
+              </svg>
+            </div>
+            <span class="rozet rozet-mavi haberler-kart__rozet">{{ haber.kategori }}</span>
+          </div>
+          <div class="haberler-kart__icerik">
+            <time class="haberler-kart__tarih">{{ haber.tarih }}</time>
+            <h3 class="haberler-kart__baslik">{{ haber.baslik }}</h3>
+            <p class="haberler-kart__aciklama">{{ haber.aciklama }}</p>
+            <a [routerLink]="haber.link" class="haberler-kart__link">
+              Devamını Oku
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </article>
+      }
+    </div>
+
+    <div class="haberler__btn-alan">
+      <a routerLink="/haberler" class="btn btn-ikincil">Tüm Haberleri Gör</a>
+    </div>
+  </div>
+</section>
+

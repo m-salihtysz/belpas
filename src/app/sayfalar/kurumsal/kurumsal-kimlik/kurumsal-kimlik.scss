@@ -1,0 +1,141 @@
+.sayfa {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px 24px 96px;
+
+  .baslik-kutusu {
+    background: linear-gradient(120deg, #eaf1ff 0%, #ffffff 60%, #eef4ff 100%);
+    border: 1px solid #e2e9fb;
+    border-radius: 28px;
+    padding: 40px 48px;
+    margin-bottom: 32px;
+
+    h1 {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: clamp(28px, 4vw, 40px);
+      color: #101828;
+      margin: 0;
+    }
+  }
+
+  .ana-kart {
+    background: #ffffff;
+    border: 1px solid #e2e9fb; 
+    border-radius: 28px; 
+    padding: 48px;
+    min-height: 400px;
+
+    .logo-alani {
+      margin-bottom: 60px;
+      img {
+        height: 60px;
+        object-fit: contain;
+      }
+    }
+
+    .indirme-karti-kapsayici {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .indirme-karti {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 650px;
+      background: #ffffff;
+      border: 1px solid #f0f4fd;
+      border-radius: 18px; 
+      padding: 20px 24px;
+      box-shadow: 0px 12px 32px rgba(16, 24, 40, 0.05); 
+
+      .sol-bilgi {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+
+        .ikon-kutusu {
+          background-color: #fef4ed;
+          width: 52px;
+          height: 52px;
+          border-radius: 12px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          svg {
+            width: 24px;
+            height: 24px;
+          }
+        }
+
+        .metin {
+          font-family: 'Inter', sans-serif;
+          
+          h3 {
+            margin: 0 0 4px 0;
+            font-size: 16px;
+            font-weight: 700;
+            color: #101828;
+          }
+          p {
+            margin: 0;
+            font-size: 13px;
+            color: #667085; 
+            font-weight: 500;
+          }
+        }
+      }
+
+      .btn-indir {
+        font-family: 'Inter', sans-serif;
+        background-color: #0d6efd;
+        color: #ffffff;
+        text-decoration: none;
+        display: inline-block;
+        text-align: center;
+        border-radius: 100px;
+        padding: 12px 28px;
+        font-size: 14px;
+        font-weight: 600;
+        transition: all 0.2s ease;
+        box-shadow: 0 4px 12px rgba(13, 110, 253, 0.2);
+
+        &:hover {
+          background-color: #0b5ed7;
+          transform: translateY(-2px);
+          box-shadow: 0 6px 16px rgba(13, 110, 253, 0.3);
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .sayfa {
+    padding: 24px 16px 64px;
+
+    .baslik-kutusu {
+      padding: 28px 24px;
+      border-radius: 20px;
+    }
+    
+    .ana-kart {
+      padding: 24px;
+      border-radius: 20px;
+
+      .indirme-karti {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+
+        .btn-indir {
+          width: 100%; 
+        }
+      }
+    }
+  }
+}

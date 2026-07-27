@@ -1,0 +1,328 @@
+/* =========================================
+   BELPAŞ - Global Design System
+   ========================================= */
+
+/* --- CSS Değişkenleri --- */
+:root {
+  /* Renkler */
+  --renk-mavi:           #0066CC;
+  --renk-mavi-koyu:      #004499;
+  --renk-mavi-cok-koyu:  #002D6A;
+  --renk-mavi-acik:      #E8F1FB;
+  --renk-mavi-orta:      #1A7FE0;
+  --renk-sari:           #F5C800;
+  --renk-sari-acik:      #FFF8D0;
+  --renk-beyaz:          #FFFFFF;
+  --renk-gri-100:        #F8F9FA;
+  --renk-gri-200:        #EEF0F3;
+  --renk-gri-300:        #DEE2E8;
+  --renk-gri-500:        #8A94A6;
+  --renk-gri-700:        #4A5568;
+  --renk-gri-900:        #1A202C;
+  --renk-metin:          #2D3748;
+  --renk-metin-acik:     #718096;
+
+  /* Gradyanlar */
+  --grad-mavi:    linear-gradient(135deg, #0066CC 0%, #1A7FE0 50%, #004499 100%);
+  --grad-hero:    linear-gradient(135deg, #004499 0%, #0066CC 40%, #1A7FE0 100%);
+  --grad-karti:   linear-gradient(180deg, rgba(0,102,204,0.05) 0%, rgba(0,68,153,0.1) 100%);
+
+  /* Tipografi */
+  --font-baslik:  'Outfit', sans-serif;
+  --font-metin:   'Inter', sans-serif;
+
+  /* Boyutlar */
+  --max-genislik: 1280px;
+  --header-y:     76px;
+  --radius-sm:    8px;
+  --radius-md:    12px;
+  --radius-lg:    20px;
+  --radius-xl:    32px;
+
+  /* Gölgeler */
+  --golge-sm:  0 2px 8px rgba(0,0,0,0.06);
+  --golge-md:  0 4px 20px rgba(0,0,0,0.10);
+  --golge-lg:  0 8px 40px rgba(0,0,0,0.14);
+  --golge-mavi: 0 8px 32px rgba(0,102,204,0.25);
+
+  /* Animasyonlar */
+  --gecis-hizli:   0.15s ease;
+  --gecis-normal:  0.25s ease;
+  --gecis-yavas:   0.4s ease;
+}
+
+/* --- Reset & Base --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-metin);
+  color: var(--renk-metin);
+  background-color: var(--renk-beyaz);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-baslik);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--renk-gri-900);
+}
+
+a {
+  color: var(--renk-mavi);
+  text-decoration: none;
+  transition: color var(--gecis-hizli);
+
+  &:hover {
+    color: var(--renk-mavi-koyu);
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+  font-family: var(--font-metin);
+  border: none;
+  background: none;
+}
+
+/* --- Yardımcı Sınıflar --- */
+.container {
+  max-width: var(--max-genislik);
+  margin: 0 auto;
+  padding: 0 24px;
+
+  @media (min-width: 1440px) {
+    padding: 0 40px;
+  }
+}
+
+.section {
+  padding: 80px 0;
+
+  @media (max-width: 768px) {
+    padding: 48px 0;
+  }
+}
+
+.section-baslik {
+  text-align: center;
+  margin-bottom: 48px;
+
+  h2 {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    color: var(--renk-mavi);
+    margin-bottom: 12px;
+    position: relative;
+
+    &::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 4px;
+      background: var(--grad-mavi);
+      margin: 16px auto 0;
+      border-radius: 2px;
+    }
+  }
+
+  p {
+    color: var(--renk-metin-acik);
+    max-width: 580px;
+    margin: 0 auto;
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+}
+
+/* --- Butonlar --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all var(--gecis-normal);
+  white-space: nowrap;
+
+  &-birincil {
+    background: var(--grad-mavi);
+    color: white;
+    box-shadow: var(--golge-mavi);
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(0,102,204,0.35);
+      color: white;
+    }
+  }
+
+  &-ikincil {
+    background: transparent;
+    color: var(--renk-mavi);
+    border: 2px solid var(--renk-mavi);
+
+    &:hover {
+      background: var(--renk-mavi);
+      color: white;
+    }
+  }
+
+  &-beyaz {
+    background: white;
+    color: var(--renk-mavi);
+    box-shadow: var(--golge-md);
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--golge-lg);
+    }
+  }
+}
+
+/* --- Animasyonlar --- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse-mavi {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0,102,204,0.4); }
+  50%       { box-shadow: 0 0 0 12px rgba(0,102,204,0); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* --- Kart Stili --- */
+.kart {
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--golge-sm);
+  overflow: hidden;
+  transition: all var(--gecis-normal);
+
+  &:hover {
+    box-shadow: var(--golge-lg);
+    transform: translateY(-6px);
+  }
+}
+
+/* --- Rozet --- */
+.rozet {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 14px;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+
+  &-mavi {
+    background: var(--renk-mavi-acik);
+    color: var(--renk-mavi);
+  }
+
+  &-sari {
+    background: var(--renk-sari-acik);
+    color: #8B6914;
+  }
+}
+
+/* --- Scrollbar --- */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--renk-gri-100);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--renk-mavi);
+  border-radius: 3px;
+}
+
+/* --- Focus --- */
+:focus-visible {
+  outline: 2px solid var(--renk-mavi);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .gizle-mobil { display: none !important; }
+}
+@media (min-width: 769px) {
+  .gizle-masaustu { display: none !important; }
+}
+
+/* --- Sayfa Başlığı (İç Sayfalar) --- */
+.sayfa-baslik {
+  background: var(--grad-hero);
+  padding: 60px 0 48px;
+  color: white;
+
+  .rozet {
+    margin-bottom: 12px;
+    background: rgba(255,255,255,0.2);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.3);
+  }
+
+  h1 {
+    font-size: clamp(1.75rem, 4vw, 3rem);
+    color: white;
+    margin-bottom: 8px;
+  }
+
+  p {
+    color: rgba(255,255,255,0.75);
+    font-size: 1rem;
+  }
+}

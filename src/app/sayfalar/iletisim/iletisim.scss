@@ -1,0 +1,164 @@
+/* --- GENEL SAYFA YAPISI --- */
+.sayfa { 
+  max-width: 1100px; 
+  margin: 0 auto; 
+  padding: 48px 24px 96px; 
+}
+
+.baslik-kutusu {
+  background: linear-gradient(120deg, #eaf1ff 0%, #ffffff 60%, #eef4ff 100%);
+  border: 1px solid #e2e9fb; 
+  border-radius: 28px; 
+  padding: 40px 48px; 
+  margin-bottom: 48px;
+  
+  h1 { 
+    font-family: 'Outfit', sans-serif; 
+    font-weight: 800; 
+    font-size: 40px; 
+    color: #101828; 
+    margin: 0; 
+  }
+}
+
+/* --- İLETİŞİM VE HARİTA --- */
+.iletisim-container { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 24px; 
+}
+
+.harita-kutusu { 
+  border-radius: 28px; 
+  overflow: hidden; 
+  border: 1px solid #e2e9fb;
+  box-shadow: 0px 12px 32px rgba(16, 24, 40, 0.06); 
+  
+  iframe { display: block; }
+}
+
+.adres-karti {
+  display: flex; 
+  align-items: center; 
+  gap: 16px;
+  background: #ffffff; 
+  border: 1px solid #e2e9fb; 
+  border-radius: 20px;
+  padding: 24px; 
+  font-family: 'Inter', sans-serif; 
+  font-weight: 600; 
+  color: #101828;
+  box-shadow: 0px 8px 24px rgba(16, 24, 40, 0.04);
+}
+
+.iletisim-grid { 
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  gap: 24px; 
+}
+
+.iletisim-kart {
+  display: flex; 
+  align-items: center; 
+  gap: 16px;
+  background: #ffffff; 
+  border: 1px solid #e2e9fb; 
+  border-radius: 20px;
+  padding: 24px; 
+  font-family: 'Inter', sans-serif; 
+  font-weight: 600;
+  box-shadow: 0px 8px 24px rgba(16, 24, 40, 0.04);
+}
+
+.ikon { 
+  width: 48px; 
+  height: 48px; 
+  background: #eff6ff; 
+  border-radius: 14px;
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* --- FORM ALANI --- */
+.form-alani { padding: 80px 24px; text-align: center; }
+
+.form-baslik { 
+  margin-bottom: 48px;
+  h2 { font-family: 'Outfit', sans-serif; font-size: 32px; color: #101828; margin-bottom: 12px; }
+  p { font-family: 'Inter', sans-serif; color: #667085; }
+}
+
+.form-kart {
+  max-width: 700px; 
+  margin: 0 auto;
+  background: #f9fafb; 
+  padding: 40px; 
+  border-radius: 28px;
+  text-align: left;
+
+  input, textarea {
+    width: 100%; 
+    padding: 16px; 
+    margin-bottom: 16px;
+    border: 1px solid #d0d5dd; 
+    border-radius: 12px;
+    font-family: 'Inter', sans-serif;
+    outline-color: #3b82f6;
+  }
+
+  .input-grup { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 16px; 
+  }
+
+  .kvkk-alani { 
+    display: flex; 
+    align-items: flex-start; 
+    gap: 12px; 
+    margin-bottom: 24px; 
+    font-family: 'Inter', sans-serif; 
+    font-size: 14px;
+    
+    label {
+      flex: 1; 
+      cursor: pointer;
+      line-height: 1.5; 
+      color: #374151;
+    }
+    
+    input[type="checkbox"] {
+      margin-top: 4px; 
+      flex-shrink: 0; 
+    }
+    
+    a { 
+      color: #0d6efd; 
+      font-weight: 600; 
+      text-decoration: none; 
+    }
+  }
+
+  .btn-gonder {
+    width: 100%; 
+    padding: 16px; 
+    background: #3b82f6; 
+    color: white;
+    border: none; 
+    border-radius: 12px; 
+    font-weight: 700; 
+    cursor: pointer;
+    transition: background 0.2s;
+    &:hover { background: #2563eb; }
+  }
+}
+
+/* --- MOBİL UYUMLULUK --- */
+@media (max-width: 640px) {
+  .iletisim-grid, .input-grup { 
+    grid-template-columns: 1fr; 
+  }
+  .form-kart { padding: 24px; }
+}

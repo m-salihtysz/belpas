@@ -1,0 +1,75 @@
+.kurumsal-sablon {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px 24px 96px;
+}
+
+.baslik-kutusu {
+  background: linear-gradient(
+    120deg,
+    #eaf1ff 0%,
+    #ffffff 60%,
+    #eef4ff 100%
+  );
+
+  border: 1px solid #e2e9fb;
+  border-radius: 28px;
+  padding: 40px 48px;
+  margin-bottom: 48px;
+
+  h1 {
+    font-family: "Outfit", sans-serif;
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 800;
+    color: #101828;
+    margin: 0;
+  }
+}
+
+.icerik-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.metin {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  line-height: 1.9;
+  color: #344054;
+
+  p {
+    margin-bottom: 28px;
+  }
+
+  strong {
+    color: #101828;
+    font-weight: 700;
+  }
+}
+
+.gorsel {
+
+  img {
+    width: 100%;
+    border-radius: 18px;
+    display: block;
+    border: 1px solid #eaeef5;
+    box-shadow: 0 8px 28px rgba(16,24,40,.08);
+  }
+
+}
+
+@media (max-width:900px){
+
+  .icerik-grid{
+    grid-template-columns:1fr;
+    gap:32px;
+  }
+
+  .gorsel{
+    order:-1;
+  }
+
+}
