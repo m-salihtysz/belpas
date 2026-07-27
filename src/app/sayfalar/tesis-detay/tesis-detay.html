@@ -108,16 +108,12 @@
 
             <!-- SEÇENEK A: İNTERAKTİF FİYAT VE LİSTE MENÜSÜ -->
             @if (menuModu() === 'interaktif') {
-              <!-- Kategori Sekmeleri (Kayma Önleme ve Canlı Yeşil Vurgu) -->
+              <!-- Kategori Sekmeleri (Aktif sekme kalıcı olarak yeşil kalır) -->
               <div class="flex flex-wrap gap-2 mb-4 align-items-center">
                 @for (kat of menuKategorileri(); track kat.id; let idx = $index) {
                   <button type="button" 
-                          class="menu-sekme-btn px-4 py-2 border-round-3xl text-xs md:text-sm font-bold cursor-pointer transition-all border-none"
-                          [class.bg-emerald-600]="aktifSekme() === idx"
-                          [class.text-white]="aktifSekme() === idx"
-                          [class.shadow-3]="aktifSekme() === idx"
-                          [class.bg-gray-100]="aktifSekme() !== idx"
-                          [class.text-700]="aktifSekme() !== idx"
+                          class="menu-sekme-btn px-4 py-2 border-round-3xl text-xs md:text-sm font-bold cursor-pointer transition-all"
+                          [class.aktif-sekme]="aktifSekme() === idx"
                           (click)="sekmeDegistir(idx)">
                     <i class="pi mr-1" [class]="kat.ikon || 'pi-compass'"></i> {{ kat.baslik }}
                   </button>
@@ -149,10 +145,9 @@
             @if (menuModu() === 'gorsel') {
               <div class="p-4 border-round-2xl bg-emerald-950 text-white flex flex-column md:flex-row align-items-center justify-content-between gap-4">
                 <div class="flex align-items-center gap-4">
-                  <!-- Temsili QR Kod Kutusu -->
-                  <div class="w-7rem h-7rem bg-white p-2 border-round-2xl flex-shrink-0 flex flex-column align-items-center justify-content-center text-center shadow-4">
-                    <i class="pi pi-qrcode text-emerald-900 text-5xl mb-1"></i>
-                    <span class="text-3xs font-bold text-emerald-800 uppercase">TARAYIN</span>
+                  <!-- Gerçek QR Kod Kutusu -->
+                  <div class="w-7rem h-7rem bg-white p-2 border-round-2xl flex-shrink-0 flex flex-column align-items-center justify-content-center text-center shadow-4 border-1 border-gray-200">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://belpas.sakarya.bel.tr/tesisler" alt="Belpaş Menü QR Kod" class="w-full h-full object-contain border-round-xl">
                   </div>
                   <div>
                     <span class="bg-emerald-500 text-white text-3xs font-black px-2 py-1 border-round-md uppercase">ORİJİNAL BASILI MENÜ</span>
