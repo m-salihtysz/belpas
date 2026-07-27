@@ -21,6 +21,7 @@ export class TesisDetay implements OnInit {
   aktifSekme = signal<number>(0);
   menuModu = signal<'interaktif' | 'gorsel'>('interaktif');
   menuModalAcik = signal<boolean>(false);
+  modalSayfa = signal<number>(1);
   yukleniyor = signal(true);
   hata = signal(false);
   resimHata = signal(false);
@@ -39,6 +40,10 @@ export class TesisDetay implements OnInit {
 
   modalAcKapat(durum: boolean): void {
     this.menuModalAcik.set(durum);
+  }
+
+  setModalSayfa(sayfa: number): void {
+    this.modalSayfa.set(sayfa);
   }
 
   ngOnInit(): void {
