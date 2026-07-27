@@ -1,142 +1,251 @@
-<!-- 1. HERO SLIDER -->
-<section class="hero" aria-label="Ana Slider">
-  <div class="slider">
-    @for (slide of sliderlar; track slide.id; let i = $index) {
-      <div class="slider__kart"
-           [class.slider__kart--aktif]="aktifSlide() === i"
-           [style.background-image]="'url(' + slide.resimYolu + ')'"
-           style="background-size: cover; background-position: center; background-blend-mode: multiply; background-color: rgba(13, 27, 62, 0.7);"> 
+<!-- 1. MODERN HERO SECTION (FULL SCREEN IMAGE & GEOMETRIC GREEN OVERLAY) -->
+<div class="hero-section relative overflow-hidden flex align-items-center justify-content-center">
+    <p-carousel [value]="sliderlar" [numVisible]="1" [numScroll]="1" [circular]="true" [autoplayInterval]="7000" styleClass="custom-hero-carousel w-full h-full">
+        <ng-template let-slide pTemplate="item">
+            <!-- Full Screen Slide Container -->
+            <div class="hero-slide-item relative w-full h-full flex align-items-center justify-content-start overflow-hidden">
+                 
+                <!-- Background Image Covering Entire Hero -->
+                <img [src]="slide.resimYolu" [alt]="slide.baslik" class="absolute inset-0 w-full h-full object-cover z-0" style="object-position: right center;">
+                 
+                <!-- Geometric Slanted Brand Overlay on Left (Matching Reference Photo 1: Yazlık Katlı Kavşağı) -->
+                <div class="hero-geometric-overlay absolute top-0 left-0 h-full z-1"></div>
+                <div class="hero-geometric-accent absolute top-0 h-full z-1 hidden md:block"></div>
+
+                <!-- Text Content inside Left Geometric Panel -->
+                <div class="container mx-auto px-4 z-2 w-full h-full flex align-items-center pt-7 pb-8 relative">
+                    <div class="grid align-items-center w-full m-0">
+                        <!-- Left Column: Typography & Button -->
+                        <div class="col-12 md:col-8 lg:col-6 text-white p-3 md:p-5 animation-duration-500 fadeinleft">
+                            <div class="mb-4">
+                                <span class="inline-block py-2 px-4 border-round-3xl border-1 border-white-alpha-40 bg-black-alpha-40 text-white text-xs md:text-sm font-bold tracking-widest uppercase shadow-2">
+                                    {{ slide.kategori }}
+                                </span>
+                            </div>
+                            <h1 class="text-5xl md:text-7xl lg:text-8xl font-black text-white mb-3 mt-0 line-height-1 tracking-tighter" style="text-shadow: 0 4px 20px rgba(0,0,0,0.8);">
+                                {{ slide.baslik }}
+                            </h1>
+                            <p class="text-xl md:text-3xl text-white-alpha-90 mb-6 line-height-3 max-w-30rem font-medium tracking-wide" style="text-shadow: 0 2px 10px rgba(0,0,0,0.8);">
+                                {{ slide.altyazi }}
+                            </p>
+                            <div>
+                                <a [routerLink]="slide.btnLink" class="hero-action-btn inline-flex align-items-center gap-3 bg-white text-900 font-bold px-5 py-3 border-round-3xl shadow-4 hover:shadow-8 text-decoration-none transition-all transition-duration-300 text-lg">
+                                    <span>{{ slide.btnMetni }}</span>
+                                    <i class="pi pi-arrow-right bg-primary text-white p-2 border-round-circle text-sm"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </ng-template>
+    </p-carousel>
+</div>
+
+<!-- 2. TESİSLER (HIZLI ERİŞİM) KARTLARI -->
+<section class="py-8 surface-0 relative z-2">
+    <div class="container mx-auto px-4">
         
-        <div class="slider__ic">
-          <!-- Sadece Yazı İçerikleri -->
-          <div class="slider__icerik">
-            <span class="rozet rozet-slider">{{ slide.kategori }}</span>
-            <h1 class="slider__baslik">
-              {{ slide.baslik }}
-              <em>{{ slide.altyazi }}</em>
-            </h1>
-            <p class="slider__aciklama">{{ slide.aciklama }}</p>
-            <a [routerLink]="slide.btnLink" class="btn btn-beyaz slider__btn">
-              {{ slide.btnMetni }}
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
-            </a>
-          </div>
+        <!-- Modernized Tesisler Başlığı -->
+        <div class="text-center mb-7 animation-duration-500 fadein">
+            <div class="mb-3">
+                <span class="inline-flex align-items-center gap-2 py-1 px-3 border-round-3xl bg-green-50 text-emerald-600 text-xs md:text-sm font-bold tracking-widest uppercase border-1 border-emerald-200 shadow-1">
+                    <i class="pi pi-compass text-xs"></i> Hizmet Noktalarımız
+                </span>
+            </div>
+            <h2 class="text-4xl md:text-6xl font-black text-900 mb-3 tracking-tighter line-height-1">
+                Sosyal <span style="background: linear-gradient(135deg, #10b981 0%, #047857 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Tesislerimiz</span>
+            </h2>
+            <p class="text-600 text-base md:text-xl max-w-30rem mx-auto line-height-3 font-normal mt-2">
+                Sakarya'nın dört bir yanında konfor, kalite ve lezzeti bir araya getiren sosyal yaşam alanları.
+            </p>
         </div>
 
-      </div>
-    }
-
-    <!-- Slider Kontroller -->
-    <button class="slider__ok slider__ok--sol" (click)="oncekiSlide()" aria-label="Önceki">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-        <polyline points="15 18 9 12 15 6"></polyline>
-      </svg>
-    </button>
-    <button class="slider__ok slider__ok--sag" (click)="sonrakiSlide()" aria-label="Sonraki">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-        <polyline points="9 18 15 12 9 6"></polyline>
-      </svg>
-    </button>
-
-    <!-- Slider Noktaları -->
-    <div class="slider__noktalar">
-      @for (slide of sliderlar; track slide.id; let i = $index) {
-        <button class="slider__nokta"
-                [class.slider__nokta--aktif]="aktifSlide() === i"
-                (click)="sliderGit(i)"
-                [attr.aria-label]="'Slide ' + (i + 1)">
-        </button>
-      }
-    </div>
-  </div>
-</section>
-<!-- 2. TESİSLER CAROUSEL -->
-<section class="tesisler-carousel section">
-  <div class="container">
-    <div class="section-baslik">
-      <h2>Tesislerimiz</h2>
-      <p>BELPAŞ çatısı altında şehre değer katan mekan ve hizmetlerimiz</p>
-    </div>
-
-    <div class="carousel">
-      <button class="carousel__ok carousel__ok--sol"
-              (click)="tesisSol()"
-              [disabled]="aktifTesisBaslangic() === 0"
-              aria-label="Sola Kaydır">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-          <polyline points="15 18 9 12 15 6"></polyline>
-        </svg>
-      </button>
-
-      <div class="carousel__liste">
-        @for (tesis of goruntelenecekTesisler(); track tesis.id) {
-          <a [routerLink]="['/tesisler', tesis.id]" class="tesis-kart kart tesis-kart--link" [style.--tesis-renk]="tesis.renk">
-            <div class="tesis-kart__ikon">
-              <span>{{ tesis.harf }}</span>
+        <!-- GPS En Yakın Tesis Aksiyon Barı -->
+        <div class="max-w-45rem mx-auto mb-7">
+            <div class="gps-aksiyon-bar p-4 flex flex-column md:flex-row align-items-center justify-content-between gap-3">
+                <div class="flex align-items-center gap-3">
+                    <div class="w-3rem h-3rem border-circle bg-emerald-500 flex align-items-center justify-content-center text-white flex-shrink-0 shadow-3">
+                        <i class="pi pi-map-marker text-xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-base md:text-lg font-bold m-0 text-white">Nerede Olsanız En Yakın Belpaş Tesisini Bulun</h4>
+                        <p class="text-xs md:text-sm text-emerald-200 m-0 mt-1">Konumunuzu kullanarak size en yakın tesis ve mesafesini hesaplayalım.</p>
+                    </div>
+                </div>
+                <button type="button" (click)="enYakinTesisBul()" [disabled]="gpsYukleniyor" class="gps-btn py-3 px-4 border-round-2xl text-white font-bold text-sm cursor-pointer white-space-nowrap shadow-3 flex align-items-center gap-2">
+                    <i class="pi" [class.pi-spin]="gpsYukleniyor" [class.pi-spinner]="gpsYukleniyor" [class.pi-compass]="!gpsYukleniyor"></i>
+                    {{ gpsYukleniyor ? 'Konum Hesaplanıyor...' : 'Bana En Yakın Tesisi Bul' }}
+                </button>
             </div>
-            <div class="tesis-kart__bilgi">
-              <span class="tesis-kart__kategori">{{ tesis.kategori }}</span>
-              <h3 class="tesis-kart__ad">{{ tesis.ad }}</h3>
-            </div>
-          </a>
-        }
-      </div>
 
-      <button class="carousel__ok carousel__ok--sag"
-              (click)="tesisSag()"
-              [disabled]="aktifTesisBaslangic() >= tesisler.length - tesisGoruntulenen"
-              aria-label="Sağa Kaydır">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-          <polyline points="9 18 15 12 9 6"></polyline>
-        </svg>
-      </button>
-    </div>
-  </div>
-</section>
+            <!-- Konum Sonuç Kartı -->
+            @if (enYakinTesis) {
+                <div class="gps-sonuc-kart mt-3 p-3 md:p-4 flex align-items-center justify-content-between gap-3 fadein animation-duration-400">
+                    <div class="flex align-items-center gap-3">
+                        <div class="w-2rem h-2rem border-circle bg-emerald-600 text-white font-black flex align-items-center justify-content-center text-xs">
+                            {{ enYakinTesis.harf }}
+                        </div>
+                        <div>
+                            <span class="bg-emerald-600 text-white text-3xs font-black px-2 py-1 border-round-md uppercase">EN YAKIN TESİS: {{ enYakinTesis.mesafe }} KM</span>
+                            <h5 class="text-base font-bold text-emerald-950 m-0 mt-1">{{ enYakinTesis.ad }} ({{ enYakinTesis.kategori }})</h5>
+                        </div>
+                    </div>
+                    <a [routerLink]="['/tesisler', enYakinTesis.id]" class="py-2 px-3 border-round-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold no-underline flex align-items-center gap-1 transition-colors">
+                        Tesis Detayı <i class="pi pi-arrow-right text-xs"></i>
+                    </a>
+                </div>
+            }
+        </div>
 
-<!-- 3. HABERLER -->
-<section class="haberler section" style="background: var(--renk-gri-100)">
-  <div class="container">
-    <div class="section-baslik">
-      <h2>Belpaş'tan Haberler</h2>
-      <p>Güncel gelişmeleri, kurumsal duyuruları ve toplumsal etkinlikleri takip edin</p>
+        <div class="grid justify-content-center">
+            @for (tesis of tesisler; track tesis.id) {
+                <div class="col-6 md:col-4 lg:col-3 xl:col-2 p-2 md:p-3">
+                    <a [routerLink]="['/tesisler', tesis.id]" class="modern-tesis-kart block relative p-3 md:p-4 border-round-3xl no-underline transition-all transition-duration-400 overflow-hidden bg-white">
+                        <!-- Decorative subtle background glow -->
+                        <div class="kart-glow absolute top-0 left-0 w-full h-full opacity-0 transition-opacity transition-duration-400 pointer-events-none" [style.background]="'radial-gradient(circle at top right, color-mix(in srgb, ' + tesis.renk + ' 15%, transparent), transparent 70%)'"></div>
+                        
+                        <div class="flex flex-column align-items-center justify-content-between relative z-1 h-full">
+                            <!-- Fixed height top wrapper: ALL letter Orbs sit on the exact same baseline! -->
+                            <div class="tesis-orb-wrapper w-full">
+                                <div class="tesis-orb relative flex align-items-center justify-content-center border-round-circle transition-all transition-duration-400" 
+                                     [style.background]="'linear-gradient(135deg, ' + tesis.renk + ', color-mix(in srgb, ' + tesis.renk + ' 60%, black))'"
+                                     [style.box-shadow]="'0 8px 24px color-mix(in srgb, ' + tesis.renk + ' 40%, transparent)'">
+                                    <span class="text-3xl font-black text-white line-height-1">{{ tesis.harf }}</span>
+                                    <!-- Outer ring effect -->
+                                    <div class="orb-ring absolute border-circle w-full h-full border-2 opacity-50" [style.border-color]="tesis.renk"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Title wrapper with fixed min-height: perfectly centers 1, 2, or 3 line titles -->
+                            <div class="tesis-baslik-wrapper w-full">
+                                <h3 class="text-base md:text-lg font-bold text-800 m-0 line-height-2 transition-colors transition-duration-300">{{ tesis.ad }}</h3>
+                            </div>
+                            
+                            <!-- Keşfet link below title -->
+                            <div class="kesfet-link flex align-items-center justify-content-center gap-1 transition-all transition-duration-300">
+                                <span class="text-xs md:text-sm font-bold" [style.color]="tesis.renk">Keşfet</span>
+                                <i class="pi pi-arrow-right" [style.color]="tesis.renk" style="font-size: 0.75rem;"></i>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
     </div>
-
-    <div class="haberler__grid">
-      @for (haber of haberler; track haber.id) {
-        <article class="haberler-kart kart">
-          <div class="haberler-kart__resim">
-            <div class="haberler-kart__yer-tutucu">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.3">
-                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                <circle cx="8.5" cy="8.5" r="1.5"></circle>
-                <polyline points="21 15 16 10 5 21"></polyline>
-              </svg>
-            </div>
-            <span class="rozet rozet-mavi haberler-kart__rozet">{{ haber.kategori }}</span>
-          </div>
-          <div class="haberler-kart__icerik">
-            <time class="haberler-kart__tarih">{{ haber.tarih }}</time>
-            <h3 class="haberler-kart__baslik">{{ haber.baslik }}</h3>
-            <p class="haberler-kart__aciklama">{{ haber.aciklama }}</p>
-            <a [routerLink]="haber.link" class="haberler-kart__link">
-              Devamını Oku
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
-            </a>
-          </div>
-        </article>
-      }
-    </div>
-
-    <div class="haberler__btn-alan">
-      <a routerLink="/haberler" class="btn btn-ikincil">Tüm Haberleri Gör</a>
-    </div>
-  </div>
 </section>
 
+<!-- 3. HABERLER (Z-PATTERN YATAY KARTLAR) -->
+<section class="py-8 surface-ground">
+    <div class="container mx-auto px-4">
+        <!-- Modernized Haberler Başlığı -->
+        <div class="text-center mb-7 animation-duration-500 fadein">
+            <div class="mb-3">
+                <span class="inline-flex align-items-center gap-2 py-1 px-3 border-round-3xl bg-green-50 text-emerald-600 text-xs md:text-sm font-bold tracking-widest uppercase border-1 border-emerald-200 shadow-1">
+                    <i class="pi pi-megaphone text-xs"></i> Duyuru ve Güncellemeler
+                </span>
+            </div>
+            <h2 class="text-4xl md:text-6xl font-black text-900 mb-3 tracking-tighter line-height-1">
+                Gündem ve <span style="background: linear-gradient(135deg, #10b981 0%, #047857 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Haberler</span>
+            </h2>
+            <p class="text-600 text-base md:text-xl max-w-30rem mx-auto line-height-3 font-normal mt-2">
+                Sakarya Büyükşehir Belediyesi ve BELPAŞ'tan en güncel duyurular, yenilikler ve yatırımlar.
+            </p>
+        </div>
+
+        <div class="flex flex-column gap-5 max-w-60rem mx-auto mb-8">
+            @for (haber of haberler; track haber.id; let i = $index) {
+                <div class="modern-haber-kart bg-white border-round-3xl shadow-2 hover:shadow-6 transition-all transition-duration-300 overflow-hidden flex flex-column md:flex-row" [class.md:flex-row-reverse]="i % 2 !== 0">
+                    
+                    <!-- Resim Alanı -->
+                    <div class="md:w-5 relative overflow-hidden h-16rem md:h-auto">
+                        <img [src]="haber.resimUrl || '/images/sbb_mekan.jpg'" alt="{{haber.baslik}}" class="w-full h-full object-cover transition-transform transition-duration-500 hover:scale-105">
+                        <span class="absolute top-0 m-4 px-3 py-1 bg-primary text-white text-xs font-bold border-round-2xl shadow-3 uppercase tracking-wider" [class.left-0]="i % 2 === 0" [class.right-0]="i % 2 !== 0">{{ haber.kategori }}</span>
+                    </div>
+
+                    <!-- İçerik Alanı -->
+                    <div class="md:w-7 p-4 md:p-6 flex flex-column justify-content-center">
+                        <div class="text-xs text-500 mb-3 font-semibold uppercase tracking-wider flex align-items-center gap-2">
+                            <i class="pi pi-calendar text-primary text-sm"></i> 
+                            {{ haber.tarih }}
+                        </div>
+                        <h3 class="text-2xl font-bold text-900 mt-0 mb-3 line-height-2 hover:text-primary transition-colors cursor-pointer">
+                            {{ haber.baslik }}
+                        </h3>
+                        <p class="text-600 line-height-3 m-0 mb-5 flex-grow-1 text-base">
+                            {{ haber.aciklama }}
+                        </p>
+                        
+                        <div class="mt-auto">
+                            <a [routerLink]="haber.link" class="p-button p-button-outlined p-button-rounded p-button-secondary inline-flex align-items-center gap-2 font-bold hover:bg-primary hover:text-white hover:border-primary transition-colors py-2 px-4 text-sm">
+                                Habere Git <i class="pi pi-arrow-right text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            }
+        </div>
+
+        <!-- 4. ETKİNLİK TAKVİMİ VE DUYURULAR (SOL YEŞİL ŞERİTLİ VE BEYAZ ZEMİNLİ MODERN KARTLAR) -->
+        <div class="max-w-60rem mx-auto border-top-1 border-gray-200 pt-7">
+            <div class="flex align-items-center justify-content-between mb-5 flex-wrap gap-2">
+                <div>
+                    <span class="etkinlik-kategori-pill uppercase">ETKİNLİKLER</span>
+                    <h3 class="text-2xl md:text-3xl font-black text-900 m-0 mt-1">Etkinlik Takvimi & Duyurular</h3>
+                </div>
+                <a routerLink="/kurumsal/etkinlikler" class="text-emerald-600 text-sm font-bold no-underline flex align-items-center gap-1 hover:underline">
+                    Tüm Etkinlikleri Gör <i class="pi pi-arrow-right text-xs"></i>
+                </a>
+            </div>
+
+            <div class="grid">
+                @for (etk of etkinlikler; track etk.id) {
+                    <div class="col-12 md:col-4 p-2">
+                        <div class="modern-etkinlik-kart p-4 flex flex-column justify-content-between h-full cursor-pointer" [routerLink]="['/kurumsal/etkinlikler']">
+                            
+                            <!-- Sol Kıvrımlı Yeşil Şerit Accent (Görsel referans 2 ile tam aynı!) -->
+                            <div class="etkinlik-sol-serit"></div>
+
+                            <div class="pl-3">
+                                <div class="flex align-items-center justify-content-between mb-3">
+                                    <span class="etkinlik-kategori-pill uppercase">
+                                        {{ etk.kategori }}
+                                    </span>
+                                    <span class="text-xs text-500 font-bold">
+                                        <i class="pi pi-clock text-emerald-600 mr-1"></i>{{ etk.saat }}
+                                    </span>
+                                </div>
+
+                                <h4 class="text-lg font-bold text-900 m-0 mb-2 line-height-2 hover:text-emerald-600 transition-colors">
+                                    {{ etk.baslik }}
+                                </h4>
+
+                                <p class="text-xs text-600 m-0 mb-3 flex align-items-center gap-1">
+                                    <i class="pi pi-map-marker text-emerald-600"></i> {{ etk.konum }}
+                                </p>
+
+                                <p class="text-xs text-500 line-height-3 m-0 mb-4">
+                                    {{ etk.ozet }}
+                                </p>
+                            </div>
+
+                            <div class="pl-3 border-top-1 border-gray-100 pt-3 flex justify-content-between align-items-center">
+                                <span class="text-xs text-emerald-700 font-bold"><i class="pi pi-calendar mr-1"></i>{{ etk.tarih }}</span>
+                                <a [routerLink]="['/kurumsal/etkinlikler']" class="text-emerald-600 text-xs font-bold no-underline flex align-items-center gap-1 hover:text-emerald-700">
+                                    İncele <i class="pi pi-arrow-right text-xs"></i>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="text-center mt-7">
+            <a routerLink="/haberler" pButton pRipple label="Tüm Haberleri Görüntüle" icon="pi pi-list" class="p-button-primary p-button-rounded shadow-4 px-6 py-3 font-bold text-lg hover:shadow-6 transition-all"></a>
+        </div>
+    </div>
+</section>

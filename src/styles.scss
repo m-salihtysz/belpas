@@ -1,15 +1,33 @@
 /* =========================================
-   BELPAŞ - Global Design System
+   BELPAŞ - Global Design System (EMERALD GREEN THEME)
    ========================================= */
 
 /* --- CSS Değişkenleri --- */
 :root {
-  /* Renkler */
-  --renk-mavi:           #0066CC;
-  --renk-mavi-koyu:      #004499;
-  --renk-mavi-cok-koyu:  #002D6A;
-  --renk-mavi-acik:      #E8F1FB;
-  --renk-mavi-orta:      #1A7FE0;
+  /* PrimeNG / PrimeFlex Override: Force Emerald Green */
+  --primary-color: #10B981 !important;
+  --primary-color-text: #ffffff !important;
+  --primary-50: #ecfdf5;
+  --primary-100: #d1fae5;
+  --primary-200: #a7f3d0;
+  --primary-300: #6ee7b7;
+  --primary-400: #34d399;
+  --primary-500: #10b981;
+  --primary-600: #059669;
+  --primary-700: #047857;
+  --primary-800: #065f46;
+  --primary-900: #064e3b;
+
+  /* Mevcut Değişkenleri Yeşile Çevir (İsimler mavi kalsa bile renkler yeşil olacak) */
+  --renk-mavi:           #10B981; /* Emerald 500 */
+  --renk-mavi-koyu:      #047857; /* Emerald 700 */
+  --renk-mavi-cok-koyu:  #022C22; /* Emerald 950 */
+  --renk-mavi-acik:      #D1FAE5; /* Emerald 100 */
+  --renk-mavi-orta:      #34D399; /* Emerald 400 */
+  
+  --renk-yesil:          #10B981; 
+  --renk-yesil-koyu:     #047857;
+  
   --renk-sari:           #F5C800;
   --renk-sari-acik:      #FFF8D0;
   --renk-beyaz:          #FFFFFF;
@@ -22,10 +40,11 @@
   --renk-metin:          #2D3748;
   --renk-metin-acik:     #718096;
 
-  /* Gradyanlar */
-  --grad-mavi:    linear-gradient(135deg, #0066CC 0%, #1A7FE0 50%, #004499 100%);
-  --grad-hero:    linear-gradient(135deg, #004499 0%, #0066CC 40%, #1A7FE0 100%);
-  --grad-karti:   linear-gradient(180deg, rgba(0,102,204,0.05) 0%, rgba(0,68,153,0.1) 100%);
+  /* Gradyanlar (Global Yeşil) */
+  --grad-mavi:    linear-gradient(135deg, #10B981 0%, #34D399 50%, #047857 100%);
+  --grad-hero:    linear-gradient(135deg, #022C22 0%, #047857 40%, #10B981 100%);
+  --grad-karti:   linear-gradient(180deg, rgba(16,185,129,0.05) 0%, rgba(4,120,87,0.1) 100%);
+  --grad-yesil:   linear-gradient(135deg, #10B981 0%, #34D399 50%, #047857 100%);
 
   /* Tipografi */
   --font-baslik:  'Outfit', sans-serif;
@@ -43,7 +62,7 @@
   --golge-sm:  0 2px 8px rgba(0,0,0,0.06);
   --golge-md:  0 4px 20px rgba(0,0,0,0.10);
   --golge-lg:  0 8px 40px rgba(0,0,0,0.14);
-  --golge-mavi: 0 8px 32px rgba(0,102,204,0.25);
+  --golge-yesil: 0 8px 32px rgba(16,185,129,0.25);
 
   /* Animasyonlar */
   --gecis-hizli:   0.15s ease;
@@ -79,12 +98,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 a {
-  color: var(--renk-mavi);
+  color: var(--renk-yesil);
   text-decoration: none;
   transition: color var(--gecis-hizli);
 
   &:hover {
-    color: var(--renk-mavi-koyu);
+    color: var(--renk-yesil-koyu);
   }
 }
 
@@ -130,7 +149,7 @@ button {
 
   h2 {
     font-size: clamp(1.75rem, 3vw, 2.5rem);
-    color: var(--renk-mavi);
+    color: var(--renk-yesil);
     margin-bottom: 12px;
     position: relative;
 
@@ -139,7 +158,7 @@ button {
       display: block;
       width: 60px;
       height: 4px;
-      background: var(--grad-mavi);
+      background: var(--grad-yesil);
       margin: 16px auto 0;
       border-radius: 2px;
     }
@@ -167,20 +186,20 @@ button {
   white-space: nowrap;
 
   &-birincil {
-    background: var(--grad-mavi);
+    background: var(--grad-yesil);
     color: white;
-    box-shadow: var(--golge-mavi);
+    box-shadow: var(--golge-yesil);
 
     &:hover {
       transform: translateY(-2px);
-      box-shadow: 0 12px 40px rgba(0,102,204,0.35);
+      box-shadow: 0 12px 40px rgba(16,185,129,0.35);
       color: white;
     }
   }
 
   &-ikincil {
     background: transparent;
-    color: var(--renk-mavi);
+    color: var(--renk-yesil);
     border: 2px solid var(--renk-mavi);
 
     &:hover {
@@ -191,7 +210,7 @@ button {
 
   &-beyaz {
     background: white;
-    color: var(--renk-mavi);
+    color: var(--renk-yesil);
     box-shadow: var(--golge-md);
 
     &:hover {
@@ -229,9 +248,9 @@ button {
   }
 }
 
-@keyframes pulse-mavi {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(0,102,204,0.4); }
-  50%       { box-shadow: 0 0 0 12px rgba(0,102,204,0); }
+@keyframes pulse-yesil {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(16,185,129,0.4); }
+  50%       { box-shadow: 0 0 0 12px rgba(16,185,129,0); }
 }
 
 @keyframes shimmer {
@@ -266,7 +285,7 @@ button {
 
   &-mavi {
     background: var(--renk-mavi-acik);
-    color: var(--renk-mavi);
+    color: var(--renk-yesil);
   }
 
   &-sari {
@@ -283,13 +302,13 @@ button {
   background: var(--renk-gri-100);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--renk-mavi);
+  background: var(--renk-yesil);
   border-radius: 3px;
 }
 
 /* --- Focus --- */
 :focus-visible {
-  outline: 2px solid var(--renk-mavi);
+  outline: 2px solid var(--renk-yesil);
   outline-offset: 3px;
   border-radius: 4px;
 }

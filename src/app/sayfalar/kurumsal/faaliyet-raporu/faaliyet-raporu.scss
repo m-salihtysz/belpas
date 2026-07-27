@@ -5,8 +5,8 @@
 
   /* Senin Gönderdiğin Orijinal Başlık Kutusu */
   .baslik-kutusu {
-    background: linear-gradient(120deg, #eaf1ff 0%, #ffffff 60%, #eef4ff 100%);
-    border: 1px solid #e2e9fb;
+    background: linear-gradient(120deg, #e6f4ef 0%, #ffffff 60%, #d1fae5 100%);
+    border: 1px solid #a7f3d0;
     border-radius: 28px;
     padding: 40px 48px;
     margin-bottom: 32px;
@@ -15,7 +15,7 @@
       font-family: 'Outfit', sans-serif;
       font-weight: 800;
       font-size: clamp(28px, 4vw, 40px);
-      color: #101828;
+      color: #022c22;
       margin: 0;
     }
   }
@@ -23,7 +23,7 @@
   /* Yeni Şablona Uygun Uyumlu Ana Kart */
   .ana-kart {
     background: #ffffff;
-    border: 1px solid #e2e9fb; /* Başlıkla aynı kenarlık */
+    border: 1px solid #d1fae5; /* Başlıkla aynı kenarlık */
     border-radius: 28px; /* Şablonun 28px kıvrımları kullanıldı */
     padding: 48px;
     min-height: 400px;
@@ -50,10 +50,10 @@
       width: 100%;
       max-width: 650px;
       background: #ffffff;
-      border: 1px solid #f0f4fd;
+      border: 1px solid #e6f4ef;
       border-radius: 18px; /* Gönderdiğin şablondaki 18px değerini kullandım */
       padding: 20px 24px;
-      box-shadow: 0px 12px 32px rgba(16, 24, 40, 0.05); /* Çok hafif, modern bir gölge */
+      box-shadow: 0px 12px 32px rgba(16, 185, 129, 0.06); /* Çok hafif, modern bir gölge */
 
       .sol-bilgi {
         display: flex;
@@ -61,7 +61,7 @@
         gap: 16px;
 
         .ikon-kutusu {
-          background-color: #fef4ed;
+          background-color: #ecfdf5;
           width: 52px;
           height: 52px;
           border-radius: 12px;
@@ -96,7 +96,7 @@
       /* İndir Butonu Link Görünümü */
       .btn-indir {
         font-family: 'Inter', sans-serif;
-        background-color: #0d6efd;
+        background-color: #10b981;
         color: #ffffff;
         text-decoration: none;
         display: inline-block;
@@ -106,12 +106,12 @@
         font-size: 14px;
         font-weight: 600;
         transition: all 0.2s ease;
-        box-shadow: 0 4px 12px rgba(13, 110, 253, 0.2);
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
 
         &:hover {
-          background-color: #0b5ed7;
+          background-color: #059669;
           transform: translateY(-2px);
-          box-shadow: 0 6px 16px rgba(13, 110, 253, 0.3);
+          box-shadow: 0 6px 16px rgba(16, 185, 129, 0.35);
         }
       }
     }

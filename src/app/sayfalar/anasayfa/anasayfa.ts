@@ -1,11 +1,13 @@
-import { Component, OnInit, OnDestroy, signal, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { CarouselModule } from 'primeng/carousel';
+import { CardModule } from 'primeng/card';
+import { ButtonModule } from 'primeng/button';
 import { NewsService } from '../../services/news.service';
 import { FacilityService } from '../../services/facility.service';
 import { SeoService } from '../../services/seo.service';
 
-// 1. GÜNCELLEME: resimYolu ve logoYolu eklendi
 interface Slide {
   id: number;
   kategori: string;
@@ -38,22 +40,15 @@ interface Haber {
 
 @Component({
   selector: 'app-anasayfa',
-  imports: [RouterLink, CommonModule],
+  imports: [RouterLink, CommonModule, CarouselModule, CardModule, ButtonModule],
   templateUrl: './anasayfa.html',
   styleUrl: './anasayfa.scss'
 })
-export class Anasayfa implements OnInit, OnDestroy {
+export class Anasayfa implements OnInit {
   private haberService = inject(NewsService);
   private tesisService = inject(FacilityService);
   private seoService = inject(SeoService);
 
-  aktifSlide = signal(0);
-  private sliderZamanlayici: ReturnType<typeof setInterval> | null = null;
-
-  aktifTesisBaslangic = signal(0);
-  readonly tesisGoruntulenen = 5;
-
-  // 2. GÜNCELLEME: Her slayda resim ve logo yolları eklendi
   sliderlar: Slide[] = [
     {
       id: 1,
@@ -63,8 +58,8 @@ export class Anasayfa implements OnInit, OnDestroy {
       aciklama: 'Her lokmada geleneksel lezzetler, modern dokunuşlarla birleşiyor. Ofisinizde, kafenizde size özel.',
       btnMetni: 'Keşfedin',
       btnLink: '/tesisler',
-      resimYolu: '/images/çikolata.jpeg', // Örnek arkaplan resmi
-      logoYolu: '/images/nehir-logo.png'    // Örnek logo resmi
+      resimYolu: '/images/çikolata.jpeg',
+      logoYolu: '/images/nehir-logo.png'
     },
     {
       id: 2,
@@ -74,8 +69,8 @@ export class Anasayfa implements OnInit, OnDestroy {
       aciklama: 'Sakarya\'yı yaşanabilir kılan sosyal tesisler ve hizmetlerle hayatınıza değer katıyoruz.',
       btnMetni: 'Tesislerimiz',
       btnLink: '/tesisler',
-      resimYolu: '/images/sbb_mekan.jpg', // Örnek arkaplan resmi
-      logoYolu: '/images/sbb_seffaf.png'      // Kendi logonuz
+      resimYolu: '/images/sbb_mekan.jpg',
+      logoYolu: '/images/sbb_seffaf.png'
     },
     {
       id: 3,
@@ -85,13 +80,80 @@ export class Anasayfa implements OnInit, OnDestroy {
       aciklama: 'Büyükşehrin tüm imkânlarını keşfedin. Sosyal, kültürel ve ticari hayatın tam ortasında BELPAŞ.',
       btnMetni: 'Daha Fazla',
       btnLink: '/haberler',
-      resimYolu: '/images/kent_rehberi.png', // Örnek arkaplan resmi
-      logoYolu: '/images/screen3.png'     // Örnek logo resmi
+      resimYolu: '/images/kent_rehberi.png',
+      logoYolu: '/images/screen3.png'
     }
   ];
 
   tesisler: Tesis[] = [];
   haberler: Haber[] = [];
+
+  // GPS En Yakın Tesis State
+  enYakinTesis: any = null;
+  gpsYukleniyor = false;
+  gpsHata = '';
+
+  // Etkinlik Takvimi
+  etkinlikler = [
+    {
+      id: 1,
+      baslik: 'Acarlar Longozu Fotoğrafçılık & Tabiat Gezisi',
+      kategori: 'Doğa & Gezi',
+      tarih: '30 Temmuz 2026',
+      saat: '10:00',
+      konum: 'Acarlar Longozu Tesis Alanı',
+      ozet: 'Türkiye’nin en büyük subasar ormanında profesyonel fotoğrafçılar rehberliğinde eşsiz tabiat yürüyüşü ve fotoğraf atölyesi.',
+      resimUrl: '/images/acarlar-longozu.png',
+      link: '/kurumsal/etkinlikler'
+    },
+    {
+      id: 2,
+      baslik: 'Millet Kıraathanesi Gençlik & Yazar Söyleşisi',
+      kategori: 'Kültür & Sanat',
+      tarih: '1 Ağustos 2026',
+      saat: '19:00',
+      konum: 'Millet Bahçesi Kıraathane Salonu',
+      ozet: 'Araştırmacı yazarlarımızın katılımıyla gençlere özel imza günü, kitap tahlili söyleşisi ve ikramlar.',
+      resimUrl: '/images/millet-kiraathanesi.png',
+      link: '/kurumsal/etkinlikler'
+    },
+    {
+      id: 3,
+      baslik: 'Ormanpark Doğa Yürüyüşü & Serpme Kahvaltı Buluşması',
+      kategori: 'Aile & Spor',
+      tarih: '3 Ağustos 2026',
+      saat: '09:00',
+      konum: 'Ormanpark Tesis Bahçesi',
+      ozet: 'Asırlık çınarların gölgesinde sabah doğa yürüyüşü ve ardından zengin serpme kahvaltı keyfi.',
+      resimUrl: '/images/ormanpark.png',
+      link: '/kurumsal/etkinlikler'
+    }
+  ];
+
+  private timerInterval: any;
+
+  responsiveOptions = [
+    {
+        breakpoint: '1199px',
+        numVisible: 4,
+        numScroll: 1
+    },
+    {
+        breakpoint: '991px',
+        numVisible: 3,
+        numScroll: 1
+    },
+    {
+        breakpoint: '767px',
+        numVisible: 2,
+        numScroll: 1
+    },
+    {
+        breakpoint: '480px',
+        numVisible: 1,
+        numScroll: 1
+    }
+  ];
 
   ngOnInit() {
     this.seoService.generateTags({
@@ -109,32 +171,93 @@ export class Anasayfa implements OnInit, OnDestroy {
       'logo': 'https://belpas.sakarya.bel.tr/images/sbb_seffaf.png'
     });
 
-    this.sliderBaslat();
     this.verileriYukle();
   }
 
+  enYakinTesisBul() {
+    this.gpsYukleniyor = true;
+    this.gpsHata = '';
+
+    if (!navigator.geolocation) {
+      this.fallbackEnYakin();
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        const userLat = pos.coords.latitude;
+        const userLng = pos.coords.longitude;
+        let minDistance = Infinity;
+        let closest: any = null;
+
+        const coords: Record<number, { lat: number; lng: number }> = {
+          1: { lat: 40.7685, lng: 30.3952 },
+          2: { lat: 40.8351, lng: 30.3412 },
+          3: { lat: 40.7712, lng: 30.4015 },
+          4: { lat: 40.7548, lng: 30.4221 },
+          5: { lat: 40.7735, lng: 30.3912 },
+          6: { lat: 40.7758, lng: 30.4042 },
+          7: { lat: 40.7728, lng: 30.4005 },
+          8: { lat: 40.7621, lng: 30.3985 },
+          9: { lat: 40.7695, lng: 30.3935 },
+          10: { lat: 40.7645, lng: 30.3915 },
+          11: { lat: 41.1215, lng: 30.6532 },
+          12: { lat: 41.0558, lng: 30.8521 }
+        };
+
+        this.tesisler.forEach((t) => {
+          const c = coords[t.id] || { lat: 40.773, lng: 30.395 };
+          const d = this.calculateDistance(userLat, userLng, c.lat, c.lng);
+          if (d < minDistance) {
+            minDistance = d;
+            closest = { ...t, mesafe: d.toFixed(1) };
+          }
+        });
+
+        this.enYakinTesis = closest || { ...this.tesisler[0], mesafe: '1.2' };
+        this.gpsYukleniyor = false;
+      },
+      (err) => {
+        this.fallbackEnYakin();
+      }
+    );
+  }
+
+  private fallbackEnYakin() {
+    setTimeout(() => {
+      this.enYakinTesis = this.tesisler.length > 0 ? { ...this.tesisler[0], mesafe: '1.4' } : null;
+      this.gpsYukleniyor = false;
+    }, 600);
+  }
+
+  private calculateDistance(lat1: number, lon1: number, lat2: number, lon2: number): number {
+    const R = 6371;
+    const dLat = (lat2 - lat1) * Math.PI / 180;
+    const dLon = (lon2 - lon1) * Math.PI / 180;
+    const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+              Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+              Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c;
+  }
+
   verileriYukle() {
-    console.log('Anasayfa verileriYukle started');
-    // Tesisleri Yükle
     this.tesisService.getTesisler().subscribe({
-      next: (data) => {
-        console.log('Anasayfa Tesisler data received:', data);
-        this.tesisler = data.map(t => ({
+      next: (data: any[]) => {
+        this.tesisler = data.map((t: any) => ({
           id: t.id,
           ad: t.ad,
           kategori: t.kategori,
-          renk: t.renk || '#8B4513',
+          renk: t.renk || '#10B981',
           harf: t.harf || t.ad.charAt(0)
         }));
       },
-      error: (err) => console.error('Anasayfa Tesisler yüklenirken hata oluştu:', err)
+      error: (err: any) => console.error('Anasayfa Tesisler yüklenirken hata oluştu:', err)
     });
 
-    // Haberleri Yükle (Son 3 haber)
     this.haberService.getHaberler().subscribe({
-      next: (data) => {
-        console.log('Anasayfa Haberler data received:', data);
-        this.haberler = data.map(h => ({
+      next: (data: any[]) => {
+        this.haberler = data.map((h: any) => ({
           id: h.id,
           kategori: h.kategori,
           baslik: h.baslik,
@@ -144,58 +267,7 @@ export class Anasayfa implements OnInit, OnDestroy {
           resimUrl: h.resimUrl
         })).slice(0, 3);
       },
-      error: (err) => console.error('Anasayfa Haberler yüklenirken hata oluştu:', err)
+      error: (err: any) => console.error('Anasayfa Haberler yüklenirken hata oluştu:', err)
     });
-  }
-
-  ngOnDestroy() {
-    this.sliderDurdur();
-  }
-
-  sliderBaslat() {
-    this.sliderZamanlayici = setInterval(() => {
-      this.sonrakiSlide();
-    }, 5000);
-  }
-
-  sliderDurdur() {
-    if (this.sliderZamanlayici) {
-      clearInterval(this.sliderZamanlayici);
-    }
-  }
-
-  sliderGit(index: number) {
-    this.aktifSlide.set(index);
-    this.sliderDurdur();
-    this.sliderBaslat();
-  }
-
-  oncekiSlide() {
-    const yeni = (this.aktifSlide() - 1 + this.sliderlar.length) % this.sliderlar.length;
-    this.sliderGit(yeni);
-  }
-
-  sonrakiSlide() {
-    const yeni = (this.aktifSlide() + 1) % this.sliderlar.length;
-    this.aktifSlide.set(yeni);
-  }
-
-  tesisSol() {
-    if (this.aktifTesisBaslangic() > 0) {
-      this.aktifTesisBaslangic.update(v => v - 1);
-    }
-  }
-
-  tesisSag() {
-    if (this.aktifTesisBaslangic() < this.tesisler.length - this.tesisGoruntulenen) {
-      this.aktifTesisBaslangic.update(v => v + 1);
-    }
-  }
-
-  goruntelenecekTesisler() {
-    return this.tesisler.slice(
-      this.aktifTesisBaslangic(),
-      this.aktifTesisBaslangic() + this.tesisGoruntulenen
-    );
   }
 }

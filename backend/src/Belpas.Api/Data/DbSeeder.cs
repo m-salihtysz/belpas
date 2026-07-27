@@ -75,158 +75,196 @@ public static class DbSeeder
             );
         }
 
-        // 2. Tesisler Seeding
-        if (!context.Tesisler.Any())
+        // 2. Tesisler Seeding (Remove old records to force refresh rich data and green colors)
+        if (context.Tesisler.Any())
         {
-            context.Tesisler.AddRange(
+            context.Tesisler.RemoveRange(context.Tesisler);
+            context.SaveChanges();
+        }
+
+        context.Tesisler.AddRange(
                 new Tesis
                 {
                     Ad = "Çay Dünyası",
                     Kategori = "Kafeterya",
-                    Renk = "#8B4513",
+                    Renk = "#10B981",
                     Harf = "Ç",
-                    Aciklama = "Belpaş çay bahçesi ve dinlenme tesisi.",
+                    Aciklama = "Kent Park'ın eşsiz doğası içinde yer alan Çay Dünyası; taze demlenmiş çay çeşitleri, taze sıkılmış meyve suları ve özel fırın lezzetleriyle Sakaryalıların en sevdiği dinlenme noktasıdır.",
+                    Adres = "Atatürk Bulvarı, Kent Park İçi, Adapazarı / Sakarya",
+                    Telefon = "0264 272 00 10",
                     ResimUrl = "/images/cay-dunyasi.png",
+                    KonumUrl = "https://maps.google.com/?q=Kent+Park+Adapazari",
+                    HaftaIciSaat = "08:30–23:00",
+                    HaftaSonuSaat = "08:30–23:30",
                     Aktif = true
                 },
                 new Tesis
                 {
                     Ad = "Yentkent",
-                    Kategori = "Pazar",
-                    Renk = "#2E7D32",
+                    Kategori = "Pazar & Sosyal Alan",
+                    Renk = "#059669",
                     Harf = "Y",
-                    Aciklama = "Yenikent Kapalı Pazar Alanı.",
+                    Aciklama = "Yenikent bölgesinde halkımıza kaliteli, hijyenik ve ekonomik alışveriş ile dinlenme imkanı sunan Belpaş kapalı sosyal ve ticari alan tesisi.",
+                    Adres = "Yenikent Şehir Parkı Yanı, Camili / Adapazarı / Sakarya",
+                    Telefon = "0264 272 00 11",
                     ResimUrl = "/images/yentkent.png",
+                    KonumUrl = "https://maps.google.com/?q=Camili+Adapazari",
+                    HaftaIciSaat = "08:00–20:00",
+                    HaftaSonuSaat = "08:00–20:00",
                     Aktif = true
                 },
                 new Tesis
                 {
                     Ad = "P Market",
-                    Kategori = "Market",
-                    Renk = "#1565C0",
+                    Kategori = "Tanzim Satış & Market",
+                    Renk = "#047857",
                     Harf = "P",
-                    Aciklama = "Belpaş tanzim satış ve süpermarket noktası.",
+                    Aciklama = "Belpaş tanzim satış ve süpermarket noktası. Sakarya'nın yerel lezzetleri, kooperatif ürünleri ve temel gıda ihtiyaçları doğrudan üreticiden en uygun fiyatlarla sunulmaktadır.",
+                    Adres = "Gar Meydanı Yanı, Adapazarı / Sakarya",
+                    Telefon = "0264 272 00 13",
                     ResimUrl = "/images/p-market.png",
+                    KonumUrl = "https://maps.google.com/?q=Gar+Meydani+Adapazari",
+                    HaftaIciSaat = "08:00–21:00",
+                    HaftaSonuSaat = "08:00–21:00",
                     Aktif = true
                 },
                 new Tesis
                 {
                     Ad = "Nehir Kafeterya",
-                    Kategori = "Kafeterya",
-                    Renk = "#5D4037",
+                    Kategori = "Kafeterya & Restoran",
+                    Renk = "#065F46",
                     Harf = "N",
-                    Aciklama = "Nehir kenarında keyifli çay kahve saati.",
+                    Aciklama = "Sakarya Nehri'nin kıyısında, muazzam nehir manzarası eşliğinde leziz kahvaltılar, çay/kahve molaları ve çocuk oyun alanlarıyla ailece vakit geçirilecek ferah tesis.",
+                    Adres = "Sakarya Park İçi, Erenler / Sakarya",
+                    Telefon = "0264 272 00 16",
                     ResimUrl = "/images/nehir-kafeterya.png",
+                    KonumUrl = "https://maps.google.com/?q=Sakarya+Park+Erenler",
+                    HaftaIciSaat = "09:00–23:30",
+                    HaftaSonuSaat = "09:00–23:30",
                     Aktif = true
                 },
                 new Tesis
                 {
                     Ad = "İznik Kiralama",
-                    Kategori = "Kiralama",
-                    Renk = "#E65100",
+                    Kategori = "Rekreasyon & Kiralama",
+                    Renk = "#10B981",
                     Harf = "İ",
-                    Aciklama = "Sosyal ekipman ve alan kiralama hizmeti.",
+                    Aciklama = "Şehir içi rekreasyon alanlarında bisiklet, akülü araçlar ve açık alan eğlence ekipmanları kiralama hizmeti sunan Belpaş sosyal aktivite noktası.",
+                    Adres = "Çark Caddesi Sonu, Kent Park Girişi, Adapazarı / Sakarya",
+                    Telefon = "0264 272 00 17",
                     ResimUrl = "/images/iznik-kiralama.png",
+                    KonumUrl = "https://maps.google.com/?q=Cark+Caddesi+Adapazari",
+                    HaftaIciSaat = "09:00–21:00",
+                    HaftaSonuSaat = "09:00–21:30",
                     Aktif = true
                 },
                 new Tesis
                 {
                     Ad = "Meclis Kafeteryası",
                     Kategori = "Kafeterya",
-                    Renk = "#1A237E",
+                    Renk = "#047857",
                     Harf = "M",
-                    Aciklama = "Belediye meclis binası kafeteryası.",
+                    Aciklama = "Sakarya Büyükşehir Belediyesi hizmet binası içerisinde vatandaşlarımıza, meclis üyelerimize ve personelimize kaliteli aperatif ve içecek sunan nezih mekan.",
+                    Adres = "Büyükşehir Belediyesi Hizmet Binası, Adapazarı / Sakarya",
+                    Telefon = "0264 272 00 18",
                     ResimUrl = "/images/meclis.png",
+                    KonumUrl = "https://maps.google.com/?q=Sakarya+Buyuksehir+Belediyesi",
+                    HaftaIciSaat = "08:00–18:00",
+                    HaftaSonuSaat = "Kapalı",
                     Aktif = true
                 },
                 new Tesis
                 {
                     Ad = "Büfe",
-                    Kategori = "Gıda",
-                    Renk = "#880E4F",
+                    Kategori = "Hızlı Gıda & Büfe",
+                    Renk = "#059669",
                     Harf = "B",
-                    Aciklama = "Demokrasi Meydanı satış büfesi.",
+                    Aciklama = "Şehrin merkezinde, Demokrasi Meydanı'nda taze tost, sandviç, çay, kahve ve meşrubat çeşitleriyle hızlı, güvenilir ve ekonomik hizmet noktası.",
+                    Adres = "Demokrasi Meydanı, Adapazarı / Sakarya",
+                    Telefon = "0264 272 00 20",
                     ResimUrl = "/images/bufe.png",
+                    KonumUrl = "https://maps.google.com/?q=Demokrasi+Meydani+Adapazari",
+                    HaftaIciSaat = "07:30–22:00",
+                    HaftaSonuSaat = "07:30–22:00",
                     Aktif = true
                 },
                 new Tesis
                 {
                     Ad = "Ormanpark",
-                    Kategori = "Kafeterya",
-                    Renk = "#8B4513",
+                    Kategori = "Kafeterya & Restoran",
+                    Renk = "#10B981",
                     Harf = "O",
-                    Aciklama = "Doğa ile iç içe, restoran ve kahvaltı hizmeti sunan tesis.",
-                    Adres = "Adnan Menderes Cd., Adapazarı/Sakarya",
+                    Aciklama = "Asırlık çınar ve meşe ağaçlarının gölgesinde zengin serpme kahvaltısı, ızgara çeşitleri ve ferah bahçesiyle Sakarya'nın en sevilen simge sosyal tesisi.",
+                    Adres = "Adnan Menderes Cd., Adapazarı / Sakarya",
                     Telefon = "0264 272 00 12",
                     ResimUrl = "/images/ormanpark.png",
                     KonumUrl = "https://maps.app.goo.gl/23nK4hfzZ3nYYxP68",
-                    HaftaIciSaat = "09:00–23:00",
-                    HaftaSonuSaat = "09:00–23:00",
+                    HaftaIciSaat = "08:30–23:00",
+                    HaftaSonuSaat = "08:30–23:30",
                     Aktif = true
                 },
                 new Tesis
                 {
                     Ad = "Elegant Restoran",
-                    Kategori = "Restoran",
-                    Renk = "#880E4F",
+                    Kategori = "Seçkin Restoran",
+                    Renk = "#047857",
                     Harf = "E",
-                    Aciklama = "Şık atmosferi ve zengin menüsüyle seçkin bir restoran deneyimi.",
-                    Adres = "Adapazarı/Sakarya",
+                    Aciklama = "Seçkin şeflerin hazırladığı özel et menüleri, şık atmosferi, VIP toplantı odaları ve yüksek hizmet kalitesiyle prestijli lezzet durağı.",
+                    Adres = "Donatım Park İçi, Adapazarı / Sakarya",
                     Telefon = "0264 272 00 14",
                     ResimUrl = "/images/elegant-restoran.png",
-                    KonumUrl = "https://maps.google.com",
-                    HaftaIciSaat = "09:00–23:00",
-                    HaftaSonuSaat = "09:00–23:00",
+                    KonumUrl = "https://maps.google.com/?q=Donatim+Park+Adapazari",
+                    HaftaIciSaat = "10:00–23:00",
+                    HaftaSonuSaat = "10:00–23:00",
                     Aktif = true
                 },
                 new Tesis
                 {
                     Ad = "Millet Kıraathanesi",
-                    Kategori = "Kütüphane",
-                    Renk = "#1A237E",
+                    Kategori = "Kültür & Kütüphane",
+                    Renk = "#059669",
                     Harf = "M",
-                    Aciklama = "Ders çalışma, kitap okuma alanları ve ücretsiz ikramlar sunan kültür merkezi.",
-                    Adres = "Millet Bahçesi içi, Adapazarı/Sakarya",
+                    Aciklama = "Binlerce kitaplık zengin kütüphanesi, sessiz çalışma alanları, hızlı interneti ve ücretsiz ikramlarıyla gençlerimizin ve araştırmacılarımızın buluşma noktası.",
+                    Adres = "Millet Bahçesi İçi, Adapazarı / Sakarya",
                     Telefon = "0264 272 00 15",
                     ResimUrl = "/images/millet-kiraathanesi.png",
-                    KonumUrl = "https://maps.google.com",
-                    HaftaIciSaat = "09:00–23:00",
-                    HaftaSonuSaat = "09:00–23:00",
+                    KonumUrl = "https://maps.google.com/?q=Millet+Bahcesi+Adapazari",
+                    HaftaIciSaat = "08:00–24:00",
+                    HaftaSonuSaat = "08:00–24:00",
                     Aktif = true
                 },
                 new Tesis
                 {
                     Ad = "Acarlar Longozu",
-                    Kategori = "Doğa Parkı",
-                    Renk = "#2E7D32",
+                    Kategori = "Doğa Parkı & Tesis",
+                    Renk = "#065F46",
                     Harf = "A",
-                    Aciklama = "Eşsiz doğasıyla subasar ormanı yürüyüş ve seyir alanları.",
-                    Adres = "Karasu/Sakarya",
+                    Aciklama = "Türkiye'nin tek parça halindeki en büyük subasar ormanında, ahşap yürüyüş yolları, seyir terasları ve doğa kafeteryasıyla eşsiz bir tabiat deneyimi.",
+                    Adres = "Denizköy Mahallesi, Karasu / Sakarya",
                     Telefon = "0264 272 00 19",
                     ResimUrl = "/images/acarlar-longozu.png",
                     KonumUrl = "https://www.google.com/maps/place/Acarlar+Longozu",
-                    HaftaIciSaat = "09:30–20:30",
-                    HaftaSonuSaat = "09:30–20:30",
+                    HaftaIciSaat = "08:30–20:30",
+                    HaftaSonuSaat = "08:30–20:30",
                     Aktif = true
                 },
                 new Tesis
                 {
                     Ad = "Kocaali Sosyal Tesisleri",
-                    Kategori = "Sosyal Tesis",
-                    Renk = "#1565C0",
+                    Kategori = "Plaj & Sosyal Tesis",
+                    Renk = "#10B981",
                     Harf = "K",
-                    Aciklama = "Denize sıfır konumu ve kadınlara özel plaj/sosyal alan hizmeti.",
-                    Adres = "Kocaali Sahili, Kocaali/Sakarya",
+                    Aciklama = "Mavi bayraklı Kocaali sahilinde kadınlarımıza ve çocuklarına özel plaj, şezlonglar, giyinme kabinleri, kafeterya ve restoran hizmeti sunan tatil tesisi.",
+                    Adres = "Alandere Mahallesi Sahil Cd., Kocaali / Sakarya",
                     Telefon = "0264 272 00 21",
                     ResimUrl = "/images/kocaali-sosyal-tesisleri.png",
                     KonumUrl = "https://www.google.com/maps/place/Kocaali+Kad%C4%B1nlar+Plaj%C4%B1",
-                    HaftaIciSaat = "09:00–18:30",
-                    HaftaSonuSaat = "09:00–18:30",
+                    HaftaIciSaat = "08:30–19:30",
+                    HaftaSonuSaat = "08:30–19:30",
                     Aktif = true
                 }
             );
-        }
 
-        context.SaveChanges();
+            context.SaveChanges();
     }
 }

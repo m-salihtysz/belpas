@@ -6,9 +6,10 @@
 }
 
 /* --- BAŞLIK KUTUSU --- */
+/* --- BAŞLIK KUTUSU --- */
 .baslik-kutusu {
-  background: linear-gradient(120deg, #eaf1ff 0%, #ffffff 60%, #eef4ff 100%);
-  border: 1px solid #e2e9fb;
+  background: linear-gradient(120deg, #e6f4ef 0%, #ffffff 60%, #d1fae5 100%);
+  border: 1px solid #a7f3d0;
   border-radius: 28px;
   padding: 40px 48px;
   margin-bottom: 32px;
@@ -20,21 +21,21 @@
     font-family: 'Outfit', sans-serif;
     font-size: 14px;
     font-weight: 600;
-    color: #0d6efd;
+    color: #10b981;
     text-decoration: none;
     margin-bottom: 20px;
     transition: gap 0.2s ease, color 0.2s ease;
 
     &:hover {
-      color: #0b5ed7;
+      color: #059669;
       gap: 10px;
     }
   }
 
   .kategori-badge {
     display: inline-block;
-    background: #e8f0fe;
-    color: #3b5bdb;
+    background: #ecfdf5;
+    color: #047857;
     font-family: 'Outfit', sans-serif;
     font-size: 12px;
     font-weight: 700;
@@ -49,7 +50,7 @@
     font-family: 'Outfit', sans-serif;
     font-weight: 800;
     font-size: clamp(22px, 3.5vw, 34px);
-    color: #101828;
+    color: #022c22;
     margin: 0 0 16px 0;
     line-height: 1.25;
   }
@@ -71,10 +72,10 @@
 /* --- ANA İÇERİK KARTI --- */
 .ana-kart {
   background: #ffffff;
-  border: 1px solid #e2e9fb;
+  border: 1px solid #d1fae5;
   border-radius: 28px;
   padding: 48px;
-  box-shadow: 0px 12px 32px rgba(16, 24, 40, 0.03);
+  box-shadow: 0px 12px 32px rgba(16, 185, 129, 0.04);
 
   .gorsel-alani {
     margin-bottom: 36px;
@@ -91,8 +92,8 @@
   }
 
   .ozet-alani {
-    background: linear-gradient(120deg, #f0f5ff 0%, #f8faff 100%);
-    border-left: 4px solid #3b5bdb;
+    background: linear-gradient(120deg, #ecfdf5 0%, #f8faff 100%);
+    border-left: 4px solid #10b981;
     border-radius: 0 12px 12px 0;
     padding: 20px 24px;
     margin-bottom: 32px;
@@ -130,7 +131,7 @@
     }
 
     a {
-      color: #0d6efd;
+      color: #10b981;
     }
   }
 }

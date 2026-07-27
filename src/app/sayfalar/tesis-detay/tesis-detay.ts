@@ -1,7 +1,7 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { FacilityService, Tesis } from '../../services/facility.service';
+import { FacilityService, Tesis, MenuKategori } from '../../services/facility.service';
 import { SeoService } from '../../services/seo.service'; 
 
 @Component({
@@ -17,8 +17,29 @@ export class TesisDetay implements OnInit {
   private seoService = inject(SeoService); 
 
   tesis = signal<Tesis | null>(null);
+  menuKategorileri = signal<MenuKategori[]>([]);
+  aktifSekme = signal<number>(0);
+  menuModu = signal<'interaktif' | 'gorsel'>('interaktif');
+  menuModalAcik = signal<boolean>(false);
   yukleniyor = signal(true);
   hata = signal(false);
+  resimHata = signal(false);
+
+  onResimHata(): void {
+    this.resimHata.set(true);
+  }
+
+  sekmeDegistir(index: number): void {
+    this.aktifSekme.set(index);
+  }
+
+  menuModuDegistir(mod: 'interaktif' | 'gorsel'): void {
+    this.menuModu.set(mod);
+  }
+
+  modalAcKapat(durum: boolean): void {
+    this.menuModalAcik.set(durum);
+  }
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
@@ -31,6 +52,7 @@ export class TesisDetay implements OnInit {
     this.tesisService.getTesis(id).subscribe({
       next: (data) => {
         this.tesis.set(data);
+        this.menuKategorileri.set(this.tesisService.getMockMenuForFacility(id));
         this.yukleniyor.set(false);
 
         // Tesis modelindeki "ad" ve "aciklama" alanlarını kullanıyoruz

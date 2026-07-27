@@ -1,139 +1,71 @@
-<header class="header" [class.header--kaydiraldi]="kaydirildimi()">
-  <div class="container">
-    <div class="header__ic">
-
-      <!-- Logo -->
-      <a routerLink="/" class="header__logo" (click)="mobilMenuKapat()">
-        <div class="logo-metin">
-          <span class="logo-bel">BEL</span><span class="logo-pas">PAŞ</span>
+<header class="custom-header flex align-items-center justify-content-between fixed top-0 left-0 w-full z-5">
+    <!-- Logo -->
+    <a routerLink="/" class="flex align-items-center gap-2 text-decoration-none z-2">
+        <div class="font-bold text-3xl text-white tracking-wider">
+            <span>BEL</span><span class="text-white-alpha-70">PAŞ</span>
         </div>
-        <div class="logo-alt">Sakarya Büyükşehir Belediyesi</div>
-      </a>
+        <div class="hidden md:block text-xs text-white-alpha-80 line-height-1 border-left-1 border-white-alpha-30 pl-2 ml-2">
+            Sakarya Büyükşehir<br>Belediyesi
+        </div>
+    </a>
 
-      <!-- Masaüstü Navigasyon -->
-      <nav class="header__nav gizle-mobil" role="navigation" aria-label="Ana Navigasyon">
-        @for (oge of menuOgeleri; track oge.etiket) {
-          @if (oge.altMenuler) {
-            <!-- Dropdown Menü -->
-            <div class="nav-oge nav-oge--dropdown"
-                 [class.nav-oge--aktif]="aktifDropdown() === oge.etiket"
-                 (mouseenter)="aktifDropdown.set(oge.etiket)"
-                 (mouseleave)="dropdownKapat()">
-              <button class="nav-link nav-link--dropdown">
-                {{ oge.etiket }}
-                <svg class="dropdown-ok" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                  <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
-              </button>
-              <div class="dropdown-panel" role="menu">
-                <div class="dropdown-panel__ic">
-                  @for (alt of oge.altMenuler; track alt.etiket) {
-                    <a [routerLink]="alt.link" class="dropdown-link" role="menuitem" (click)="dropdownKapat()">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="9 18 15 12 9 6"></polyline>
-                      </svg>
-                      {{ alt.etiket }}
-                    </a>
-                  }
-                </div>
-              </div>
-            </div>
-          } @else {
-            <!-- Normal Link -->
-            <a [routerLink]="oge.link" class="nav-link" routerLinkActive="nav-link--secili">
-              {{ oge.etiket }}
+    <!-- Center Nav with Dropdowns -->
+    <nav class="hidden lg:flex align-items-center gap-1 z-2 bg-black-alpha-40 px-3 py-2 border-round-3xl backdrop-blur-md border-1 border-white-alpha-15 shadow-4">
+        <a routerLink="/" class="nav-pill" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Ana Sayfa</a>
+
+        <!-- Kurumsal Dropdown -->
+        <div class="nav-item-dropdown relative group">
+            <a routerLink="/kurumsal/hakkimizda" class="nav-pill flex align-items-center gap-1 cursor-pointer" routerLinkActive="active">
+                Kurumsal <i class="pi pi-angle-down text-xs ml-1 opacity-70"></i>
             </a>
-          }
-        }
-      </nav>
+            <div class="dropdown-menu absolute left-0 top-100 py-2 border-round-2xl shadow-8 border-1 border-white-alpha-15 min-w-16rem z-5">
+                <a routerLink="/kurumsal/hakkimizda" class="dropdown-item block px-4 py-2 text-white-alpha-90 hover:text-white hover:bg-white-alpha-10 text-decoration-none transition-colors text-sm font-medium">Hakkımızda</a>
+                <a routerLink="/kurumsal/organizasyon-semasi" class="dropdown-item block px-4 py-2 text-white-alpha-90 hover:text-white hover:bg-white-alpha-10 text-decoration-none transition-colors text-sm font-medium">Organizasyon Şeması</a>
+                <a routerLink="/kurumsal/kurumsal-kimlik" class="dropdown-item block px-4 py-2 text-white-alpha-90 hover:text-white hover:bg-white-alpha-10 text-decoration-none transition-colors text-sm font-medium">Kurumsal Kimlik</a>
+                <a routerLink="/kurumsal/faaliyet-raporu" class="dropdown-item block px-4 py-2 text-white-alpha-90 hover:text-white hover:bg-white-alpha-10 text-decoration-none transition-colors text-sm font-medium">Faaliyet Raporu</a>
+                <a routerLink="/kurumsal/etkinlikler" class="dropdown-item block px-4 py-2 text-white-alpha-90 hover:text-white hover:bg-white-alpha-10 text-decoration-none transition-colors text-sm font-medium">Etkinliklerimiz</a>
+            </div>
+        </div>
 
-      <!-- Sağ Alan -->
-      <div class="header__sag">
-        <!-- Arama Butonu -->
-        <button class="arama-btn" (click)="aramaAc()" aria-label="Ara">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-          </svg>
-          <span class="gizle-mobil">Ara</span>
+        <!-- Satın Alma Dropdown -->
+        <div class="nav-item-dropdown relative group">
+            <a routerLink="/ihaleler/ilanlar" class="nav-pill flex align-items-center gap-1 cursor-pointer" routerLinkActive="active">
+                Satın Alma <i class="pi pi-angle-down text-xs ml-1 opacity-70"></i>
+            </a>
+            <div class="dropdown-menu absolute left-0 top-100 py-2 border-round-2xl shadow-8 border-1 border-white-alpha-15 min-w-16rem z-5">
+                <a routerLink="/ihaleler/ilanlar" class="dropdown-item block px-4 py-2 text-white-alpha-90 hover:text-white hover:bg-white-alpha-10 text-decoration-none transition-colors text-sm font-medium">Satın Alma İlanları</a>
+                <a routerLink="/ihaleler/komisyon" class="dropdown-item block px-4 py-2 text-white-alpha-90 hover:text-white hover:bg-white-alpha-10 text-decoration-none transition-colors text-sm font-medium">Satın Alma Komisyonu</a>
+                <a routerLink="/ihaleler/kriterler" class="dropdown-item block px-4 py-2 text-white-alpha-90 hover:text-white hover:bg-white-alpha-10 text-decoration-none transition-colors text-sm font-medium">Satın Alma Kriterleri</a>
+                <a routerLink="/ihaleler/surec" class="dropdown-item block px-4 py-2 text-white-alpha-90 hover:text-white hover:bg-white-alpha-10 text-decoration-none transition-colors text-sm font-medium">Satın Alma Süreci</a>
+            </div>
+        </div>
+
+        <a routerLink="/tesisler" class="nav-pill" routerLinkActive="active">Birimlerimiz</a>
+        <a routerLink="/haberler" class="nav-pill" routerLinkActive="active">Haberler</a>
+        <a routerLink="/iletisim" class="nav-pill" routerLinkActive="active">İletişim</a>
+    </nav>
+
+    <!-- Right Buttons -->
+    <div class="flex align-items-center gap-3 z-2">
+        <button class="right-btn border-none cursor-pointer flex align-items-center gap-2 shadow-3 px-4 py-2" (click)="aramaAc()">
+            <i class="pi pi-search"></i> Ara
         </button>
-
-        <!-- Mobil Hamburger -->
-        <button class="hamburger gizle-masaustu"
-                [class.hamburger--acik]="mobilMenuAcik()"
-                (click)="mobilMenuToggle()"
-                aria-label="Menüyü Aç/Kapat">
-          <span></span>
-          <span></span>
-          <span></span>
+        
+        <!-- Mobile Menu Toggle -->
+        <button class="lg:hidden p-link text-white ml-2">
+            <i class="pi pi-bars text-2xl"></i>
         </button>
-      </div>
-
     </div>
-  </div>
 </header>
 
-<!-- Mobil Menü -->
-<div class="mobil-menu gizle-masaustu" [class.mobil-menu--acik]="mobilMenuAcik()">
-  <div class="mobil-menu__ic">
-    @for (oge of menuOgeleri; track oge.etiket) {
-      @if (oge.altMenuler) {
-        <div class="mobil-grup">
-          <button class="mobil-grup__baslik" (click)="dropdownToggle(oge.etiket)">
-            {{ oge.etiket }}
-            <svg [class.ok-don]="aktifDropdown() === oge.etiket"
-                 width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-          </button>
-          @if (aktifDropdown() === oge.etiket) {
-            <div class="mobil-alt-menu">
-              @for (alt of oge.altMenuler; track alt.etiket) {
-                <a [routerLink]="alt.link" class="mobil-alt-link" (click)="mobilMenuKapat()">
-                  {{ alt.etiket }}
-                </a>
-              }
-            </div>
-          }
+<p-dialog header="Ne aramak istersiniz?" [(visible)]="aramaAcik" [modal]="true" [style]="{ width: '40rem' }" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
+    <div class="flex flex-column gap-3 mb-3">
+        <div class="p-inputgroup w-full">
+            <span class="p-inputgroup-addon">
+                <i class="pi pi-search"></i>
+            </span>
+            <input type="text" pInputText placeholder="Aramak istediğiniz kelimeyi yazın..." [(ngModel)]="aramaMetni" (keydown.enter)="aramaYap()" autofocus />
+            <button pButton type="button" label="Ara" (click)="aramaYap()"></button>
         </div>
-      } @else {
-        <a [routerLink]="oge.link" class="mobil-link" (click)="mobilMenuKapat()">
-          {{ oge.etiket }}
-        </a>
-      }
-    }
-  </div>
-</div>
-
-<!-- Mobil menü arka planı -->
-@if (mobilMenuAcik()) {
-  <div class="mobil-overlay gizle-masaustu" (click)="mobilMenuKapat()"></div>
-}
-
-<!-- Arama Overlay -->
-@if (aramaAcik()) {
-  <div class="arama-overlay" (click)="aramaKapat()">
-    <div class="arama-kutu" (click)="$event.stopPropagation()">
-      <p class="arama-kutu__ipucu">Ne aramak istersiniz?</p>
-      <div class="arama-form">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="11" cy="11" r="8"></circle>
-          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-        </svg>
-        <input id="arama-input"
-               type="text"
-               placeholder="Aramak istediğiniz kelimeyi yazın..."
-               [value]="aramaMetni()"
-               (input)="aramaMetni.set($any($event.target).value)"
-               (keydown.enter)="aramaYap()">
-        <button class="arama-form__btn" (click)="aramaYap()">Ara</button>
-      </div>
-      <button class="arama-kapat" (click)="aramaKapat()" aria-label="Aramayı Kapat">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="18" y1="6" x2="6" y2="18"></line>
-          <line x1="6" y1="6" x2="18" y2="18"></line>
-        </svg>
-      </button>
     </div>
-  </div>
-}
+</p-dialog>

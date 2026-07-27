@@ -14,5 +14,7 @@ public class Tesis
     public string? KonumUrl { get; set; } // Google Maps linki
     public string? HaftaIciSaat { get; set; } // Örn: 09:00–23:00
     public string? HaftaSonuSaat { get; set; } // Örn: 09:00–23:00
+    public double? Lat { get; set; }
+    public double? Lng { get; set; }
     public bool Aktif { get; set; } = true;
 }

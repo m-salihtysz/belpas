@@ -6,8 +6,8 @@
 }
 
 .baslik-kutusu {
-  background: linear-gradient(120deg, #eaf1ff 0%, #ffffff 60%, #eef4ff 100%);
-  border: 1px solid #e2e9fb; 
+  background: linear-gradient(120deg, #e6f4ef 0%, #ffffff 60%, #d1fae5 100%);
+  border: 1px solid #a7f3d0; 
   border-radius: 28px; 
   padding: 40px 48px; 
   margin-bottom: 48px;
@@ -16,7 +16,7 @@
     font-family: 'Outfit', sans-serif; 
     font-weight: 800; 
     font-size: 40px; 
-    color: #101828; 
+    color: #022c22; 
     margin: 0; 
   }
 }
@@ -31,8 +31,8 @@
 .harita-kutusu { 
   border-radius: 28px; 
   overflow: hidden; 
-  border: 1px solid #e2e9fb;
-  box-shadow: 0px 12px 32px rgba(16, 24, 40, 0.06); 
+  border: 1px solid #a7f3d0;
+  box-shadow: 0px 12px 32px rgba(16, 185, 129, 0.06); 
   
   iframe { display: block; }
 }
@@ -42,13 +42,13 @@
   align-items: center; 
   gap: 16px;
   background: #ffffff; 
-  border: 1px solid #e2e9fb; 
+  border: 1px solid #d1fae5; 
   border-radius: 20px;
   padding: 24px; 
   font-family: 'Inter', sans-serif; 
   font-weight: 600; 
   color: #101828;
-  box-shadow: 0px 8px 24px rgba(16, 24, 40, 0.04);
+  box-shadow: 0px 8px 24px rgba(16, 185, 129, 0.04);
 }
 
 .iletisim-grid { 
@@ -62,23 +62,24 @@
   align-items: center; 
   gap: 16px;
   background: #ffffff; 
-  border: 1px solid #e2e9fb; 
+  border: 1px solid #d1fae5; 
   border-radius: 20px;
   padding: 24px; 
   font-family: 'Inter', sans-serif; 
   font-weight: 600;
-  box-shadow: 0px 8px 24px rgba(16, 24, 40, 0.04);
+  box-shadow: 0px 8px 24px rgba(16, 185, 129, 0.04);
 }
 
 .ikon { 
   width: 48px; 
   height: 48px; 
-  background: #eff6ff; 
+  background: #ecfdf5; 
   border-radius: 14px;
   display: flex; 
   align-items: center; 
   justify-content: center;
   flex-shrink: 0;
+  svg path, svg stroke { stroke: #10b981; }
 }
 
 /* --- FORM ALANI --- */
@@ -105,7 +106,7 @@
     border: 1px solid #d0d5dd; 
     border-radius: 12px;
     font-family: 'Inter', sans-serif;
-    outline-color: #3b82f6;
+    outline-color: #10b981;
   }
 
   .input-grup { 
@@ -135,7 +136,7 @@
     }
     
     a { 
-      color: #0d6efd; 
+      color: #10b981; 
       font-weight: 600; 
       text-decoration: none; 
     }
@@ -144,14 +145,14 @@
   .btn-gonder {
     width: 100%; 
     padding: 16px; 
-    background: #3b82f6; 
+    background: #10b981; 
     color: white;
     border: none; 
     border-radius: 12px; 
     font-weight: 700; 
     cursor: pointer;
     transition: background 0.2s;
-    &:hover { background: #2563eb; }
+    &:hover { background: #059669; }
   }
 }
 

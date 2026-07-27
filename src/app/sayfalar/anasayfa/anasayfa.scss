@@ -1,505 +1,257 @@
-// =========================================
-// Ana Sayfa Stilleri
-// =========================================
+/* =======================================================================
+   ANASAYFA MODERNIZATION (Reference-based: Full Cover Style)
+   ======================================================================= */
 
-// --- Hero Slider ---
-.hero {
-  margin-top: calc(-1 * var(--header-y));
-}
-
-.slider {
-  position: relative;
-  height: 520px;
-  overflow: hidden;
-
-  @media (max-width: 768px) {
-    height: 420px;
-  }
-
-  &__kart {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    transition: opacity 0.7s ease;
-    padding: var(--header-y) 0 0;
-
-    &--aktif {
-      opacity: 1;
-    }
-  }
-
-  &__ic {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    height: 100%;
-    max-width: var(--max-genislik);
-    margin: 0 auto;
-    padding: 0 24px;
-    gap: 40px;
-
-    @media (max-width: 768px) {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  &__icerik {
-    color: white;
-    animation: fadeInUp 0.6s ease both;
-  }
-
-  .rozet-slider {
-    background: rgba(255,255,255,0.2);
-    color: white;
-    border: 1px solid rgba(255,255,255,0.3);
-    margin-bottom: 16px;
-  }
-
-  &__baslik {
-    font-family: var(--font-baslik);
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 900;
-    color: white;
-    line-height: 1.05;
-    margin-bottom: 16px;
-
-    em {
-      font-style: italic;
-      font-weight: 300;
-      display: block;
-      font-size: 0.75em;
-      opacity: 0.9;
-    }
-  }
-
-  &__aciklama {
-    font-size: 1rem;
-    color: rgba(255,255,255,0.85);
-    max-width: 380px;
-    line-height: 1.6;
-    margin-bottom: 28px;
-  }
-
-  &__btn {
-    font-size: 0.9rem;
-  }
-
-  // Görsel alanı
-  &__gorsel-alan {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    @media (max-width: 768px) {
-      display: none;
-    }
-  }
-
-  &__gorsel-yer {
+.hero-section {
+    height: 75vh;
+    min-height: 560px;
+    width: 100%;
     position: relative;
-    width: 280px;
-    height: 280px;
+    background: #023829; /* Brand green fallback */
+}
 
-    .gorsel-metin {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-baslik);
-      font-size: 8rem;
-      font-weight: 900;
-      color: rgba(255,255,255,0.15);
+/* Geometric Slanted Overlay matching Reference Photo 1 (Yazlık Katlı Kavşağı) */
+.hero-geometric-overlay {
+    width: 100%;
+    background: linear-gradient(135deg, rgba(2, 40, 29, 0.96) 0%, rgba(4, 68, 52, 0.92) 60%, rgba(6, 91, 67, 0.85) 100%);
+    
+    @media (min-width: 768px) {
+        width: 50%; /* Pulled further left from 62% */
+        clip-path: polygon(0 0, 100% 0, 82% 100%, 0% 100%);
+        box-shadow: 20px 0 50px rgba(0, 0, 0, 0.5);
     }
-  }
+}
 
-  &__ok {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 44px;
-    height: 44px;
-    background: rgba(255,255,255,0.2);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255,255,255,0.3);
-    border-radius: 50%;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 10;
-    transition: all var(--gecis-normal);
+.hero-geometric-accent {
+    left: 42%; /* Pulled further left from 54% */
+    width: 12%;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.35) 0%, rgba(5, 150, 105, 0.1) 100%);
+    clip-path: polygon(25% 0, 100% 0, 75% 100%, 0% 100%);
+    backdrop-filter: blur(4px);
+}
 
+/* Action Button Hover Effect */
+.hero-action-btn {
     &:hover {
-      background: rgba(255,255,255,0.35);
+        transform: translateY(-3px) scale(1.02);
+        background-color: #f8f9fa !important;
+        i {
+            transform: translateX(4px);
+            transition: transform 0.2s ease;
+        }
+    }
+}
+
+/* Custom Carousel & Full Height Enforcement inside Hero */
+::ng-deep .custom-hero-carousel {
+    height: 100% !important;
+    width: 100% !important;
+    display: block;
+    
+    .p-carousel,
+    .p-carousel-content,
+    .p-carousel-container,
+    .p-carousel-items-content,
+    .p-carousel-items-container,
+    .p-carousel-item {
+        height: 100% !important;
+        min-height: 100% !important;
+        width: 100% !important;
+    }
+    
+    .hero-slide-item {
+        height: 75vh !important;
+        min-height: 560px !important;
+        width: 100% !important;
+        display: flex;
     }
 
-    &--sol { left: 24px; }
-    &--sag { right: 24px; }
-  }
+    /* Move 3 dots right above the overlapping Tesisler cards with glassmorphism pill */
+    .p-carousel-indicators {
+        position: absolute;
+        bottom: 80px; /* Perfectly positioned right above the -65px overlapping cards */
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 0;
+        padding: 6px 16px;
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        z-index: 10;
+        
+        button {
+            background-color: rgba(255, 255, 255, 0.5) !important;
+            border-radius: 6px !important;
+            width: 24px !important;
+            height: 6px !important;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
 
-  &__noktalar {
-    position: absolute;
-    bottom: 24px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 8px;
-    z-index: 10;
-  }
-
-  &__nokta {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.4);
-    border: none;
-    transition: all var(--gecis-normal);
-
-    &--aktif {
-      width: 28px;
-      border-radius: 4px;
-      background: white;
+        .p-highlight button {
+            background-color: #10B981 !important; /* Vibrant green active pill */
+            width: 44px !important;
+            box-shadow: 0 0 12px rgba(16, 185, 129, 0.9);
+        }
     }
-  }
+    
+    .p-carousel-prev, .p-carousel-next {
+        display: none !important; 
+    }
 }
 
-.gorsel-daire {
-  position: absolute;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.12);
+/* Custom GPS Aksiyon Barı & Sonuc Kartı */
+.gps-aksiyon-bar {
+    background: linear-gradient(135deg, #022c22 0%, #011f18 100%) !important;
+    border: 1px solid #047857 !important;
+    color: #ffffff !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+    border-radius: 2rem !important;
 
-  &--1 {
-    width: 240px;
-    height: 240px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border: 2px solid rgba(255,255,255,0.2);
-    animation: pulse-mavi 3s ease-in-out infinite;
-  }
-
-  &--2 {
-    width: 160px;
-    height: 160px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(255,255,255,0.15);
-  }
+    .gps-btn {
+        background: #10b981 !important;
+        color: #ffffff !important;
+        font-weight: 700 !important;
+        border: none !important;
+        transition: all 0.3s ease;
+        &:hover {
+            background: #059669 !important;
+            transform: scale(1.02);
+        }
+    }
 }
 
-// --- Tesisler Carousel ---
-.tesisler-carousel {
-  background: white;
+.gps-sonuc-kart {
+    background: #ecfdf5 !important;
+    border: 1px solid #6ee7b7 !important;
+    color: #064e3b !important;
+    border-radius: 1.5rem !important;
 }
 
-.carousel {
-  display: flex;
-  align-items: center;
-  gap: 16px;
+/* Ultra-Modern Tesisler (Hızlı Erişim) Kartları */
+.modern-tesis-kart {
+    border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    height: 220px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    transform: translateY(0);
+    
+    .tesis-orb-wrapper {
+        height: 85px !important;
+        flex-shrink: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
 
-  &__liste {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 16px;
-    flex: 1;
+    .tesis-baslik-wrapper {
+        min-height: 50px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+        flex-grow: 1 !important;
+    }
+
+    .tesis-orb {
+        width: 72px;
+        height: 72px;
+        margin: 0 auto;
+        
+        .orb-ring {
+            transform: scale(1);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+    }
+    
+    .kesfet-link {
+        height: 22px;
+        opacity: 0;
+        overflow: hidden;
+        transform: translateY(6px);
+        margin-top: 0;
+        transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    &:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+        border-color: rgba(0,0,0,0.06);
+        
+        .kart-glow {
+            opacity: 1 !important;
+        }
+        
+        .tesis-orb {
+            transform: scale(1.08) translateY(-4px);
+            
+            .orb-ring {
+                transform: scale(1.35);
+                opacity: 0 !important;
+            }
+        }
+        
+        .kesfet-link {
+            opacity: 1 !important;
+            transform: translateY(0);
+        }
+    }
+}
+
+/* Z-Pattern Haber Kartlari */
+.modern-haber-kart {
+    border: 1px solid rgba(0,0,0,0.04);
+    &:hover {
+        box-shadow: 0 20px 40px rgba(0,0,0,0.08) !important;
+    }
+}
+
+/* Modern Etkinlik Kartları (Yeşil Sol Şerit / Kulakçık Accent) */
+.modern-etkinlik-kart {
+    position: relative;
+    background: #ffffff !important;
+    border-radius: 1.5rem !important;
+    border: 1px solid rgba(16, 185, 129, 0.15) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
     overflow: hidden;
 
-    @media (max-width: 768px) {
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    @media (max-width: 480px) {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  &__ok {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: white;
-    border: 2px solid var(--renk-gri-300);
-    color: var(--renk-gri-700);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    transition: all var(--gecis-normal);
-
-    &:hover:not(:disabled) {
-      border-color: var(--renk-mavi);
-      color: var(--renk-mavi);
-      box-shadow: var(--golge-mavi);
-    }
-
-    &:disabled {
-      opacity: 0.3;
-      cursor: not-allowed;
-    }
-  }
-}
-
-.tesis-kart {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 24px 16px;
-  text-align: center;
-  border: 2px solid var(--renk-gri-200);
-  box-shadow: none;
-
-  &:hover {
-    border-color: var(--tesis-renk, var(--renk-mavi));
-    box-shadow: 0 8px 30px rgba(0,0,0,0.10);
-    transform: translateY(-6px);
-
-    .tesis-kart__ikon {
-      background: var(--tesis-renk, var(--renk-mavi));
-      transform: scale(1.1);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-    }
-  }
-
-  &__ikon {
-    width: 64px;
-    height: 64px;
-    border-radius: 18px;
-    background: color-mix(in srgb, var(--tesis-renk, var(--renk-mavi)) 15%, white);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 12px;
-    transition: all var(--gecis-normal);
-
-    span {
-      font-family: var(--font-baslik);
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: var(--tesis-renk, var(--renk-mavi));
-      transition: color var(--gecis-normal);
-    }
-  }
-
-  &:hover .tesis-kart__ikon span {
-    color: white;
-  }
-
-  &__kategori {
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-    color: var(--renk-gri-500);
-    font-weight: 600;
-    margin-bottom: 4px;
-  }
-
-  &__ad {
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--renk-gri-900);
-  }
-}
-
-// --- Haberler ---
-.haberler {
-  &__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    margin-bottom: 40px;
-
-    @media (max-width: 900px) {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    @media (max-width: 600px) {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  &__btn-alan {
-    text-align: center;
-  }
-}
-
-.haber-kart {
-  display: flex;
-  flex-direction: column;
-
-  &__resim {
-    position: relative;
-    height: 200px;
-    background: linear-gradient(135deg, var(--renk-mavi-acik), var(--renk-gri-200));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  &__yer-tutucu {
-    color: var(--renk-gri-300);
-  }
-
-  &__rozet {
-    position: absolute;
-    top: 16px;
-    left: 16px;
-  }
-
-  &__icerik {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-  }
-
-  &__tarih {
-    font-size: 0.75rem;
-    color: var(--renk-gri-500);
-    margin-bottom: 8px;
-  }
-
-  &__baslik {
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--renk-gri-900);
-    margin-bottom: 10px;
-    line-height: 1.4;
-  }
-
-  &__aciklama {
-    font-size: 0.875rem;
-    color: var(--renk-metin-acik);
-    line-height: 1.6;
-    flex: 1;
-    margin-bottom: 16px;
-  }
-
-  &__link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--renk-mavi);
-    text-decoration: none;
-    transition: all var(--gecis-hizli);
-
-    svg {
-      transition: transform var(--gecis-hizli);
+    .etkinlik-sol-serit {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 14px !important;
+        height: 100%;
+        background: linear-gradient(180deg, #10b981 0%, #047857 100%) !important;
+        border-top-left-radius: 1.5rem;
+        border-bottom-left-radius: 1.5rem;
+        transition: all 0.3s ease;
     }
 
     &:hover {
-      gap: 10px;
+        transform: translateY(-6px);
+        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08) !important;
+        border-color: rgba(16, 185, 129, 0.4) !important;
 
-      svg { transform: translateX(3px); }
+        .etkinlik-sol-serit {
+            width: 22px !important;
+            background: linear-gradient(180deg, #34d399 0%, #059669 100%) !important;
+        }
     }
-  }
 }
 
-// --- Kent Rehberi Banner ---
-.kent-rehberi {
-  background: var(--grad-hero);
-  padding: 80px 0;
-
-  &__ic {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    gap: 60px;
-
-    @media (max-width: 768px) {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  &__metin {
-    color: white;
-
-    .rozet-mavi {
-      background: rgba(255,255,255,0.2);
-      color: white;
-      border: 1px solid rgba(255,255,255,0.3);
-    }
-
-    p {
-      color: rgba(255,255,255,0.8);
-      max-width: 420px;
-      line-height: 1.7;
-      margin-bottom: 28px;
-    }
-  }
-
-  &__baslik {
-    font-size: clamp(2rem, 4vw, 3rem);
-    color: white;
-    margin-bottom: 16px;
-    line-height: 1.1;
-
-    strong {
-      color: var(--renk-sari);
-    }
-  }
-
-  &__gorsel {
-    position: relative;
-    height: 280px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    @media (max-width: 768px) {
-      display: none;
-    }
-  }
-}
-
-.kent-gorsel-daire {
-  position: absolute;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.12);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-
-  &--1 {
-    width: 200px;
-    height: 200px;
-    border: 2px solid rgba(255,255,255,0.2);
-    top: 20px;
-    right: 60px;
-  }
-
-  &--2 {
-    width: 140px;
-    height: 140px;
-    border: 2px solid rgba(255,255,255,0.15);
-    bottom: 10px;
-    right: 20px;
-  }
-
-  &--3 {
-    width: 100px;
-    height: 100px;
-    border: 2px solid rgba(255,255,255,0.15);
-    top: 30px;
-    left: 40px;
-  }
-}
-
-// Tesis kartı link stili (anasayfa carousel)
-.tesis-kart--link {
-  text-decoration: none;
-  color: inherit;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  &:hover {
-    transform: translateY(-6px) scale(1.02);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
-  }
+/* Yumuşak Yeşil Arka Planlı Kategori Pill / Title Badge (Referans 1 Birebir) */
+.etkinlik-kategori-pill {
+    background-color: #e6f4ea !important;
+    color: #047857 !important;
+    font-weight: 800 !important;
+    padding: 0.35rem 0.9rem !important;
+    border-radius: 9999px !important;
+    font-size: 0.725rem !important;
+    letter-spacing: 0.06em !important;
+    display: inline-block !important;
+    border: none !important;
+    box-shadow: 0 2px 8px rgba(4, 120, 87, 0.06) !important;
 }

@@ -1,4 +1,8 @@
 .ana-icerik {
-  min-height: calc(100vh - var(--header-y));
+  min-height: 100vh;
+  position: relative;
+}
+
+.ana-icerik:not(:has(.hero-section)) {
   padding-top: var(--header-y);
 }

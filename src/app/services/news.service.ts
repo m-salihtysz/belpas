@@ -18,7 +18,7 @@ export interface Haber {
 })
 export class NewsService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:5050/api/Haberler';
+  private apiUrl = 'http://localhost:5000/api/Haberler';
 
   getHaberler(): Observable<Haber[]> {
     return this.http.get<Haber[]>(this.apiUrl);

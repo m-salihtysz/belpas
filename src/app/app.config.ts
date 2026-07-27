@@ -3,9 +3,12 @@ import { provideRouter } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
 import { registerLocaleData } from '@angular/common';
 import localeTr from '@angular/common/locales/tr';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { providePrimeNG } from 'primeng/config';
+import Aura from '@primeuix/themes/aura';
 
 import { routes } from './app.routes';
-import { provideClientHydration } from '@angular/platform-browser';
+import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 
 // Türkçe locale verisini kayıt ediyoruz
 registerLocaleData(localeTr);
@@ -15,7 +18,16 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideHttpClient(),
-    provideClientHydration(),
+    provideClientHydration(withEventReplay()),
+    provideAnimationsAsync(),
+    providePrimeNG({
+        theme: {
+            preset: Aura,
+            options: {
+                darkModeSelector: '.my-app-dark'
+            }
+        }
+    }),
     { provide: LOCALE_ID, useValue: 'tr-TR' },
   ],
 };

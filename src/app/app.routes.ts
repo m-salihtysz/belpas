@@ -38,6 +38,12 @@ export const routes: Routes = [
     title: 'Faaliyet Raporu | BELPAŞ'
   },
   {
+    path: 'kurumsal/etkinlikler',
+    loadComponent: () =>
+      import('./sayfalar/kurumsal/etkinlikler/etkinlikler').then(m => m.Etkinlikler),
+    title: 'Etkinliklerimiz | BELPAŞ'
+  },
+  {
     path: 'tesisler',
     loadComponent: () =>
       import('./sayfalar/tesisler/tesisler').then(m => m.Tesisler),
