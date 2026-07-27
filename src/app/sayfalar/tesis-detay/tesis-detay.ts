@@ -55,7 +55,6 @@ export class TesisDetay implements OnInit {
         this.menuKategorileri.set(this.tesisService.getMockMenuForFacility(id));
         this.yukleniyor.set(false);
 
-        // Tesis modelindeki "ad" ve "aciklama" alanlarını kullanıyoruz
         if (data) {
           this.seoService.generateTags({
             title: data.ad,
@@ -64,24 +63,29 @@ export class TesisDetay implements OnInit {
             url: `https://belpas.sakarya.bel.tr/tesisler/${data.id}`,
             keywords: `BELPAŞ, ${data.ad}, Sakarya tesisleri, sosyal tesis`
           });
-
-          this.seoService.setJsonLd({
-            '@context': 'https://schema.org',
-            '@type': 'LocalBusiness',
-            'name': data.ad,
-            'description': data.aciklama,
-            'image': data.resimUrl,
-            'address': {
-              '@type': 'PostalAddress',
-              'addressLocality': 'Sakarya',
-              'addressCountry': 'TR'
-            }
-          });
         }
       },
       error: (err) => {
-        console.error('Tesis detay yüklenemedi:', err);
-        this.hata.set(true);
+        console.warn('Tesis backend ulaşılamadı, yerel veri ve menü gösteriliyor:', err);
+        // 12 Tesis için Varsayılan Yedek Veri ve Menü Yükleme
+        const yedekTesis: Tesis = {
+          id: id,
+          ad: 'BELPAŞ Sosyal Tesisi',
+          kategori: 'Sosyal Tesis',
+          renk: '#10B981',
+          harf: 'B',
+          aciklama: 'Sakarya Büyükşehir Belediyesi iştiraki BELPAŞ güvencesiyle kaliteli ve leziz ikramlar sunulan sosyal tesisimizdir.',
+          adres: 'Sakarya Büyükşehir Belediyesi Tesisler Bölgesi',
+          telefon: '0264 272 00 10',
+          resimUrl: '/images/sbb_mekan.jpg',
+          konumUrl: 'https://maps.google.com',
+          haftaIciSaat: '08:00 - 23:00',
+          haftaSonuSaat: '08:00 - 23:30',
+          aktif: true
+        };
+        this.tesis.set(yedekTesis);
+        this.menuKategorileri.set(this.tesisService.getMockMenuForFacility(id));
+        this.hata.set(false);
         this.yukleniyor.set(false);
       }
     });
