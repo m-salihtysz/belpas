@@ -366,3 +366,56 @@
     }
   }
 }
+
+/* 2 Seçenekli Anahtar (Option Switcher Butonları) */
+.menu-modu-btn {
+  padding: 0.6rem 1.25rem !important;
+  border-radius: 1.25rem !important;
+  font-size: 0.85rem !important;
+  font-weight: 700 !important;
+  border: none !important;
+  cursor: pointer !important;
+  transition: all 0.25s ease !important;
+  background-color: #f3f4f6 !important;
+  color: #374151 !important;
+
+  &.aktif-mod {
+    background-color: #059669 !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 12px rgba(5, 150, 105, 0.35) !important;
+
+    i {
+      color: #ffffff !important;
+    }
+  }
+
+  &:hover:not(.aktif-mod) {
+    background-color: #e5e7eb !important;
+    color: #111827 !important;
+  }
+}
+
+/* Yeşil "Menüyü İncele" Butonu */
+.menuyu-incele-btn {
+  background-color: #059669 !important;
+  color: #ffffff !important;
+  font-weight: 800 !important;
+  font-size: 0.95rem !important;
+  padding: 0.85rem 1.75rem !important;
+  border-radius: 1rem !important;
+  border: none !important;
+  cursor: pointer !important;
+  box-shadow: 0 4px 16px rgba(5, 150, 105, 0.35) !important;
+  transition: all 0.25s ease !important;
+
+  i {
+    color: #ffffff !important;
+  }
+
+  &:hover {
+    background-color: #047857 !important;
+    color: #ffffff !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(4, 120, 87, 0.45) !important;
+  }
+}

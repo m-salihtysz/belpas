@@ -85,23 +85,17 @@
                 </div>
               </div>
               
-              <!-- 2 Seçenekli Anahtar (Option Switcher - Net Görünür Canlı Yeşil & Beyaz Metin) -->
+              <!-- 2 Seçenekli Anahtar (Option Switcher Butonları) -->
               <div class="flex bg-gray-100 p-1 border-round-3xl border-1 border-gray-200">
                 <button type="button" 
-                        class="px-3 py-2 border-round-2xl text-xs font-bold border-none cursor-pointer transition-all flex align-items-center gap-1"
-                        [class.bg-emerald-600]="menuModu() === 'interaktif'"
-                        [class.text-white]="menuModu() === 'interaktif'"
-                        [class.shadow-2]="menuModu() === 'interaktif'"
-                        [class.text-700]="menuModu() !== 'interaktif'"
+                        class="menu-modu-btn flex align-items-center gap-1"
+                        [class.aktif-mod]="menuModu() === 'interaktif'"
                         (click)="menuModuDegistir('interaktif')">
                   <i class="pi pi-list text-xs"></i> İnteraktif Menü
                 </button>
                 <button type="button" 
-                        class="px-3 py-2 border-round-2xl text-xs font-bold border-none cursor-pointer transition-all flex align-items-center gap-1"
-                        [class.bg-emerald-600]="menuModu() === 'gorsel'"
-                        [class.text-white]="menuModu() === 'gorsel'"
-                        [class.shadow-2]="menuModu() === 'gorsel'"
-                        [class.text-700]="menuModu() !== 'gorsel'"
+                        class="menu-modu-btn flex align-items-center gap-1"
+                        [class.aktif-mod]="menuModu() === 'gorsel'"
                         (click)="menuModuDegistir('gorsel')">
                   <i class="pi pi-image text-xs"></i> QR & Görsel Menü
                 </button>
@@ -143,7 +137,7 @@
               </div>
             }
 
-            <!-- SEÇENEK B: QR KOD & GÖRSEL / PDF MENÜ ÖNİZLEME (YEŞİL "MENÜYÜ GÖRÜNTÜLEYİN" BUTONU) -->
+            <!-- SEÇENEK B: QR KOD & GÖRSEL / PDF MENÜ ÖNİZLEME (YEŞİL "MENÜYÜ İNCELE" BUTONU) -->
             @if (menuModu() === 'gorsel') {
               <div class="p-4 md:p-5 border-round-3xl bg-emerald-50 border-1 border-emerald-200 flex flex-column md:flex-row align-items-center justify-content-between gap-4">
                 <div class="flex align-items-center gap-4">
@@ -158,10 +152,10 @@
                   </div>
                 </div>
 
-                <!-- Yeşil "Menüyü Görüntüleyin" Butonu -->
-                <button type="button" (click)="modalAcKapat(true)" class="py-3 px-5 border-round-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-black text-sm md:text-base border-none cursor-pointer white-space-nowrap shadow-3 transition-all flex align-items-center gap-2 flex-shrink-0">
-                  <i class="pi pi-search text-lg"></i>
-                  Menüyü Görüntüleyin
+                <!-- Yeşil "Menüyü İncele" Butonu -->
+                <button type="button" (click)="modalAcKapat(true)" class="menuyu-incele-btn flex align-items-center gap-2 white-space-nowrap flex-shrink-0">
+                  <i class="pi pi-search text-base"></i>
+                  Menüyü İncele
                 </button>
               </div>
             }
