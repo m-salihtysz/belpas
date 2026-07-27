@@ -1,251 +1,329 @@
-<!-- 1. MODERN HERO SECTION (FULL SCREEN IMAGE & GEOMETRIC GREEN OVERLAY) -->
-<div class="hero-section relative overflow-hidden flex align-items-center justify-content-center">
-    <p-carousel [value]="sliderlar" [numVisible]="1" [numScroll]="1" [circular]="true" [autoplayInterval]="7000" styleClass="custom-hero-carousel w-full h-full">
-        <ng-template let-slide pTemplate="item">
-            <!-- Full Screen Slide Container -->
-            <div class="hero-slide-item relative w-full h-full flex align-items-center justify-content-start overflow-hidden">
-                 
-                <!-- Background Image Covering Entire Hero -->
-                <img [src]="slide.resimYolu" [alt]="slide.baslik" class="absolute inset-0 w-full h-full object-cover z-0" style="object-position: right center;">
-                 
-                <!-- Geometric Slanted Brand Overlay on Left (Matching Reference Photo 1: Yazlık Katlı Kavşağı) -->
-                <div class="hero-geometric-overlay absolute top-0 left-0 h-full z-1"></div>
-                <div class="hero-geometric-accent absolute top-0 h-full z-1 hidden md:block"></div>
+<!-- =====================================================================
+     ANA SAYFA — TEK SAYFA LAYOUT (Hero → Birimler → Tesisler → Haberler)
+     ===================================================================== -->
 
-                <!-- Text Content inside Left Geometric Panel -->
-                <div class="container mx-auto px-4 z-2 w-full h-full flex align-items-center pt-7 pb-8 relative">
-                    <div class="grid align-items-center w-full m-0">
-                        <!-- Left Column: Typography & Button -->
-                        <div class="col-12 md:col-8 lg:col-6 text-white p-3 md:p-5 animation-duration-500 fadeinleft">
-                            <div class="mb-4">
-                                <span class="inline-block py-2 px-4 border-round-3xl border-1 border-white-alpha-40 bg-black-alpha-40 text-white text-xs md:text-sm font-bold tracking-widest uppercase shadow-2">
-                                    {{ slide.kategori }}
-                                </span>
-                            </div>
-                            <h1 class="text-5xl md:text-7xl lg:text-8xl font-black text-white mb-3 mt-0 line-height-1 tracking-tighter" style="text-shadow: 0 4px 20px rgba(0,0,0,0.8);">
-                                {{ slide.baslik }}
-                            </h1>
-                            <p class="text-xl md:text-3xl text-white-alpha-90 mb-6 line-height-3 max-w-30rem font-medium tracking-wide" style="text-shadow: 0 2px 10px rgba(0,0,0,0.8);">
-                                {{ slide.altyazi }}
-                            </p>
-                            <div>
-                                <a [routerLink]="slide.btnLink" class="hero-action-btn inline-flex align-items-center gap-3 bg-white text-900 font-bold px-5 py-3 border-round-3xl shadow-4 hover:shadow-8 text-decoration-none transition-all transition-duration-300 text-lg">
-                                    <span>{{ slide.btnMetni }}</span>
-                                    <i class="pi pi-arrow-right bg-primary text-white p-2 border-round-circle text-sm"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+<!-- 1. HERO SLIDER WRAPPER (Card-Style Slider with Soft Rounded Corners) -->
+<div class="hero-slider-wrapper">
+    <div class="custom-slider-container relative overflow-hidden w-full">
+        
+        <!-- Slides -->
+        @for (slide of sliderlar; track slide.id; let idx = $index) {
+            <div class="custom-slide" 
+                 [class.active]="idx === activeSlide"
+                 [class.prev]="idx === prevSlide">
+                 
+                 <!-- Slide Background Image -->
+                 <div class="slide-bg absolute inset-0 w-full h-full"
+                      [style.backgroundImage]="'url(' + slide.resimYolu + ')'">
+                 </div>
+                 
+                 <!-- Dark overlay for readability -->
+                 <div class="slide-overlay absolute inset-0"></div>
+                 
+                 <!-- Slide Content (Centered text & elements) -->
+                 <div class="slide-content-wrapper absolute inset-0 flex flex-column align-items-center justify-content-center text-center px-4">
+                     <div class="max-w-45rem">
+                         <!-- Category/Welcome Badge -->
+                         <span class="slide-badge-new mb-3 inline-flex align-items-center gap-2">
+                             <i class="pi pi-star-fill text-xs"></i> {{ slide.kategori | uppercase }}
+                         </span>
+                         
+                         <!-- Big Header -->
+                         <h1 class="slide-title-new text-white mb-3">
+                             {{ slide.baslik }} <span class="accent-text">{{ slide.altyazi }}</span>
+                         </h1>
+                         
+                         <!-- Paragraph description -->
+                         <p class="slide-desc-new text-white-alpha-80 mb-5 max-w-35rem mx-auto">
+                             {{ slide.aciklama }}
+                         </p>
+                         
+                         <!-- CTA Button -->
+                         <a [routerLink]="slide.btnLink" class="slide-btn-new inline-flex align-items-center gap-2">
+                             {{ slide.btnMetni }} <i class="pi pi-arrow-right"></i>
+                         </a>
+                     </div>
+                 </div>
             </div>
-        </ng-template>
-    </p-carousel>
+        }
+        
+        <!-- Navigation Arrows -->
+        <button type="button" class="nav-arrow prev" (click)="prevSlideAction()">
+            <i class="pi pi-chevron-left"></i>
+        </button>
+        <button type="button" class="nav-arrow next" (click)="nextSlide()">
+            <i class="pi pi-chevron-right"></i>
+        </button>
+        
+        <!-- Dots Indicators -->
+        <div class="slider-dots absolute flex gap-2">
+            @for (slide of sliderlar; track slide.id; let idx = $index) {
+                <button type="button" 
+                        class="dot-btn" 
+                        [class.active]="idx === activeSlide"
+                        (click)="goToSlide(idx)">
+                </button>
+            }
+        </div>
+    </div>
 </div>
 
-<!-- 2. TESİSLER (HIZLI ERİŞİM) KARTLARI -->
-<section class="py-8 surface-0 relative z-2">
-    <div class="container mx-auto px-4">
-        
-        <!-- Modernized Tesisler Başlığı -->
-        <div class="text-center mb-7 animation-duration-500 fadein">
-            <div class="mb-3">
-                <span class="inline-flex align-items-center gap-2 py-1 px-3 border-round-3xl bg-green-50 text-emerald-600 text-xs md:text-sm font-bold tracking-widest uppercase border-1 border-emerald-200 shadow-1">
-                    <i class="pi pi-compass text-xs"></i> Hizmet Noktalarımız
-                </span>
-            </div>
-            <h2 class="text-4xl md:text-6xl font-black text-900 mb-3 tracking-tighter line-height-1">
-                Sosyal <span style="background: linear-gradient(135deg, #10b981 0%, #047857 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Tesislerimiz</span>
-            </h2>
-            <p class="text-600 text-base md:text-xl max-w-30rem mx-auto line-height-3 font-normal mt-2">
-                Sakarya'nın dört bir yanında konfor, kalite ve lezzeti bir araya getiren sosyal yaşam alanları.
-            </p>
+
+<!-- ===== SAYFA GÖVDE (tek beyaz zemin) ===== -->
+<div class="anasayfa-govde">
+
+
+    <!-- ─── BÖLÜM 2: TESİSLERİMİZ ─── -->
+    <section class="govde-section">
+        <div class="govde-section-baslik">
+            <span class="govde-badge">
+                <i class="pi pi-compass mr-1" style="font-size:0.65rem;"></i> HİZMET NOKTALARI
+            </span>
+            <h2>Sosyal Tesislerimiz</h2>
+            <p>Sakarya genelinde konfor, kalite ve lezzeti buluşturan sosyal yaşam alanları.</p>
         </div>
 
-        <!-- GPS En Yakın Tesis Aksiyon Barı -->
-        <div class="max-w-45rem mx-auto mb-7">
-            <div class="gps-aksiyon-bar p-4 flex flex-column md:flex-row align-items-center justify-content-between gap-3">
-                <div class="flex align-items-center gap-3">
-                    <div class="w-3rem h-3rem border-circle bg-emerald-500 flex align-items-center justify-content-center text-white flex-shrink-0 shadow-3">
-                        <i class="pi pi-map-marker text-xl"></i>
-                    </div>
-                    <div>
-                        <h4 class="text-base md:text-lg font-bold m-0 text-white">Nerede Olsanız En Yakın Belpaş Tesisini Bulun</h4>
-                        <p class="text-xs md:text-sm text-emerald-200 m-0 mt-1">Konumunuzu kullanarak size en yakın tesis ve mesafesini hesaplayalım.</p>
-                    </div>
-                </div>
-                <button type="button" (click)="enYakinTesisBul()" [disabled]="gpsYukleniyor" class="gps-btn py-3 px-4 border-round-2xl text-white font-bold text-sm cursor-pointer white-space-nowrap shadow-3 flex align-items-center gap-2">
-                    <i class="pi" [class.pi-spin]="gpsYukleniyor" [class.pi-spinner]="gpsYukleniyor" [class.pi-compass]="!gpsYukleniyor"></i>
-                    {{ gpsYukleniyor ? 'Konum Hesaplanıyor...' : 'Bana En Yakın Tesisi Bul' }}
-                </button>
-            </div>
-
-            <!-- Konum Sonuç Kartı -->
-            @if (enYakinTesis) {
-                <div class="gps-sonuc-kart mt-3 p-3 md:p-4 flex align-items-center justify-content-between gap-3 fadein animation-duration-400">
-                    <div class="flex align-items-center gap-3">
-                        <div class="w-2rem h-2rem border-circle bg-emerald-600 text-white font-black flex align-items-center justify-content-center text-xs">
-                            {{ enYakinTesis.harf }}
-                        </div>
-                        <div>
-                            <span class="bg-emerald-600 text-white text-3xs font-black px-2 py-1 border-round-md uppercase">EN YAKIN TESİS: {{ enYakinTesis.mesafe }} KM</span>
-                            <h5 class="text-base font-bold text-emerald-950 m-0 mt-1">{{ enYakinTesis.ad }} ({{ enYakinTesis.kategori }})</h5>
-                        </div>
-                    </div>
-                    <a [routerLink]="['/tesisler', enYakinTesis.id]" class="py-2 px-3 border-round-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold no-underline flex align-items-center gap-1 transition-colors">
-                        Tesis Detayı <i class="pi pi-arrow-right text-xs"></i>
-                    </a>
-                </div>
-            }
-        </div>
-
-        <div class="grid justify-content-center">
-            @for (tesis of tesisler; track tesis.id) {
-                <div class="col-6 md:col-4 lg:col-3 xl:col-2 p-2 md:p-3">
-                    <a [routerLink]="['/tesisler', tesis.id]" class="modern-tesis-kart block relative p-3 md:p-4 border-round-3xl no-underline transition-all transition-duration-400 overflow-hidden bg-white">
-                        <!-- Decorative subtle background glow -->
-                        <div class="kart-glow absolute top-0 left-0 w-full h-full opacity-0 transition-opacity transition-duration-400 pointer-events-none" [style.background]="'radial-gradient(circle at top right, color-mix(in srgb, ' + tesis.renk + ' 15%, transparent), transparent 70%)'"></div>
-                        
-                        <div class="flex flex-column align-items-center justify-content-between relative z-1 h-full">
-                            <!-- Fixed height top wrapper: ALL letter Orbs sit on the exact same baseline! -->
-                            <div class="tesis-orb-wrapper w-full">
-                                <div class="tesis-orb relative flex align-items-center justify-content-center border-round-circle transition-all transition-duration-400" 
-                                     [style.background]="'linear-gradient(135deg, ' + tesis.renk + ', color-mix(in srgb, ' + tesis.renk + ' 60%, black))'"
-                                     [style.box-shadow]="'0 8px 24px color-mix(in srgb, ' + tesis.renk + ' 40%, transparent)'">
-                                    <span class="text-3xl font-black text-white line-height-1">{{ tesis.harf }}</span>
-                                    <!-- Outer ring effect -->
-                                    <div class="orb-ring absolute border-circle w-full h-full border-2 opacity-50" [style.border-color]="tesis.renk"></div>
+        <div class="w-full relative-carousel-container">
+            <p-carousel
+                [value]="tesisler"
+                [numVisible]="6"
+                [numScroll]="1"
+                [circular]="true"
+                [autoplayInterval]="3000"
+                [responsiveOptions]="responsiveOptions"
+                [showIndicators]="false"
+                styleClass="custom-tesis-carousel">
+                <ng-template let-tesis pTemplate="item">
+                    <div class="p-2">
+                        <a [routerLink]="['/tesisler', tesis.id]" class="modern-tesis-kart block relative border-round-2xl no-underline transition-all transition-duration-300 bg-gray-100 border-1 border-black-alpha-10 hover:bg-white hover:shadow-4">
+                            <div class="flex align-items-center justify-content-center h-full w-full p-2">
+                                <div class="logo-wrapper w-full h-full flex align-items-center justify-content-center bg-white border-round-2xl overflow-hidden shadow-1">
+                                    @switch (tesis.id) {
+                                        @case (1) {
+                                            <svg viewBox="0 0 100 100" class="w-7rem h-7rem">
+                                                <circle cx="50" cy="50" r="42" fill="none" stroke="#d29f55" stroke-width="4" />
+                                                <circle cx="50" cy="50" r="36" fill="none" stroke="#d29f55" stroke-dasharray="3 3" stroke-width="1" />
+                                                <text x="50" y="24" font-family="Arial, sans-serif" font-size="6" font-weight="900" fill="#d29f55" text-anchor="middle" letter-spacing="1">SAKARYA BÜYÜKŞEHİR</text>
+                                                <path d="M42 40 C 42 48, 48 50, 48 62 C 48 66, 43 66, 43 68 L 57 68 C 57 66, 52 66, 52 62 C 52 50, 58 48, 58 40 Z" fill="none" stroke="#d29f55" stroke-width="3" stroke-linejoin="round" />
+                                                <path d="M46 34 Q 48 31 46 28" fill="none" stroke="#d29f55" stroke-width="1.5" />
+                                                <path d="M50 35 Q 52 32 50 29" fill="none" stroke="#d29f55" stroke-width="1.5" />
+                                                <path d="M54 34 Q 56 31 54 28" fill="none" stroke="#d29f55" stroke-width="1.5" />
+                                                <text x="50" y="80" font-family="Arial, sans-serif" font-size="7" font-weight="900" fill="#d29f55" text-anchor="middle" letter-spacing="0.5">ÇAY DÜNYASI</text>
+                                            </svg>
+                                        }
+                                        @case (2) {
+                                            <div class="flex flex-column align-items-center justify-content-center">
+                                                <div class="flex align-items-center gap-1">
+                                                    <span style="font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.25rem; color: #2e6930; letter-spacing: -0.5px;">yenikent</span>
+                                                    <span style="font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.25rem; color: #e07a3c; letter-spacing: -0.5px;">park</span>
+                                                </div>
+                                                <span style="font-size: 0.45rem; color: #666; letter-spacing: 0.5px; font-weight: bold; margin-top: -2px;">hayatın içinde...</span>
+                                            </div>
+                                        }
+                                        @case (3) {
+                                            <svg viewBox="0 0 100 100" class="w-7rem h-7rem">
+                                                <circle cx="50" cy="50" r="42" fill="none" stroke="#00a299" stroke-width="4" />
+                                                <text x="50" y="24" font-family="Arial, sans-serif" font-size="6" font-weight="900" fill="#00a299" text-anchor="middle" letter-spacing="1">SAKARYA BÜYÜKŞEHİR</text>
+                                                <path d="M50 34 C 36 48, 36 62, 50 68 C 64 62, 64 48, 50 34 Z" fill="none" stroke="#00a299" stroke-width="3" />
+                                                <path d="M50 34 C 42 46, 44 58, 50 68 Z" fill="none" stroke="#00a299" stroke-width="1.5" />
+                                                <text x="50" y="80" font-family="Arial, sans-serif" font-size="7" font-weight="900" fill="#00a299" text-anchor="middle" letter-spacing="0.5">BELPAŞ AKARYAKIT</text>
+                                            </svg>
+                                        }
+                                        @case (4) {
+                                            <svg viewBox="0 0 100 100" class="w-7rem h-7rem">
+                                                <circle cx="50" cy="50" r="42" fill="none" stroke="#065F46" stroke-width="4" />
+                                                <text x="50" y="24" font-family="Arial, sans-serif" font-size="6" font-weight="900" fill="#065F46" text-anchor="middle" letter-spacing="1">SAKARYA BÜYÜKŞEHİR</text>
+                                                <path d="M30 46 Q 40 38 50 46 T 70 46" fill="none" stroke="#065f46" stroke-width="3" stroke-linecap="round" />
+                                                <path d="M30 54 Q 40 46 50 54 T 70 54" fill="none" stroke="#065f46" stroke-width="3" stroke-linecap="round" />
+                                                <text x="50" y="80" font-family="Arial, sans-serif" font-size="7" font-weight="900" fill="#065F46" text-anchor="middle" letter-spacing="0.5">NEHİR KAFE</text>
+                                            </svg>
+                                        }
+                                        @case (5) {
+                                            <svg viewBox="0 0 100 100" class="w-7rem h-7rem">
+                                                <circle cx="50" cy="50" r="42" fill="none" stroke="#10b981" stroke-width="4" />
+                                                <circle cx="50" cy="50" r="38" fill="none" stroke="#10b981" stroke-width="1.5" />
+                                                <path d="M50 25 C 38 37, 38 53, 50 65 C 62 53, 62 37, 50 25 Z" fill="none" stroke="#10b981" stroke-width="3" />
+                                                <path d="M42 45 C 47 40, 53 40, 58 45" fill="none" stroke="#10b981" stroke-width="2.5" />
+                                                <path d="M42 55 C 47 60, 53 60, 58 55" fill="none" stroke="#10b981" stroke-width="2.5" />
+                                                <text x="50" y="78" font-family="Arial, sans-serif" font-size="6" font-weight="900" fill="#10b981" text-anchor="middle" letter-spacing="0.5">DÖRT MEVSİM</text>
+                                            </svg>
+                                        }
+                                        @case (6) {
+                                            <svg viewBox="0 0 100 100" class="w-7rem h-7rem">
+                                                <circle cx="50" cy="50" r="42" fill="none" stroke="#047857" stroke-width="4" />
+                                                <text x="50" y="24" font-family="Arial, sans-serif" font-size="5" font-weight="900" fill="#047857" text-anchor="middle" letter-spacing="1">SAKARYA BÜYÜKŞEHİR</text>
+                                                <path d="M35 55 L65 55 L65 58 L35 58 Z" fill="#047857" />
+                                                <path d="M38 55 L38 48 L42 48 L42 55 Z" fill="#047857" />
+                                                <path d="M46 55 L46 46 L54 46 L54 55 Z" fill="#047857" />
+                                                <path d="M58 55 L58 48 L62 48 L62 55 Z" fill="#047857" />
+                                                <path d="M44 42 L56 42 L50 35 Z" fill="#047857" />
+                                                <text x="50" y="80" font-family="Arial, sans-serif" font-size="7" font-weight="900" fill="#047857" text-anchor="middle" letter-spacing="0.5">MECLİS KAFE</text>
+                                            </svg>
+                                        }
+                                        @case (7) {
+                                            <svg viewBox="0 0 100 100" class="w-7rem h-7rem">
+                                                <circle cx="50" cy="50" r="42" fill="none" stroke="#1d4ed8" stroke-width="4" />
+                                                <text x="50" y="24" font-family="Arial, sans-serif" font-size="6" font-weight="900" fill="#1d4ed8" text-anchor="middle" letter-spacing="1">SAKARYA BÜYÜKŞEHİR</text>
+                                                <text x="50" y="54" font-family="'Brush Script MT', cursive, sans-serif" font-size="20" font-weight="bold" fill="#1d4ed8" text-anchor="middle">Büfe</text>
+                                                <text x="50" y="80" font-family="Arial, sans-serif" font-size="5" font-weight="900" fill="#1d4ed8" text-anchor="middle" letter-spacing="1">MİLLET BAHÇESİ</text>
+                                            </svg>
+                                        }
+                                        @case (8) {
+                                            <svg viewBox="0 0 100 100" class="w-7rem h-7rem">
+                                                <circle cx="50" cy="50" r="42" fill="none" stroke="#15803d" stroke-width="4" />
+                                                <text x="50" y="24" font-family="Arial, sans-serif" font-size="6" font-weight="900" fill="#15803d" text-anchor="middle" letter-spacing="1">SAKARYA BÜYÜKŞEHİR</text>
+                                                <path d="M50 32 C 40 44, 42 56, 50 62 C 58 56, 60 44, 50 32 Z" fill="#15803d" opacity="0.2" />
+                                                <path d="M50 32 C 40 44, 42 56, 50 62 C 58 56, 60 44, 50 32 Z" fill="none" stroke="#15803d" stroke-width="2" />
+                                                <line x1="50" y1="32" x2="50" y2="62" stroke="#15803d" stroke-width="2" />
+                                                <text x="50" y="80" font-family="Arial, sans-serif" font-size="7" font-weight="900" fill="#15803d" text-anchor="middle" letter-spacing="0.5">ORMANPARK</text>
+                                            </svg>
+                                        }
+                                        @case (9) {
+                                            <svg viewBox="0 0 100 100" class="w-7rem h-7rem">
+                                                <circle cx="50" cy="50" r="42" fill="none" stroke="#b45309" stroke-width="4" />
+                                                <text x="50" y="24" font-family="Arial, sans-serif" font-size="6" font-weight="900" fill="#b45309" text-anchor="middle" letter-spacing="1">SAKARYA BÜYÜKŞEHİR</text>
+                                                <path d="M42 42 L42 54 M45 42 L45 54 M48 42 L48 54 M45 54 L45 62" stroke="#b45309" stroke-width="1.5" stroke-linecap="round" />
+                                                <path d="M55 42 L55 62 M55 42 C 58 42, 58 50, 55 50" stroke="#b45309" stroke-width="1.5" stroke-linecap="round" />
+                                                <path d="M40 34 L45 37 L50 34 L55 37 L60 34 L57 39 L43 39 Z" fill="#b45309" />
+                                                <text x="50" y="80" font-family="Arial, sans-serif" font-size="7" font-weight="900" fill="#b45309" text-anchor="middle" letter-spacing="0.5">ELEGANT</text>
+                                            </svg>
+                                        }
+                                        @case (10) {
+                                            <svg viewBox="0 0 100 100" class="w-7rem h-7rem">
+                                                <circle cx="50" cy="50" r="42" fill="none" stroke="#c2410c" stroke-width="4" />
+                                                <text x="50" y="24" font-family="Arial, sans-serif" font-size="6" font-weight="900" fill="#c2410c" text-anchor="middle" letter-spacing="1">SAKARYA BÜYÜKŞEHİR</text>
+                                                <path d="M38 56 L48 50 L58 56 L58 44 L48 38 L38 44 Z" fill="none" stroke="#c2410c" stroke-width="2" />
+                                                <line x1="48" y1="38" x2="48" y2="50" stroke="#c2410c" stroke-width="2" />
+                                                <text x="50" y="80" font-family="Arial, sans-serif" font-size="6" font-weight="900" fill="#c2410c" text-anchor="middle" letter-spacing="0.5">KIRAATHANe</text>
+                                            </svg>
+                                        }
+                                        @case (11) {
+                                            <svg viewBox="0 0 100 100" class="w-7rem h-7rem">
+                                                <circle cx="50" cy="50" r="42" fill="none" stroke="#047857" stroke-width="4" />
+                                                <text x="50" y="24" font-family="Arial, sans-serif" font-size="6" font-weight="900" fill="#047857" text-anchor="middle" letter-spacing="1">SAKARYA BÜYÜKŞEHİR</text>
+                                                <path d="M50 36 C 45 42, 38 48, 50 62 C 62 48, 55 42, 50 36 Z" fill="none" stroke="#047857" stroke-width="2" />
+                                                <path d="M50 42 C 40 46, 40 52, 50 56 C 60 52, 60 46, 50 42 Z" fill="none" stroke="#047857" stroke-width="1.5" />
+                                                <text x="50" y="80" font-family="Arial, sans-serif" font-size="6" font-weight="900" fill="#047857" text-anchor="middle" letter-spacing="0.5">ACARLAR LONGOZU</text>
+                                            </svg>
+                                        }
+                                        @case (12) {
+                                            <svg viewBox="0 0 100 100" class="w-7rem h-7rem">
+                                                <circle cx="50" cy="50" r="42" fill="none" stroke="#0369a1" stroke-width="4" />
+                                                <text x="50" y="24" font-family="Arial, sans-serif" font-size="6" font-weight="900" fill="#0369a1" text-anchor="middle" letter-spacing="1">SAKARYA BÜYÜKŞEHİR</text>
+                                                <circle cx="62" cy="38" r="5" fill="#0369a1" />
+                                                <path d="M38 58 L46 44 L54 58 Z" fill="none" stroke="#0369a1" stroke-width="2" />
+                                                <line x1="46" y1="44" x2="46" y2="60" stroke="#0369a1" stroke-width="2" />
+                                                <text x="50" y="80" font-family="Arial, sans-serif" font-size="6" font-weight="900" fill="#0369a1" text-anchor="middle" letter-spacing="0.5">KOCAALİ PLAJI</text>
+                                            </svg>
+                                        }
+                                    }
                                 </div>
                             </div>
-                            
-                            <!-- Title wrapper with fixed min-height: perfectly centers 1, 2, or 3 line titles -->
-                            <div class="tesis-baslik-wrapper w-full">
-                                <h3 class="text-base md:text-lg font-bold text-800 m-0 line-height-2 transition-colors transition-duration-300">{{ tesis.ad }}</h3>
-                            </div>
-                            
-                            <!-- Keşfet link below title -->
-                            <div class="kesfet-link flex align-items-center justify-content-center gap-1 transition-all transition-duration-300">
-                                <span class="text-xs md:text-sm font-bold" [style.color]="tesis.renk">Keşfet</span>
-                                <i class="pi pi-arrow-right" [style.color]="tesis.renk" style="font-size: 0.75rem;"></i>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            }
-        </div>
-    </div>
-</section>
-
-<!-- 3. HABERLER (Z-PATTERN YATAY KARTLAR) -->
-<section class="py-8 surface-ground">
-    <div class="container mx-auto px-4">
-        <!-- Modernized Haberler Başlığı -->
-        <div class="text-center mb-7 animation-duration-500 fadein">
-            <div class="mb-3">
-                <span class="inline-flex align-items-center gap-2 py-1 px-3 border-round-3xl bg-green-50 text-emerald-600 text-xs md:text-sm font-bold tracking-widest uppercase border-1 border-emerald-200 shadow-1">
-                    <i class="pi pi-megaphone text-xs"></i> Duyuru ve Güncellemeler
-                </span>
-            </div>
-            <h2 class="text-4xl md:text-6xl font-black text-900 mb-3 tracking-tighter line-height-1">
-                Gündem ve <span style="background: linear-gradient(135deg, #10b981 0%, #047857 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Haberler</span>
-            </h2>
-            <p class="text-600 text-base md:text-xl max-w-30rem mx-auto line-height-3 font-normal mt-2">
-                Sakarya Büyükşehir Belediyesi ve BELPAŞ'tan en güncel duyurular, yenilikler ve yatırımlar.
-            </p>
-        </div>
-
-        <div class="flex flex-column gap-5 max-w-60rem mx-auto mb-8">
-            @for (haber of haberler; track haber.id; let i = $index) {
-                <div class="modern-haber-kart bg-white border-round-3xl shadow-2 hover:shadow-6 transition-all transition-duration-300 overflow-hidden flex flex-column md:flex-row" [class.md:flex-row-reverse]="i % 2 !== 0">
-                    
-                    <!-- Resim Alanı -->
-                    <div class="md:w-5 relative overflow-hidden h-16rem md:h-auto">
-                        <img [src]="haber.resimUrl || '/images/sbb_mekan.jpg'" alt="{{haber.baslik}}" class="w-full h-full object-cover transition-transform transition-duration-500 hover:scale-105">
-                        <span class="absolute top-0 m-4 px-3 py-1 bg-primary text-white text-xs font-bold border-round-2xl shadow-3 uppercase tracking-wider" [class.left-0]="i % 2 === 0" [class.right-0]="i % 2 !== 0">{{ haber.kategori }}</span>
+                        </a>
                     </div>
+                </ng-template>
+            </p-carousel>
+        </div>
+    </section>
 
-                    <!-- İçerik Alanı -->
-                    <div class="md:w-7 p-4 md:p-6 flex flex-column justify-content-center">
-                        <div class="text-xs text-500 mb-3 font-semibold uppercase tracking-wider flex align-items-center gap-2">
-                            <i class="pi pi-calendar text-primary text-sm"></i> 
-                            {{ haber.tarih }}
-                        </div>
-                        <h3 class="text-2xl font-bold text-900 mt-0 mb-3 line-height-2 hover:text-primary transition-colors cursor-pointer">
-                            {{ haber.baslik }}
-                        </h3>
-                        <p class="text-600 line-height-3 m-0 mb-5 flex-grow-1 text-base">
-                            {{ haber.aciklama }}
-                        </p>
-                        
-                        <div class="mt-auto">
-                            <a [routerLink]="haber.link" class="p-button p-button-outlined p-button-rounded p-button-secondary inline-flex align-items-center gap-2 font-bold hover:bg-primary hover:text-white hover:border-primary transition-colors py-2 px-4 text-sm">
-                                Habere Git <i class="pi pi-arrow-right text-xs"></i>
-                            </a>
-                        </div>
-                    </div>
 
-                </div>
-            }
+
+    <!-- ─── BÖLÜM 3: HABERLER ─── -->
+    <section class="govde-section">
+        <div class="govde-section-baslik">
+            <span class="govde-badge">
+                <i class="pi pi-megaphone mr-1" style="font-size:0.65rem;"></i> GÜNCEL
+            </span>
+            <h2>Belpaş'tan Haberler</h2>
+            <p>Kurumsal duyurular ve toplumsal etkinlikleri takip edin.</p>
         </div>
 
-        <!-- 4. ETKİNLİK TAKVİMİ VE DUYURULAR (SOL YEŞİL ŞERİTLİ VE BEYAZ ZEMİNLİ MODERN KARTLAR) -->
-        <div class="max-w-60rem mx-auto border-top-1 border-gray-200 pt-7">
-            <div class="flex align-items-center justify-content-between mb-5 flex-wrap gap-2">
-                <div>
-                    <span class="etkinlik-kategori-pill uppercase">ETKİNLİKLER</span>
-                    <h3 class="text-2xl md:text-3xl font-black text-900 m-0 mt-1">Etkinlik Takvimi & Duyurular</h3>
-                </div>
-                <a routerLink="/kurumsal/etkinlikler" class="text-emerald-600 text-sm font-bold no-underline flex align-items-center gap-1 hover:underline">
-                    Tüm Etkinlikleri Gör <i class="pi pi-arrow-right text-xs"></i>
-                </a>
-            </div>
-
-            <div class="grid">
-                @for (etk of etkinlikler; track etk.id) {
-                    <div class="col-12 md:col-4 p-2">
-                        <div class="modern-etkinlik-kart p-4 flex flex-column justify-content-between h-full cursor-pointer" [routerLink]="['/kurumsal/etkinlikler']">
-                            
-                            <!-- Sol Kıvrımlı Yeşil Şerit Accent (Görsel referans 2 ile tam aynı!) -->
-                            <div class="etkinlik-sol-serit"></div>
-
-                            <div class="pl-3">
-                                <div class="flex align-items-center justify-content-between mb-3">
-                                    <span class="etkinlik-kategori-pill uppercase">
-                                        {{ etk.kategori }}
-                                    </span>
-                                    <span class="text-xs text-500 font-bold">
-                                        <i class="pi pi-clock text-emerald-600 mr-1"></i>{{ etk.saat }}
-                                    </span>
+        <div class="w-full relative-carousel-container">
+            <p-carousel
+                [value]="haberler"
+                [numVisible]="2"
+                [numScroll]="1"
+                [circular]="true"
+                [autoplayInterval]="5000"
+                [responsiveOptions]="[{ breakpoint: '1024px', numVisible: 1, numScroll: 1 }]"
+                [showIndicators]="false"
+                styleClass="custom-haber-carousel">
+                <ng-template let-haber pTemplate="item">
+                    <div class="p-3">
+                        <a [routerLink]="['/haberler', haber.id]" class="modern-medya-kart block relative border-round-2xl no-underline transition-all transition-duration-300 bg-white border-1 border-black-alpha-10 hover:shadow-4">
+                            <div class="kart-sol-serit-mavi"></div>
+                            <div class="flex align-items-center justify-content-between h-full w-full p-4 pl-5">
+                                <div class="flex-grow-1 pr-4">
+                                    <h4 class="text-base font-bold text-800 m-0 line-height-2 mb-2 limit-text-2">{{ haber.baslik }}</h4>
+                                    <p class="text-xs m-0 line-height-3 limit-text-3" style="color: var(--renk-metin-acik);">{{ haber.aciklama }}</p>
                                 </div>
-
-                                <h4 class="text-lg font-bold text-900 m-0 mb-2 line-height-2 hover:text-emerald-600 transition-colors">
-                                    {{ etk.baslik }}
-                                </h4>
-
-                                <p class="text-xs text-600 m-0 mb-3 flex align-items-center gap-1">
-                                    <i class="pi pi-map-marker text-emerald-600"></i> {{ etk.konum }}
-                                </p>
-
-                                <p class="text-xs text-500 line-height-3 m-0 mb-4">
-                                    {{ etk.ozet }}
-                                </p>
+                                <div class="resim-kutusu flex-shrink-0">
+                                    <img [src]="haber.resimUrl || '/images/sbb_mekan.jpg'" alt="{{ haber.baslik }}" class="w-9rem h-6rem object-cover border-round-2xl shadow-1">
+                                </div>
                             </div>
-
-                            <div class="pl-3 border-top-1 border-gray-100 pt-3 flex justify-content-between align-items-center">
-                                <span class="text-xs text-emerald-700 font-bold"><i class="pi pi-calendar mr-1"></i>{{ etk.tarih }}</span>
-                                <a [routerLink]="['/kurumsal/etkinlikler']" class="text-emerald-600 text-xs font-bold no-underline flex align-items-center gap-1 hover:text-emerald-700">
-                                    İncele <i class="pi pi-arrow-right text-xs"></i>
-                                </a>
-                            </div>
-
-                        </div>
+                        </a>
                     </div>
-                }
-            </div>
+                </ng-template>
+            </p-carousel>
         </div>
 
-        <div class="text-center mt-7">
-            <a routerLink="/haberler" pButton pRipple label="Tüm Haberleri Görüntüle" icon="pi pi-list" class="p-button-primary p-button-rounded shadow-4 px-6 py-3 font-bold text-lg hover:shadow-6 transition-all"></a>
+        <div class="text-center mt-5">
+            <a routerLink="/haberler" class="tumu-btn">
+                Tüm Haberleri Gör <i class="pi pi-arrow-right ml-2"></i>
+            </a>
         </div>
-    </div>
-</section>
+    </section>
+
+
+
+    <!-- ─── BÖLÜM 4: ETKİNLİKLER ─── -->
+    <section class="govde-section">
+        <div class="govde-section-baslik">
+            <span class="govde-badge">
+                <i class="pi pi-calendar mr-1" style="font-size:0.65rem;"></i> SOSYAL YAŞAM
+            </span>
+            <h2>Duyuru ve Etkinlikler</h2>
+            <p>Kültürel, sosyal etkinlikleri ve kurumsal duyuruları buradan takip edin.</p>
+        </div>
+
+        <div class="w-full relative-carousel-container">
+            <p-carousel
+                [value]="etkinlikler"
+                [numVisible]="2"
+                [numScroll]="1"
+                [circular]="true"
+                [autoplayInterval]="6000"
+                [responsiveOptions]="[{ breakpoint: '1024px', numVisible: 1, numScroll: 1 }]"
+                [showIndicators]="false"
+                styleClass="custom-etkinlik-carousel">
+                <ng-template let-etk pTemplate="item">
+                    <div class="p-3">
+                        <a [routerLink]="['/kurumsal/etkinlikler']" class="modern-medya-kart block relative border-round-2xl no-underline transition-all transition-duration-300 bg-white border-1 border-black-alpha-10 hover:shadow-4">
+                            <div class="kart-sol-serit-yesil"></div>
+                            <div class="flex align-items-center justify-content-between h-full w-full p-4 pl-5">
+                                <div class="flex-grow-1 pr-4">
+                                    <div class="flex align-items-center gap-2 mb-2">
+                                        <span class="etkinlik-etiket">{{ etk.kategori }}</span>
+                                        <span class="text-xs font-bold" style="color: var(--renk-metin-acik);"><i class="pi pi-calendar mr-1"></i>{{ etk.tarih }}</span>
+                                    </div>
+                                    <h4 class="text-base font-bold text-800 m-0 line-height-2 mb-2 limit-text-2">{{ etk.baslik }}</h4>
+                                    <p class="text-xs m-0 line-height-3 limit-text-3" style="color: var(--renk-metin-acik);">{{ etk.ozet }}</p>
+                                </div>
+                                <div class="resim-kutusu flex-shrink-0">
+                                    <img [src]="etk.resimUrl || '/images/acarlar-longozu.png'" alt="{{ etk.baslik }}" class="w-9rem h-6rem object-cover border-round-2xl shadow-1">
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </ng-template>
+            </p-carousel>
+        </div>
+
+        <div class="text-center mt-5">
+            <a routerLink="/kurumsal/etkinlikler" class="tumu-btn">
+                Tüm Etkinlikleri Gör <i class="pi pi-arrow-right ml-2"></i>
+            </a>
+        </div>
+    </section>
+
+</div>

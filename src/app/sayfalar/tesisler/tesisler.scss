@@ -11,14 +11,37 @@
   border-radius: 28px;
   padding: 40px 48px;
   margin-bottom: 48px;
+  text-align: center;
 
   h1 {
     font-family: 'Outfit', sans-serif;
     font-weight: 800;
     font-size: clamp(28px, 4vw, 40px);
     color: #022c22;
+    margin: 0 0 8px 0;
+  }
+
+  .alt-baslik {
+    font-family: 'Inter', sans-serif;
+    color: #667085;
+    font-size: 15px;
     margin: 0;
   }
+}
+
+.tesis-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 14px;
+  border-radius: 9999px;
+  background: #d1fae5;
+  border: 1px solid #6ee7b7;
+  color: #047857;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
 }
 
 /* --- TESİSLER GRID VE KART TASARIMI --- */
@@ -138,5 +161,46 @@
 
   .tesis-isim {
     color: #101828;
+  }
+}
+
+/* GPS BAR (Tesisler page version) */
+.gps-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: rgba(2, 44, 34, 0.85);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  border-radius: 20px;
+  padding: 18px 24px;
+  max-width: 100%;
+  margin-bottom: 30px;
+
+  .gps-btn {
+    background: #10b981 !important;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 9999px;
+    color: white;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+    &:hover {
+      background: #059669 !important;
+      transform: translateY(-1px);
+    }
+  }
+
+  @media (max-width: 640px) {
+    flex-direction: column;
+    align-items: flex-start;
+    
+    .gps-btn {
+      width: 100%;
+      text-align: center;
+    }
   }
 }

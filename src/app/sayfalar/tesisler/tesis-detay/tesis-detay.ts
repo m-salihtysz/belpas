@@ -1,8 +1,8 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { FacilityService, Tesis, MenuKategori } from '../../services/facility.service';
-import { SeoService } from '../../services/seo.service'; 
+import { FacilityService, Tesis, MenuKategori } from '../../../services/facility.service';
+import { SeoService } from '../../../services/seo.service'; 
 
 @Component({
   selector: 'app-tesis-detay',

@@ -1,59 +1,53 @@
-# BelpasModernizasyon
+# BELPAŞ Sosyal Tesisler ve Yönetim Paneli - Modernizasyon Projesi
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.0.6.
+Bu proje, Sakarya Büyükşehir Belediyesi iştiraki BELPAŞ'ın kurumsal web sitesi ve sosyal tesisler yönetim platformudur. Sistem, **Frontend (Angular)**, **Backend (.NET 8.0 Web API)** ve **PostgreSQL Veri Tabanı** bileşenlerinden oluşur.
 
-## Development server
+---
 
-To start a local development server, run:
+## Projeyi Çalıştırma Adımları
 
-```bash
-ng serve
-```
+Sistemin tam olarak çalışabilmesi için sırasıyla **Veri Tabanı**, **Backend** ve **Frontend** bileşenlerini ayağa kaldırmanız gerekmektedir.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### 1. Veri Tabanını Çalıştırma (PostgreSQL)
 
-## Code scaffolding
+Veri tabanı, Docker Compose kullanılarak izole bir şekilde ayağa kaldırılır.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+* Projenin `backend` klasöründe terminali açın:
+  ```bash
+  cd backend
+  docker compose up -d
+  ```
+* Bu komut, **Port 5433** üzerinde çalışan `belpas_postgres` isimli PostgreSQL konteynerini arka planda başlatacaktır.
 
-```bash
-ng generate component component-name
-```
+---
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### 2. API Sunucusunu Çalıştırma (.NET Core Web API)
 
-```bash
-ng generate --help
-```
+Backend servislerinin ve veri tabanı entegrasyonunun çalışması için API sunucusu başlatılır.
 
-## Building
+* Terminalde `backend/src/Belpas.Api` dizinine gidin:
+  ```bash
+  cd backend/src/Belpas.Api
+  ```
+* Projeyi derleyin ve çalıştırın:
+  ```bash
+  dotnet run
+  ```
+* Sunucu ayağa kalktığında otomatik olarak veri tabanı göçlerini (migrations) kontrol edecek, tabloları kuracak ve `DbSeeder` sınıfı sayesinde ilk verileri (Tesisler, Haberler, Etkinlikler) otomatik olarak basacaktır.
+* API dokümantasyonuna ve test arayüzüne tarayıcınızdan şu adresten ulaşabilirsiniz: [http://localhost:5000/swagger](http://localhost:5000/swagger)
 
-To build the project run:
+> [!NOTE]
+> macOS işletim sistemlerinde varsayılan AirPlay alıcısı 5000 portunu işgal edebilir. Sunucu başka bir portta açılırsa, frontend tarafındaki api endpoint tanımlarını kontrol edebilirsiniz.
 
-```bash
-ng build
-```
+---
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+### 3. Arayüzü Çalıştırma (Angular)
 
-## Running unit tests
+Frontend arayüzü modern Angular bileşenleriyle çalışır.
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+* Projenin **kök dizininde** terminali açın:
+  ```bash
+  npm install
+  npm start
+  ```
+* Geliştirme sunucusu hazır olduğunda tarayıcınızdan şu adrese giderek uygulamayı görüntüleyebilirsiniz: [http://localhost:4200/](http://localhost:4200/)

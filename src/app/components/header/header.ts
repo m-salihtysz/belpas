@@ -22,13 +22,24 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.items = [
       {
+        label: 'Birimlerimiz',
+        routerLink: '/tesisler'
+      },
+      {
+        label: 'Etkinliklerimiz',
+        routerLink: '/kurumsal/etkinlikler'
+      },
+      {
+        label: 'Haberler',
+        routerLink: '/haberler'
+      },
+      {
         label: 'Kurumsal',
         items: [
           { label: 'Hakkımızda', routerLink: '/kurumsal/hakkimizda' },
           { label: 'Organizasyon Şeması', routerLink: '/kurumsal/organizasyon-semasi' },
           { label: 'Kurumsal Kimlik', routerLink: '/kurumsal/kurumsal-kimlik' },
-          { label: 'Faaliyet Raporu', routerLink: '/kurumsal/faaliyet-raporu' },
-          { label: 'Etkinliklerimiz', routerLink: '/kurumsal/etkinlikler' }
+          { label: 'Faaliyet Raporu', routerLink: '/kurumsal/faaliyet-raporu' }
         ]
       },
       {
@@ -39,14 +50,6 @@ export class HeaderComponent implements OnInit {
           { label: 'Satın Alma Kriterleri', routerLink: '/ihaleler/kriterler' },
           { label: 'Satın Alma Süreci', routerLink: '/ihaleler/surec' }
         ]
-      },
-      {
-        label: 'Birimlerimiz',
-        routerLink: '/tesisler'
-      },
-      {
-        label: 'Haberler',
-        routerLink: '/haberler'
       },
       {
         label: 'İletişim',

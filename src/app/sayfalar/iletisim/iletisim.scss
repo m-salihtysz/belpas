@@ -99,7 +99,7 @@
   border-radius: 28px;
   text-align: left;
 
-  input, textarea {
+  input:not([type="checkbox"]), textarea {
     width: 100%; 
     padding: 16px; 
     margin-bottom: 16px;

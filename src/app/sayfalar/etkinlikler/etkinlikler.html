@@ -1,68 +1,61 @@
-<!-- ETKİNLİKLERİMİZ SAYFASI HERO BANNER -->
-<section class="etkinlik-hero relative overflow-hidden flex align-items-center justify-content-center text-white py-8">
-  <div class="container mx-auto px-4 z-2 text-center pt-8 pb-6">
-    <span class="inline-flex align-items-center gap-2 py-1 px-4 border-round-3xl bg-emerald-500-alpha-20 border-1 border-emerald-400 text-emerald-300 text-xs md:text-sm font-bold tracking-widest uppercase mb-3 shadow-2">
-      <i class="pi pi-calendar"></i> SOSYAL & KÜLTÜREL YAŞAM
-    </span>
-    <h1 class="text-4xl md:text-6xl font-black text-white m-0 mb-3 tracking-tighter line-height-1">
-      BELPAŞ <span class="text-emerald-400">Etkinliklerimiz</span>
-    </h1>
-    <p class="text-base md:text-xl text-emerald-100 max-w-35rem mx-auto m-0 font-normal line-height-3">
-      Tesislerimizde gerçekleşen kültür, sanat, doğa gezileri ve aile buluşmalarıyla Sakarya'da hayata değer katıyoruz.
-    </p>
-  </div>
-</section>
+<div class="etkinlik-sayfa-wrap">
 
-<!-- FİLTRELEME & ARAMA ALANI -->
-<section class="py-6 surface-0 border-bottom-1 border-gray-100">
-  <div class="container mx-auto px-4">
+  <!-- BAŞLIK KUTUSU -->
+  <div class="baslik-kutusu">
+    <span class="etkinlik-badge">
+      <i class="pi pi-calendar mr-1" style="font-size:0.7rem;"></i> SOSYAL &amp; KÜLTÜREL YAŞAM
+    </span>
+    <h1>Etkinliklerimiz</h1>
+    <p class="alt-baslik">Tesislerimizde gerçekleşen kültür, sanat, doğa gezileri ve aile buluşmalarıyla Sakarya'da hayata değer katıyoruz.</p>
+  </div>
+
+  <!-- FİLTRELEME & ARAMA ALANI -->
+  <div class="filtre-alan">
     <div class="flex flex-column md:flex-row align-items-center justify-content-between gap-4">
-      
-      <!-- Kategori Sekmeleri (Dijital Menüdeki Gibi Kalıcı Zümrüt Yeşili Vurgu) -->
+
+      <!-- Kategori Sekmeleri -->
       <div class="flex gap-2 overflow-x-auto pb-2 w-full md:w-auto scrollbar-none align-items-center">
-        <button type="button" 
+        <button type="button"
                 class="etkinlik-filtre-btn"
                 [class.aktif-filtre]="seciliKategori() === 'Tümü'"
                 (click)="kategoriSec('Tümü')">
           Tüm Etkinlikler
         </button>
-        <button type="button" 
+        <button type="button"
                 class="etkinlik-filtre-btn"
                 [class.aktif-filtre]="seciliKategori() === 'Kültür & Sanat'"
                 (click)="kategoriSec('Kültür & Sanat')">
-          Kültür & Sanat
+          Kültür &amp; Sanat
         </button>
-        <button type="button" 
+        <button type="button"
                 class="etkinlik-filtre-btn"
                 [class.aktif-filtre]="seciliKategori() === 'Doğa & Spor'"
                 (click)="kategoriSec('Doğa & Spor')">
-          Doğa & Spor
+          Doğa &amp; Spor
         </button>
-        <button type="button" 
+        <button type="button"
                 class="etkinlik-filtre-btn"
                 [class.aktif-filtre]="seciliKategori() === 'Çocuk & Aile'"
                 (click)="kategoriSec('Çocuk & Aile')">
-          Çocuk & Aile
+          Çocuk &amp; Aile
         </button>
       </div>
 
       <!-- Arama Kutusu -->
       <div class="w-full md:w-20rem relative">
-        <input type="text" 
-               [ngModel]="aramaMetni()" 
+        <input type="text"
+               [ngModel]="aramaMetni()"
                (ngModelChange)="aramaMetni.set($event)"
-               placeholder="Etkinlik veya konum ara..." 
+               placeholder="Etkinlik veya konum ara..."
                class="w-full py-2 px-4 pr-6 border-round-3xl border-1 border-gray-300 text-sm outline-none focus:border-emerald-500 shadow-1">
         <i class="pi pi-search absolute right-0 top-50 transform-translate-y-half mr-3 text-gray-400"></i>
       </div>
 
     </div>
   </div>
-</section>
 
-<!-- ETKİNLİK LİSTESİ -->
-<section class="py-8 surface-ground">
-  <div class="container mx-auto px-4">
+  <!-- ETKİNLİK LİSTESİ -->
+  <div class="etkinlik-liste-alan">
     @if (filtrelenmisEtkinlikler.length === 0) {
       <div class="text-center py-8">
         <i class="pi pi-info-circle text-4xl text-gray-400 mb-3 block"></i>
@@ -74,8 +67,8 @@
         @for (etk of filtrelenmisEtkinlikler; track etk.id) {
           <div class="col-12 md:col-6 lg:col-4 p-3">
             <div class="modern-etkinlik-sayfa-kart p-4 flex flex-column justify-content-between h-full">
-              
-              <!-- Sol Kıvrımlı Yeşil Şerit Accent (Görsel referans ile tam aynı!) -->
+
+              <!-- Sol Yeşil Şerit Accent -->
               <div class="etkinlik-sol-serit"></div>
 
               <div class="pl-3">
@@ -121,7 +114,7 @@
                 </div>
 
                 <button type="button" class="w-full py-3 border-round-2xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold border-none cursor-pointer transition-colors shadow-2 flex align-items-center justify-content-center gap-2">
-                  Etkinlik Detayı & Katılım <i class="pi pi-arrow-right text-xs"></i>
+                  Etkinlik Detayı &amp; Katılım <i class="pi pi-arrow-right text-xs"></i>
                 </button>
               </div>
 
@@ -131,4 +124,5 @@
       </div>
     }
   </div>
-</section>
+
+</div>

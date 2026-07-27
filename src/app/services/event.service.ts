@@ -1,8 +1,7 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
-import { FormsModule } from '@angular/forms';
-import { SeoService } from '../../../services/seo.service';
+import { Injectable, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 export interface Etkinlik {
   id: number;
@@ -19,20 +18,14 @@ export interface Etkinlik {
   populer?: boolean;
 }
 
-@Component({
-  selector: 'app-etkinlikler',
-  standalone: true,
-  imports: [CommonModule, RouterLink, FormsModule],
-  templateUrl: './etkinlikler.html',
-  styleUrl: './etkinlikler.scss'
+@Injectable({
+  providedIn: 'root'
 })
-export class Etkinlikler implements OnInit {
-  private seoService = inject(SeoService);
+export class EventService {
+  private http = inject(HttpClient);
+  private apiUrl = 'http://localhost:5000/api/Etkinlikler';
 
-  seciliKategori = signal<string>('Tümü');
-  aramaMetni = signal<string>('');
-
-  etkinlikler = signal<Etkinlik[]>([
+  private mockEtkinlikler: Etkinlik[] = [
     {
       id: 1,
       baslik: 'Millet Kıraathanesi Gençlik & Yazar Söyleşisi',
@@ -103,27 +96,11 @@ export class Etkinlikler implements OnInit {
       ucretsiz: true,
       populer: false
     }
-  ]);
+  ];
 
-  ngOnInit(): void {
-    this.seoService.generateTags({
-      title: 'Etkinliklerimiz | BELPAŞ',
-      description: 'BELPAŞ sosyal tesislerinde gerçekleşen kültür, sanat, doğa ve aile etkinliklerini keşfedin.',
-      url: 'https://belpas.sakarya.bel.tr/kurumsal/etkinlikler',
-      keywords: 'BELPAŞ etkinlikler, Sakarya kültür sanat, Millet kıraathanesi söyleşi, Ormanpark kahvaltı'
-    });
-  }
-
-  kategoriSec(kategori: string): void {
-    this.seciliKategori.set(kategori);
-  }
-
-  get filtrelenmisEtkinlikler(): Etkinlik[] {
-    return this.etkinlikler().filter(e => {
-      const katUyum = this.seciliKategori() === 'Tümü' || e.kategori === this.seciliKategori();
-      const arama = this.aramaMetni().toLowerCase();
-      const aramaUyum = !arama || e.baslik.toLowerCase().includes(arama) || e.konum.toLowerCase().includes(arama);
-      return katUyum && aramaUyum;
-    });
+  getEtkinlikler(): Observable<Etkinlik[]> {
+    return this.http.get<Etkinlik[]>(this.apiUrl).pipe(
+      catchError(() => of(this.mockEtkinlikler))
+    );
   }
 }

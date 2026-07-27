@@ -2,8 +2,48 @@
   
   <!-- Yeni Şablon Başlık Kutusu -->
   <div class="baslik-kutusu">
+    <span class="tesis-badge">
+      <i class="pi pi-building mr-1" style="font-size:0.7rem;"></i> SOSYAL TESİSLER
+    </span>
     <h1>Tesislerimiz</h1>
+    <p class="alt-baslik">Sakarya genelinde hizmet veren sosyal tesislerimizi keşfedin, konum ve bilgilere kolayca ulaşın.</p>
   </div>
+
+  <!-- GPS Bar -->
+  <div class="gps-bar mb-6" style="margin-top: -10px; margin-bottom: 30px;">
+    <div class="flex align-items-center gap-3">
+      <div class="w-3rem h-3rem border-circle bg-emerald-500 flex align-items-center justify-content-center text-white flex-shrink-0">
+        <i class="pi pi-map-marker text-lg"></i>
+      </div>
+      <div>
+        <h4 class="text-sm font-bold m-0 text-white">En Yakın Belpaş Tesisini Bulun</h4>
+        <p class="text-xs m-0 mt-1" style="color: rgba(255,255,255,0.7);">Konumunuza göre en yakın tesis ve mesafeyi hesaplayalım.</p>
+      </div>
+    </div>
+    <button type="button" (click)="enYakinTesisBul()" [disabled]="gpsYukleniyor"
+      class="gps-btn py-2 px-4 border-round-2xl text-white font-bold text-sm cursor-pointer flex align-items-center gap-2">
+      <i class="pi" [class.pi-spin]="gpsYukleniyor" [class.pi-spinner]="gpsYukleniyor" [class.pi-compass]="!gpsYukleniyor"></i>
+      {{ gpsYukleniyor ? 'Hesaplanıyor...' : 'En Yakın Tesisi Bul' }}
+    </button>
+  </div>
+
+  @if (enYakinTesis) {
+    <div class="gps-sonuc-kart mb-5 p-3 flex align-items-center justify-content-between gap-3 fadein animation-duration-400" style="background: rgba(16, 185, 129, 0.05); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 16px;">
+      <div class="flex align-items-center gap-3">
+        <div class="w-2rem h-2rem border-circle bg-emerald-600 text-white font-black flex align-items-center justify-content-center text-xs">
+          {{ enYakinTesis.harf || 'T' }}
+        </div>
+        <div>
+          <span class="bg-emerald-600 text-white text-3xs font-black px-2 py-1 border-round-md uppercase" style="font-size: 10px; padding: 2px 6px; border-radius: 4px;">EN YAKIN: {{ enYakinTesis.mesafe }} KM</span>
+          <h5 class="text-sm font-bold text-emerald-950 m-0 mt-1">{{ enYakinTesis.ad }}</h5>
+        </div>
+      </div>
+      <a [routerLink]="['/tesisler', enYakinTesis.id]" class="py-2 px-3 border-round-xl bg-emerald-600 text-white text-xs font-bold no-underline flex align-items-center gap-1">
+        Detay <i class="pi pi-arrow-right text-xs"></i>
+      </a>
+    </div>
+  }
+
 
   <!-- Tesisler Kart Izgarası -->
   <div class="tesisler-grid">
@@ -13,7 +53,6 @@
           <img [src]="tesis.resimUrl" [alt]="tesis.ad">
         </div>
         <h3 class="tesis-isim">{{ tesis.ad }}</h3>
-        <p class="tesis-aciklama" style="font-size: 0.85rem; color: #667085; text-align: center; margin: 8px 0; padding: 0 12px; line-height: 1.4;">{{ tesis.aciklama }}</p>
         <div class="ikonlar">
           @if (tesis.ad !== 'Kocaali Sosyal Tesisleri') {
             <span class="ikon-daire" title="Restoran Hizmeti">

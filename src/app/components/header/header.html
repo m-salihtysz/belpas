@@ -13,6 +13,12 @@
     <nav class="hidden lg:flex align-items-center gap-1 z-2 bg-black-alpha-40 px-3 py-2 border-round-3xl backdrop-blur-md border-1 border-white-alpha-15 shadow-4">
         <a routerLink="/" class="nav-pill" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Ana Sayfa</a>
 
+        <a routerLink="/tesisler" class="nav-pill" routerLinkActive="active">Birimlerimiz</a>
+
+        <a routerLink="/kurumsal/etkinlikler" class="nav-pill" routerLinkActive="active">Etkinliklerimiz</a>
+
+        <a routerLink="/haberler" class="nav-pill" routerLinkActive="active">Haberler</a>
+
         <!-- Kurumsal Dropdown -->
         <div class="nav-item-dropdown relative group">
             <a routerLink="/kurumsal/hakkimizda" class="nav-pill flex align-items-center gap-1 cursor-pointer" routerLinkActive="active">
@@ -23,7 +29,6 @@
                 <a routerLink="/kurumsal/organizasyon-semasi" class="dropdown-item block px-4 py-2 text-white-alpha-90 hover:text-white hover:bg-white-alpha-10 text-decoration-none transition-colors text-sm font-medium">Organizasyon Şeması</a>
                 <a routerLink="/kurumsal/kurumsal-kimlik" class="dropdown-item block px-4 py-2 text-white-alpha-90 hover:text-white hover:bg-white-alpha-10 text-decoration-none transition-colors text-sm font-medium">Kurumsal Kimlik</a>
                 <a routerLink="/kurumsal/faaliyet-raporu" class="dropdown-item block px-4 py-2 text-white-alpha-90 hover:text-white hover:bg-white-alpha-10 text-decoration-none transition-colors text-sm font-medium">Faaliyet Raporu</a>
-                <a routerLink="/kurumsal/etkinlikler" class="dropdown-item block px-4 py-2 text-white-alpha-90 hover:text-white hover:bg-white-alpha-10 text-decoration-none transition-colors text-sm font-medium">Etkinliklerimiz</a>
             </div>
         </div>
 
@@ -40,8 +45,6 @@
             </div>
         </div>
 
-        <a routerLink="/tesisler" class="nav-pill" routerLinkActive="active">Birimlerimiz</a>
-        <a routerLink="/haberler" class="nav-pill" routerLinkActive="active">Haberler</a>
         <a routerLink="/iletisim" class="nav-pill" routerLinkActive="active">İletişim</a>
     </nav>
 

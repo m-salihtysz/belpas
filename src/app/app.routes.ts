@@ -40,7 +40,7 @@ export const routes: Routes = [
   {
     path: 'kurumsal/etkinlikler',
     loadComponent: () =>
-      import('./sayfalar/kurumsal/etkinlikler/etkinlikler').then(m => m.Etkinlikler),
+      import('./sayfalar/etkinlikler/etkinlikler').then(m => m.Etkinlikler),
     title: 'Etkinliklerimiz | BELPAŞ'
   },
   {
@@ -52,7 +52,7 @@ export const routes: Routes = [
   {
     path: 'tesisler/:id',
     loadComponent: () =>
-      import('./sayfalar/tesis-detay/tesis-detay').then(m => m.TesisDetay),
+      import('./sayfalar/tesisler/tesis-detay/tesis-detay').then(m => m.TesisDetay),
     title: 'Tesis Detayı | BELPAŞ'
   },
   {
