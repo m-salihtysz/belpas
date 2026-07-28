@@ -90,8 +90,34 @@
             <span class="p-inputgroup-addon">
                 <i class="pi pi-search"></i>
             </span>
-            <input type="text" pInputText placeholder="Aramak istediğiniz kelimeyi yazın..." [(ngModel)]="aramaMetni" (keydown.enter)="aramaYap()" autofocus />
-            <button pButton type="button" label="Ara" (click)="aramaYap()"></button>
+            <input type="text" pInputText placeholder="Sayfa, tesis veya restoran adı yazın..." [(ngModel)]="aramaMetni" (ngModelChange)="aramaFiltrele()" (keydown.enter)="aramaYap()" autofocus />
+            <button pButton type="button" label="Git" (click)="aramaYap()"></button>
         </div>
+
+        @if (sonuclar.length > 0) {
+            <div class="arama-sonuc-liste">
+                @for (s of sonuclar; track s.link) {
+                    <button type="button" class="arama-sonuc-item" (click)="secimYap(s)">
+                        <span class="sonuc-ikon-wrap" [class.tip-tesis]="s.tip === 'tesis'">
+                            <i class="pi {{ s.ikon }}"></i>
+                        </span>
+                        <span class="sonuc-metin">
+                            <span class="sonuc-label">{{ s.label }}</span>
+                            @if (s.alt) {
+                                <span class="sonuc-alt">{{ s.alt }}</span>
+                            }
+                        </span>
+                        <i class="pi pi-arrow-right sonuc-ok"></i>
+                    </button>
+                }
+            </div>
+        }
+
+        @if (aramaMetni.length >= 2 && sonuclar.length === 0) {
+            <div class="arama-bos">
+                <i class="pi pi-search-minus text-2xl mb-2" style="color:#94a3b8"></i>
+                <p>"{{ aramaMetni }}" için sonuç bulunamadı.</p>
+            </div>
+        }
     </div>
 </p-dialog>
