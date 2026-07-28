@@ -129,8 +129,7 @@ public static class DbSeeder
             new Tesis { Ad = "Hafriyat Sahaları", Slug = "hafriyat-sahalari", Aciklama = string.Empty, Harf = "H", ResimUrl = "/images/logolar/hafriyat-sahalari.png" },
             new Tesis { Ad = "SGM Büfe", Slug = "sgm-bufe", Aciklama = string.Empty, Harf = "S", ResimUrl = "/images/logolar/sgm-bufe.png" },
             new Tesis { Ad = "Millet Bahçesi Büfe", Slug = "millet-bahcesi-bufe", Aciklama = string.Empty, Harf = "M", ResimUrl = "/images/logolar/millet-bahcesi-bufe.png" },
-            new Tesis { Ad = "Yenikent Sosyal Tesisleri", Slug = "yenikent-sosyal-tesisleri", Aciklama = string.Empty, Harf = "Y", ResimUrl = "/images/logolar/yenikent-sosyal-tesisleri.png" },
-            new Tesis { Ad = "Asfalt Şantiyesi", Slug = "asfalt-santiyesi", Aciklama = string.Empty, Harf = "A" }
+            new Tesis { Ad = "Yenikent Sosyal Tesisleri", Slug = "yenikent-sosyal-tesisleri", Aciklama = string.Empty, Harf = "Y", ResimUrl = "/images/logolar/yenikent-sosyal-tesisleri.png" }
         );
 
             context.SaveChanges();
