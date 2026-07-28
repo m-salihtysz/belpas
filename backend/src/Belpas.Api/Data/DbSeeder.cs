@@ -94,199 +94,44 @@ public static class DbSeeder
         }
 
         context.Tesisler.AddRange(
-                new Tesis
-                {
-                    Ad = "Çay Dünyası",
-                    Slug = "cay-dunyasi",
-                    Kategori = "Kafeterya",
-                    Renk = "#10B981",
-                    Harf = "Ç",
-                    Aciklama = "Kent Park'ın eşsiz doğası içinde yer alan Çay Dünyası; taze demlenmiş çay çeşitleri, taze sıkılmış meyve suları ve özel fırın lezzetleriyle Sakaryalıların en sevdiği dinlenme noktasıdır.",
-                    Adres = "Atatürk Bulvarı, Kent Park İçi, Adapazarı / Sakarya",
-                    Telefon = "0264 272 00 10",
-                    ResimUrl = "/images/cay-dunyasi.png",
-                    KonumUrl = "https://maps.google.com/?q=Kent+Park+Adapazari",
-                    HaftaIciSaat = "08:30–23:00",
-                    HaftaSonuSaat = "08:30–23:30",
-                    Aktif = true
-                },
-                new Tesis
-                {
-                    Ad = "Yentkent",
-                    Slug = "yentkent",
-                    Kategori = "Pazar & Sosyal Alan",
-                    Renk = "#059669",
-                    Harf = "Y",
-                    Aciklama = "Yenikent bölgesinde halkımıza kaliteli, hijyenik ve ekonomik alışveriş ile dinlenme imkanı sunan Belpaş kapalı sosyal ve ticari alan tesisi.",
-                    Adres = "Yenikent Şehir Parkı Yanı, Camili / Adapazarı / Sakarya",
-                    Telefon = "0264 272 00 11",
-                    ResimUrl = "/images/yentkent.png",
-                    KonumUrl = "https://maps.google.com/?q=Camili+Adapazari",
-                    HaftaIciSaat = "08:00–20:00",
-                    HaftaSonuSaat = "08:00–20:00",
-                    Aktif = true
-                },
-                new Tesis
-                {
-                    Ad = "P Market",
-                    Slug = "p-market",
-                    Kategori = "Tanzim Satış & Market",
-                    Renk = "#047857",
-                    Harf = "P",
-                    Aciklama = "Belpaş tanzim satış ve süpermarket noktası. Sakarya'nın yerel lezzetleri, kooperatif ürünleri ve temel gıda ihtiyaçları doğrudan üreticiden en uygun fiyatlarla sunulmaktadır.",
-                    Adres = "Gar Meydanı Yanı, Adapazarı / Sakarya",
-                    Telefon = "0264 272 00 13",
-                    ResimUrl = "/images/p-market.png",
-                    KonumUrl = "https://maps.google.com/?q=Gar+Meydani+Adapazari",
-                    HaftaIciSaat = "08:00–21:00",
-                    HaftaSonuSaat = "08:00–21:00",
-                    Aktif = true
-                },
-                new Tesis
-                {
-                    Ad = "Nehir Kafeterya",
-                    Slug = "nehir-kafeterya",
-                    Kategori = "Kafeterya & Restoran",
-                    Renk = "#065F46",
-                    Harf = "N",
-                    Aciklama = "Sakarya Nehri'nin kıyısında, muazzam nehir manzarası eşliğinde leziz kahvaltılar, çay/kahve molaları ve çocuk oyun alanlarıyla ailece vakit geçirilecek ferah tesis.",
-                    Adres = "Sakarya Park İçi, Erenler / Sakarya",
-                    Telefon = "0264 272 00 16",
-                    ResimUrl = "/images/nehir-kafeterya.png",
-                    KonumUrl = "https://maps.google.com/?q=Sakarya+Park+Erenler",
-                    HaftaIciSaat = "09:00–23:30",
-                    HaftaSonuSaat = "09:00–23:30",
-                    Aktif = true
-                },
-                new Tesis
-                {
-                    Ad = "İznik Kiralama",
-                    Slug = "iznik-kiralama",
-                    Kategori = "Rekreasyon & Kiralama",
-                    Renk = "#10B981",
-                    Harf = "İ",
-                    Aciklama = "Şehir içi rekreasyon alanlarında bisiklet, akülü araçlar ve açık alan eğlence ekipmanları kiralama hizmeti sunan Belpaş sosyal aktivite noktası.",
-                    Adres = "Çark Caddesi Sonu, Kent Park Girişi, Adapazarı / Sakarya",
-                    Telefon = "0264 272 00 17",
-                    ResimUrl = "/images/iznik-kiralama.png",
-                    KonumUrl = "https://maps.google.com/?q=Cark+Caddesi+Adapazari",
-                    HaftaIciSaat = "09:00–21:00",
-                    HaftaSonuSaat = "09:00–21:30",
-                    Aktif = true
-                },
-                new Tesis
-                {
-                    Ad = "Meclis Kafeteryası",
-                    Slug = "meclis-kafeteryasi",
-                    Kategori = "Kafeterya",
-                    Renk = "#047857",
-                    Harf = "M",
-                    Aciklama = "Sakarya Büyükşehir Belediyesi hizmet binası içerisinde vatandaşlarımıza, meclis üyelerimize ve personelimize kaliteli aperatif ve içecek sunan nezih mekan.",
-                    Adres = "Büyükşehir Belediyesi Hizmet Binası, Adapazarı / Sakarya",
-                    Telefon = "0264 272 00 18",
-                    ResimUrl = "/images/meclis.png",
-                    KonumUrl = "https://maps.google.com/?q=Sakarya+Buyuksehir+Belediyesi",
-                    HaftaIciSaat = "08:00–18:00",
-                    HaftaSonuSaat = "Kapalı",
-                    Aktif = true
-                },
-                new Tesis
-                {
-                    Ad = "Büfe",
-                    Slug = "bufe",
-                    Kategori = "Hızlı Gıda & Büfe",
-                    Renk = "#059669",
-                    Harf = "B",
-                    Aciklama = "Şehrin merkezinde, Demokrasi Meydanı'nda taze tost, sandviç, çay, kahve ve meşrubat çeşitleriyle hızlı, güvenilir ve ekonomik hizmet noktası.",
-                    Adres = "Demokrasi Meydanı, Adapazarı / Sakarya",
-                    Telefon = "0264 272 00 20",
-                    ResimUrl = "/images/bufe.png",
-                    KonumUrl = "https://maps.google.com/?q=Demokrasi+Meydani+Adapazari",
-                    HaftaIciSaat = "07:30–22:00",
-                    HaftaSonuSaat = "07:30–22:00",
-                    Aktif = true
-                },
-                new Tesis
-                {
-                    Ad = "Ormanpark",
-                    Slug = "ormanpark",
-                    Kategori = "Kafeterya & Restoran",
-                    Renk = "#10B981",
-                    Harf = "O",
-                    Aciklama = "Asırlık çınar ve meşe ağaçlarının gölgesinde zengin serpme kahvaltısı, ızgara çeşitleri ve ferah bahçesiyle Sakarya'nın en sevilen simge sosyal tesisi.",
-                    Adres = "Adnan Menderes Cd., Adapazarı / Sakarya",
-                    Telefon = "0264 272 00 12",
-                    ResimUrl = "/images/ormanpark.png",
-                    KonumUrl = "https://maps.app.goo.gl/23nK4hfzZ3nYYxP68",
-                    HaftaIciSaat = "08:30–23:00",
-                    HaftaSonuSaat = "08:30–23:30",
-                    Aktif = true
-                },
-                new Tesis
-                {
-                    Ad = "Elegant Restoran",
-                    Slug = "elegant-restoran",
-                    Kategori = "Seçkin Restoran",
-                    Renk = "#047857",
-                    Harf = "E",
-                    Aciklama = "Seçkin şeflerin hazırladığı özel et menüleri, şık atmosferi, VIP toplantı odaları ve yüksek hizmet kalitesiyle prestijli lezzet durağı.",
-                    Adres = "Donatım Park İçi, Adapazarı / Sakarya",
-                    Telefon = "0264 272 00 14",
-                    ResimUrl = "/images/elegant-restoran.png",
-                    KonumUrl = "https://maps.google.com/?q=Donatim+Park+Adapazari",
-                    HaftaIciSaat = "10:00–23:00",
-                    HaftaSonuSaat = "10:00–23:00",
-                    Aktif = true
-                },
-                new Tesis
-                {
-                    Ad = "Millet Kıraathanesi",
-                    Slug = "millet-kiraathanesi",
-                    Kategori = "Kültür & Kütüphane",
-                    Renk = "#059669",
-                    Harf = "M",
-                    Aciklama = "Binlerce kitaplık zengin kütüphanesi, sessiz çalışma alanları, hızlı interneti ve ücretsiz ikramlarıyla gençlerimizin ve araştırmacılarımızın buluşma noktası.",
-                    Adres = "Millet Bahçesi İçi, Adapazarı / Sakarya",
-                    Telefon = "0264 272 00 15",
-                    ResimUrl = "/images/millet-kiraathanesi.png",
-                    KonumUrl = "https://maps.google.com/?q=Millet+Bahcesi+Adapazari",
-                    HaftaIciSaat = "08:00–24:00",
-                    HaftaSonuSaat = "08:00–24:00",
-                    Aktif = true
-                },
-                new Tesis
-                {
-                    Ad = "Acarlar Longozu",
-                    Slug = "acarlar-longozu",
-                    Kategori = "Doğa Parkı & Tesis",
-                    Renk = "#065F46",
-                    Harf = "A",
-                    Aciklama = "Türkiye'nin tek parça halindeki en büyük subasar ormanında, ahşap yürüyüş yolları, seyir terasları ve doğa kafeteryasıyla eşsiz bir tabiat deneyimi.",
-                    Adres = "Denizköy Mahallesi, Karasu / Sakarya",
-                    Telefon = "0264 272 00 19",
-                    ResimUrl = "/images/acarlar-longozu.png",
-                    KonumUrl = "https://www.google.com/maps/place/Acarlar+Longozu",
-                    HaftaIciSaat = "08:30–20:30",
-                    HaftaSonuSaat = "08:30–20:30",
-                    Aktif = true
-                },
-                new Tesis
-                {
-                    Ad = "Kocaali Sosyal Tesisleri",
-                    Slug = "kocaali-sosyal-tesisleri",
-                    Kategori = "Sosyal Tesis & Plaj",
-                    Renk = "#10B981",
-                    Harf = "K",
-                    Aciklama = "Kocaali sahilinde, kadınlar plajı, kafeteryası, restoranı ve dinlenme alanlarıyla yaz boyunca ailelere özel hijyenik ve nezih deniz keyfi sunan sosyal tesis.",
-                    Adres = "Alandere Mahallesi Sahil Cad., Kocaali / Sakarya",
-                    Telefon = "0264 272 00 21",
-                    ResimUrl = "/images/kocaali-tesisleri.png",
-                    KonumUrl = "https://maps.google.com/?q=Kocaali+Sahil+Sakarya",
-                    HaftaIciSaat = "08:00–22:00",
-                    HaftaSonuSaat = "08:00–22:00",
-                    Aktif = true
-                }
-            );
+            new Tesis { Ad = "Ormanpark", Slug = "ormanpark", Aciklama = string.Empty, Harf = "O" },
+            new Tesis { Ad = "Ormanpark - Dört Mevsim", Slug = "ormanpark-dort-mevsim", Aciklama = string.Empty, Harf = "O" },
+            new Tesis { Ad = "Ormanpark - Sade Kahve", Slug = "ormanpark-sade-kahve", Aciklama = string.Empty, Harf = "O" },
+            new Tesis { Ad = "Çark-ı Dem (Aziz Durak Parkı)", Slug = "cark-i-dem", Aciklama = string.Empty, Harf = "Ç" },
+            new Tesis { Ad = "Elegant Restoran", Slug = "elegant-restoran", Aciklama = string.Empty, Harf = "E" },
+            new Tesis { Ad = "Millet Kıraathanesi", Slug = "millet-kiraathanesi", Aciklama = string.Empty, Harf = "M" },
+            new Tesis { Ad = "Yenikentpark", Slug = "yenikentpark", Aciklama = string.Empty, Harf = "Y" },
+            new Tesis { Ad = "Karamanpark", Slug = "karamanpark", Aciklama = string.Empty, Harf = "K" },
+            new Tesis { Ad = "İl Ormanı Tabiat Parkı", Slug = "il-ormani-tabiat-parki", Aciklama = string.Empty, Harf = "İ" },
+            new Tesis { Ad = "Acarlar Longozu", Slug = "acarlar-longozu", Aciklama = string.Empty, Harf = "A" },
+            new Tesis { Ad = "Pamukova Esentepepark", Slug = "pamukova-esentepepark", Aciklama = string.Empty, Harf = "P" },
+            new Tesis { Ad = "Kocaali Sosyal Tesisleri", Slug = "kocaali-sosyal-tesisleri", Aciklama = string.Empty, Harf = "K" },
+            new Tesis { Ad = "Uçak Kıraathanesi", Slug = "ucak-kiraathanesi", Aciklama = string.Empty, Harf = "U" },
+            new Tesis { Ad = "Nehir Çikolata", Slug = "nehir-cikolata", Aciklama = string.Empty, Harf = "N" },
+            new Tesis { Ad = "Vagon Kıraathanesi", Slug = "vagon-kiraathanesi", Aciklama = string.Empty, Harf = "V" },
+            new Tesis { Ad = "Söğütlü Bahçem Kafe", Slug = "sogutlu-bahcem-kafe", Aciklama = string.Empty, Harf = "S" },
+            new Tesis { Ad = "Bahçem Market", Slug = "bahcem-market", Aciklama = string.Empty, Harf = "B" },
+            new Tesis { Ad = "Çay Dünyası (Şemsiyelipark)", Slug = "cay-dunyasi", Aciklama = string.Empty, Harf = "Ç" },
+            new Tesis { Ad = "Kampüs Mutfak", Slug = "kampus-mutfak", Aciklama = string.Empty, Harf = "K" },
+            new Tesis { Ad = "Kampüs Öğrenci Lokantası", Slug = "kampus-ogrenci-lokantasi", Aciklama = string.Empty, Harf = "K" },
+            new Tesis { Ad = "Erenler Kafe", Slug = "erenler-kafe", Aciklama = string.Empty, Harf = "E" },
+            new Tesis { Ad = "Geyve Belpaş Kafe", Slug = "geyve-belpas-kafe", Aciklama = string.Empty, Harf = "G" },
+            new Tesis { Ad = "Belpaş Akaryakıt İstasyonu", Slug = "belpas-akaryakit-istasyonu", Aciklama = string.Empty, Harf = "B" },
+            new Tesis { Ad = "Park54", Slug = "park54", Aciklama = string.Empty, Harf = "P" },
+            new Tesis { Ad = "Kart54", Slug = "kart54", Aciklama = string.Empty, Harf = "K" },
+            new Tesis { Ad = "Merkez - Katlı Otopark", Slug = "merkez-katli-otopark", Aciklama = string.Empty, Harf = "M" },
+            new Tesis { Ad = "Hastane - Katlı Otopark", Slug = "hastane-katli-otopark", Aciklama = string.Empty, Harf = "H" },
+            new Tesis { Ad = "Geyve - Safibey Pazar Alanı", Slug = "geyve-safibey-pazar-alani", Aciklama = string.Empty, Harf = "G" },
+            new Tesis { Ad = "Maden Deresi", Slug = "maden-deresi", Aciklama = string.Empty, Harf = "M" },
+            new Tesis { Ad = "Balevi - Bal54", Slug = "balevi", Aciklama = string.Empty, Harf = "B" },
+            new Tesis { Ad = "Belpaş Yöresel Ürünler", Slug = "belpas-yoresel-urunler", Aciklama = string.Empty, Harf = "B" },
+            new Tesis { Ad = "Ormanpark Yöresel Ürünler", Slug = "ormanpark-yoresel-urunler", Aciklama = string.Empty, Harf = "O" },
+            new Tesis { Ad = "Hafriyat Sahaları", Slug = "hafriyat-sahalari", Aciklama = string.Empty, Harf = "H" },
+            new Tesis { Ad = "SGM Büfe", Slug = "sgm-bufe", Aciklama = string.Empty, Harf = "S" },
+            new Tesis { Ad = "Millet Bahçesi Büfe", Slug = "millet-bahcesi-bufe", Aciklama = string.Empty, Harf = "M" },
+            new Tesis { Ad = "Yenikent Sosyal Tesisleri", Slug = "yenikent-sosyal-tesisleri", Aciklama = string.Empty, Harf = "Y" },
+            new Tesis { Ad = "Asfalt Şantiyesi", Slug = "asfalt-santiyesi", Aciklama = string.Empty, Harf = "A" }
+        );
 
             context.SaveChanges();
 
