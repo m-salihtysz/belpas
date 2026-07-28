@@ -218,3 +218,42 @@
     }
   }
 }
+
+/* FİLTRE ALANI (Etkinlikler ile aynı stil) */
+.filtre-alan {
+  padding: 0 0 24px 0;
+  border-bottom: 1px solid #f0fdf4;
+  margin-bottom: 32px;
+}
+
+.tesisler-filtre-btn {
+  padding: 0.6rem 1.4rem !important;
+  border-radius: 9999px !important;
+  font-size: 0.875rem !important;
+  font-weight: 700 !important;
+  border: 1px solid #e5e7eb !important;
+  cursor: pointer !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  background-color: #f3f4f6 !important;
+  color: #374151 !important;
+  white-space: nowrap !important;
+
+  &:hover {
+    transform: translateY(-2px);
+    background-color: #ecfdf5 !important;
+    color: #047857 !important;
+    border-color: #a7f3d0 !important;
+  }
+
+  &.aktif-filtre {
+    background-color: #059669 !important;
+    color: #ffffff !important;
+    border-color: #059669 !important;
+    box-shadow: 0 4px 14px rgba(5, 150, 105, 0.35) !important;
+
+    &:hover {
+      background-color: #047857 !important;
+      color: #ffffff !important;
+    }
+  }
+}
