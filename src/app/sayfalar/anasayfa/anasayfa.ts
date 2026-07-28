@@ -27,6 +27,7 @@ interface Tesis {
   kategori: string;
   renk: string;
   harf: string;
+  resimUrl?: string;
 }
 
 interface Haber {
@@ -197,7 +198,8 @@ export class Anasayfa implements OnInit, OnDestroy {
           ad: t.ad,
           kategori: t.kategori,
           renk: t.renk || '#10B981',
-          harf: t.harf || t.ad.charAt(0)
+          harf: t.harf || t.ad.charAt(0),
+          resimUrl: t.resimUrl
         }));
       },
       error: (err: any) => console.error('Anasayfa Tesisler yüklenirken hata oluştu:', err)

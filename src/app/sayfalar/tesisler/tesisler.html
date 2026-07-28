@@ -50,7 +50,13 @@
     @for (tesis of tesisler(); track tesis.id) {
       <a [routerLink]="['/tesisler', tesis.slug || tesis.id]" class="tesis-kart tesis-kart-link">
         <div class="logo-kutu">
-          <img [src]="tesis.resimUrl" [alt]="tesis.ad">
+          @if (tesis.resimUrl) {
+            <img [src]="tesis.resimUrl" [alt]="tesis.ad" (error)="tesis.resimUrl = ''">
+          } @else {
+            <div class="tesis-bas-harf" [style.background]="tesis.renk || '#10B981'">
+              {{ (tesis.harf || tesis.ad?.charAt(0) || 'T').toUpperCase() }}
+            </div>
+          }
         </div>
         <h3 class="tesis-isim">{{ tesis.ad }}</h3>
         <div class="ikonlar">
