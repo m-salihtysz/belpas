@@ -45,9 +45,34 @@
   }
 
 
+  <!-- Kategori Filtreleme ve Arama Çubuğu -->
+  <div class="kategori-filtre-bar mb-4 flex flex-column xl:flex-row align-items-start xl:align-items-center justify-content-between gap-3">
+    <div class="flex flex-wrap gap-2">
+      @for (kategori of kategoriler; track kategori) {
+        <button type="button" 
+          class="border-round-3xl py-2 px-4 font-bold text-sm cursor-pointer transition-colors transition-duration-200"
+          [class.bg-emerald-600]="seciliKategori() === kategori"
+          [class.text-white]="seciliKategori() === kategori"
+          [class.bg-gray-100]="seciliKategori() !== kategori"
+          [class.text-gray-700]="seciliKategori() !== kategori"
+          [class.border-none]="true"
+          (click)="seciliKategori.set(kategori)">
+          {{ kategori }}
+        </button>
+      }
+    </div>
+    <div class="p-input-icon-left w-full xl:w-20rem border-round-3xl overflow-hidden shadow-1 flex-shrink-0" style="background: white; border: 1px solid #e2e8f0;">
+      <i class="pi pi-search ml-3 text-gray-500" style="margin-top: -0.5rem;"></i>
+      <input type="text" 
+             placeholder="Birim veya konum ara..." 
+             class="w-full border-none py-3 pl-6 pr-3 text-sm text-gray-700 outline-none"
+             (input)="aramaMetni.set($any($event.target).value)">
+    </div>
+  </div>
+
   <!-- Tesisler Kart Izgarası -->
   <div class="tesisler-grid">
-    @for (tesis of tesisler(); track tesis.id) {
+    @for (tesis of filtreliTesisler(); track tesis.id) {
       <a [routerLink]="['/tesisler', tesis.slug || tesis.id]" class="tesis-kart tesis-kart-link">
         <div class="logo-kutu">
           @if (tesis.resimUrl) {

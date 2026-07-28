@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { Component, OnInit, inject, signal, computed } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FacilityService, Tesis } from '../../services/facility.service';
 import { SeoService } from '../../services/seo.service';
@@ -13,6 +13,35 @@ export class Tesisler implements OnInit {
   private tesisService = inject(FacilityService);
   private seoService = inject(SeoService);
   tesisler = signal<Tesis[]>([]);
+
+  kategoriler = [
+    'Tüm Birimler',
+    'Restoran, Kafe ve Sosyal Tesisler',
+    'Satış Noktaları ve Yöresel Ürünler',
+    'Ulaşım, Otopark ve Altyapı/Hizmet Birimleri'
+  ];
+
+  seciliKategori = signal<string>('Tüm Birimler');
+  aramaMetni = signal<string>('');
+
+  filtreliTesisler = computed(() => {
+    let sonuc = this.tesisler();
+    const secili = this.seciliKategori();
+    
+    if (secili !== 'Tüm Birimler') {
+      sonuc = sonuc.filter(t => t.kategori === secili);
+    }
+    
+    const arama = this.aramaMetni().toLowerCase().trim();
+    if (arama) {
+      sonuc = sonuc.filter(t => 
+        t.ad.toLowerCase().includes(arama) || 
+        (t.aciklama && t.aciklama.toLowerCase().includes(arama))
+      );
+    }
+    
+    return sonuc;
+  });
 
   // GPS En Yakın Tesis State
   enYakinTesis: any = null;
