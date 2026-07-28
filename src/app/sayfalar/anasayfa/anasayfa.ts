@@ -195,7 +195,6 @@ export class Anasayfa implements OnInit, OnDestroy {
         this.tesisler = data.map((t: any) => ({
           id: t.id,
           ad: t.ad,
-          slug: t.slug,
           kategori: t.kategori,
           renk: t.renk || '#10B981',
           harf: t.harf || t.ad.charAt(0)
@@ -208,12 +207,11 @@ export class Anasayfa implements OnInit, OnDestroy {
       next: (data: any[]) => {
         this.haberler = data.map((h: any) => ({
           id: h.id,
-          slug: h.slug,
           kategori: h.kategori,
           baslik: h.baslik,
           aciklama: h.ozet,
           tarih: new Date(h.olusturmaTarihi).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' }),
-          link: ['/haberler', h.slug || h.id],
+          link: '/haberler/' + (h.slug || h.id),
           resimUrl: h.resimUrl
         })).slice(0, 3);
       },
