@@ -15,20 +15,20 @@ export class Tesisler implements OnInit {
   tesisler = signal<Tesis[]>([]);
 
   kategoriler = [
-    'Tüm Birimler',
-    'Restoran, Kafe ve Sosyal Tesisler',
-    'Satış Noktaları ve Yöresel Ürünler',
-    'Ulaşım, Otopark ve Altyapı/Hizmet Birimleri'
+    'Tüm Birimlerimiz',
+    'Restoran & Kafe',
+    'Yöresel Ürünler',
+    'Ulaşım & Otopark'
   ];
 
-  seciliKategori = signal<string>('Tüm Birimler');
+  seciliKategori = signal<string>('Tüm Birimlerimiz');
   aramaMetni = signal<string>('');
 
   filtreliTesisler = computed(() => {
     let sonuc = this.tesisler();
     const secili = this.seciliKategori();
     
-    if (secili !== 'Tüm Birimler') {
+    if (secili !== 'Tüm Birimlerimiz') {
       sonuc = sonuc.filter(t => t.kategori === secili);
     }
     
