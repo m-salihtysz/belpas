@@ -21,15 +21,15 @@ export class HaberDetayComponent implements OnInit {
   hata = signal(false);
 
   ngOnInit() {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
+    const param = this.route.snapshot.paramMap.get('slug') || this.route.snapshot.paramMap.get('id');
 
-    if (!id) {
+    if (!param) {
       this.hata.set(true);
       this.yukleniyor.set(false);
       return;
     }
     
-    this.haberService.getHaber(id).subscribe({
+    this.haberService.getHaber(param).subscribe({
       next: (data) => {
         this.haber.set(data);
         this.yukleniyor.set(false);
@@ -39,7 +39,7 @@ export class HaberDetayComponent implements OnInit {
           title: data.baslik,
           description: data.ozet,
           image: data.resimUrl,
-          url: `https://belpas.sakarya.bel.tr/haberler/${data.id}`,
+          url: `https://belpas.sakarya.bel.tr/haberler/${data.slug || data.id}`,
           type: 'article'
         });
 

@@ -21,6 +21,7 @@ export interface MenuKategori {
 export interface Tesis {
   id: number;
   ad: string;
+  slug?: string;
   kategori: string;
   renk: string;
   harf: string;
@@ -48,8 +49,8 @@ export class FacilityService {
     return this.http.get<Tesis[]>(this.apiUrl);
   }
 
-  getTesis(id: number): Observable<Tesis> {
-    return this.http.get<Tesis>(`${this.apiUrl}/${id}`);
+  getTesis(idOrSlug: string | number): Observable<Tesis> {
+    return this.http.get<Tesis>(`${this.apiUrl}/${idOrSlug}`);
   }
 
   // Digital Menu Mock Generator for Facilities (Resmi Sakarya Büyükşehir Belediyesi Tesis Menüsü)

@@ -48,7 +48,7 @@
   <!-- Tesisler Kart Izgarası -->
   <div class="tesisler-grid">
     @for (tesis of tesisler(); track tesis.id) {
-      <a [routerLink]="['/tesisler', tesis.id]" class="tesis-kart tesis-kart-link">
+      <a [routerLink]="['/tesisler', tesis.slug || tesis.id]" class="tesis-kart tesis-kart-link">
         <div class="logo-kutu">
           <img [src]="tesis.resimUrl" [alt]="tesis.ad">
         </div>

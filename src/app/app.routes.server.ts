@@ -2,11 +2,11 @@ import { RenderMode, ServerRoute } from '@angular/ssr';
 
 export const serverRoutes: ServerRoute[] = [
   {
-    path: 'tesisler/:id',
+    path: 'tesisler/:slug',
     renderMode: RenderMode.Server,
   },
   {
-    path: 'haberler/:id',
+    path: 'haberler/:slug',
     renderMode: RenderMode.Server,
   },
   {

@@ -10,73 +10,83 @@ public static class DbSeeder
         context.Database.Migrate();
 
         // 1. Haberler Seeding
-        if (!context.Haberler.Any())
+        if (context.Haberler.Any())
         {
-            context.Haberler.AddRange(
-                new Haber
-                {
-                    Baslik = "Nehir Çikolata'da Dubai Lezzeti Kampanyası Başladı",
-                    Kategori = "Duyuru",
-                    Ozet = "Orijinal Dubai çikolatası ile hazırlanan özel seri, Ofis Sanat Merkezi kafeteryamızda sizleri bekliyor.",
-                    Icerik = "Orijinal Dubai çikolatası ile hazırlanan özel seri, Ofis Sanat Merkezi kafeteryamızda sizleri bekliyor.",
-                    ResimUrl = "/images/çikolata.jpeg",
-                    OlusturmaTarihi = DateTime.UtcNow.AddDays(-1),
-                    Aktif = true
-                },
-                new Haber
-                {
-                    Baslik = "Sakarya Büyükşehir Kent Rehberi Güncellendi",
-                    Kategori = "Haber",
-                    Ozet = "Şehrimizin sosyal ve kültürel etkinliklerini kapsayan yeni kent rehberimiz yayınlandı.",
-                    Icerik = "Şehrimizin sosyal ve kültürel etkinliklerini kapsayan yeni kent rehberimiz yayınlandı.",
-                    ResimUrl = "/images/kent_rehberi.png",
-                    OlusturmaTarihi = DateTime.UtcNow.AddDays(-2),
-                    Aktif = true
-                },
-                new Haber
-                {
-                    Baslik = "Yentkent Pazar'ında Yaz Festivali",
-                    Kategori = "Etkinlik",
-                    Ozet = "Her hafta sonu düzenlenen yaz festivali etkinliklerimize katılın, yerel üreticilerle tanışın.",
-                    Icerik = "Her hafta sonu düzenlenen yaz festivali etkinliklerimize katılın, yerel üreticilerle tanışın.",
-                    ResimUrl = "/images/screen3.png",
-                    OlusturmaTarihi = DateTime.UtcNow.AddDays(-3),
-                    Aktif = true
-                },
-                new Haber
-                {
-                    Baslik = "BELPAŞ'ta Kartlı Ödeme Dönemi 1 Temmuz'da Başlıyor",
-                    Kategori = "Haber",
-                    Ozet = "BELPAŞ, 1 Temmuz itibarıyla tüm sosyal tesisleri ve hizmet noktalarında kartlı ödeme sistemine geçiyor. Yeni uygulamayla birlikte nakit ödeme kabul edilmeyecek.",
-                    Icerik = "Detaylı açıklama: Sakarya Büyükşehir Belediyesi iştiraki BELPAŞ bünyesindeki tüm kafe, restoran ve sosyal tesislerde nakit kullanımı sonlandırılarak tamamen temassız ve kredi/banka kartlı ödemeye geçiş yapılacaktır.",
-                    ResimUrl = "/images/ihale_1.jpg",
-                    OlusturmaTarihi = DateTime.UtcNow.AddDays(-5),
-                    Aktif = true
-                },
-                new Haber
-                {
-                    Baslik = "Kocaali Sosyal Tesislerimiz Yeni Sezonda Misafirlerini Ağırlamaya Başladı",
-                    Kategori = "Duyuru",
-                    Ozet = "Sakarya Büyükşehir Belediyesi'nin kadınlara özel hizmet veren Kocaali Sosyal Tesislerimiz, yeni sezonda misafirlerini ağırlamaya başladı.",
-                    Icerik = "Sakarya Büyükşehir Belediyesi'nin kadınlara özel hizmet veren Kocaali Sosyal Tesisleri, yeni sezonda da kapılarını açarak misafirlerine konforlu ve huzurlu bir ortam sunmaya devam ediyor.",
-                    ResimUrl = "/images/sbb_mekan.jpg",
-                    OlusturmaTarihi = DateTime.UtcNow.AddDays(-10),
-                    Aktif = true
-                },
-                new Haber
-                {
-                    Baslik = "Acarlar Longozu Baharda da Doğaseverlerin Gözdesi Olmaya Devam Ediyor",
-                    Kategori = "Haber",
-                    Ozet = "Sakarya Büyükşehir Belediyesi işletmesindeki Acarlar Longozu, baharla birlikte canlanan doğası ve eşsiz manzarasıyla ziyaretçilerini ağırlamaya devam ediyor.",
-                    Icerik = "Dünyanın tek parça en büyük subasar ormanlarından biri olan Acarlar Longozu, yeni sezonda da doğa ile baş başa kalmak isteyenlerin ilk tercihi oluyor.",
-                    ResimUrl = "/images/ihale2.jpg",
-                    OlusturmaTarihi = DateTime.UtcNow.AddDays(-15),
-                    Aktif = true
-                }
-            );
+            context.Haberler.RemoveRange(context.Haberler);
+            context.SaveChanges();
         }
 
-        // 2. Tesisler Seeding (Remove old records to force refresh rich data and green colors)
+        context.Haberler.AddRange(
+            new Haber
+            {
+                Baslik = "Nehir Çikolata'da Dubai Lezzeti Kampanyası Başladı",
+                Slug = "nehir-cikolatada-dubai-lezzeti-kampanyasi-basladi",
+                Kategori = "Duyuru",
+                Ozet = "Orijinal Dubai çikolatası ile hazırlanan özel seri, Ofis Sanat Merkezi kafeteryamızda sizleri bekliyor.",
+                Icerik = "Orijinal Dubai çikolatası ile hazırlanan özel seri, Ofis Sanat Merkezi kafeteryamızda sizleri bekliyor.",
+                ResimUrl = "/images/çikolata.jpeg",
+                OlusturmaTarihi = DateTime.UtcNow.AddDays(-1),
+                Aktif = true
+            },
+            new Haber
+            {
+                Baslik = "Sakarya Büyükşehir Kent Rehberi Güncellendi",
+                Slug = "sakarya-buyuksehir-kent-rehberi-guncellendi",
+                Kategori = "Haber",
+                Ozet = "Şehrimizin sosyal ve kültürel etkinliklerini kapsayan yeni kent rehberimiz yayınlandı.",
+                Icerik = "Şehrimizin sosyal ve kültürel etkinliklerini kapsayan yeni kent rehberimiz yayınlandı.",
+                ResimUrl = "/images/kent_rehberi.png",
+                OlusturmaTarihi = DateTime.UtcNow.AddDays(-2),
+                Aktif = true
+            },
+            new Haber
+            {
+                Baslik = "Yentkent Pazar'ında Yaz Festivali",
+                Slug = "yentkent-pazarinda-yaz-festivali",
+                Kategori = "Etkinlik",
+                Ozet = "Her hafta sonu düzenlenen yaz festivali etkinliklerimize katılın, yerel üreticilerle tanışın.",
+                Icerik = "Her hafta sonu düzenlenen yaz festivali etkinliklerimize katılın, yerel üreticilerle tanışın.",
+                ResimUrl = "/images/screen3.png",
+                OlusturmaTarihi = DateTime.UtcNow.AddDays(-3),
+                Aktif = true
+            },
+            new Haber
+            {
+                Baslik = "BELPAŞ'ta Kartlı Ödeme Dönemi 1 Temmuz'da Başlıyor",
+                Slug = "belpasta-kartli-odeme-donemi-1-temmuzda-basliyor",
+                Kategori = "Haber",
+                Ozet = "BELPAŞ, 1 Temmuz itibarıyla tüm sosyal tesisleri ve hizmet noktalarında kartlı ödeme sistemine geçiyor. Yeni uygulamayla birlikte nakit ödeme kabul edilmeyecek.",
+                Icerik = "Detaylı açıklama: Sakarya Büyükşehir Belediyesi iştiraki BELPAŞ bünyesindeki tüm kafe, restoran ve sosyal tesislerde nakit kullanımı sonlandırılarak tamamen temassız ve kredi/banka kartlı ödemeye geçiş yapılacaktır.",
+                ResimUrl = "/images/ihale_1.jpg",
+                OlusturmaTarihi = DateTime.UtcNow.AddDays(-5),
+                Aktif = true
+            },
+            new Haber
+            {
+                Baslik = "Kocaali Sosyal Tesislerimiz Yeni Sezonda Misafirlerini Ağırlamaya Başladı",
+                Slug = "kocaali-sosyal-tesislerimiz-yeni-sezonda-misafirlerini-agirlamaya-basladi",
+                Kategori = "Duyuru",
+                Ozet = "Sakarya Büyükşehir Belediyesi'nin kadınlara özel hizmet veren Kocaali Sosyal Tesislerimiz, yeni sezonda misafirlerini ağırlamaya başladı.",
+                Icerik = "Sakarya Büyükşehir Belediyesi'nin kadınlara özel hizmet veren Kocaali Sosyal Tesisleri, yeni sezonda da kapılarını açarak misafirlerine konforlu ve huzurlu bir ortam sunmaya devam ediyor.",
+                ResimUrl = "/images/sbb_mekan.jpg",
+                OlusturmaTarihi = DateTime.UtcNow.AddDays(-10),
+                Aktif = true
+            },
+            new Haber
+            {
+                Baslik = "Acarlar Longozu Baharda da Doğaseverlerin Gözdesi Olmaya Devam Ediyor",
+                Slug = "acarlar-longozu-baharda-da-dogaseverlerin-gozdesi-olmaya-devam-ediyor",
+                Kategori = "Haber",
+                Ozet = "Sakarya Büyükşehir Belediyesi işletmesindeki Acarlar Longozu, baharla birlikte canlanan doğası ve eşsiz manzarasıyla ziyaretçilerini ağırlamaya devam ediyor.",
+                Icerik = "Dünyanın tek parça en büyük subasar ormanlarından biri olan Acarlar Longozu, yeni sezonda da doğa ile baş başa kalmak isteyenlerin ilk tercihi oluyor.",
+                ResimUrl = "/images/ihale2.jpg",
+                OlusturmaTarihi = DateTime.UtcNow.AddDays(-15),
+                Aktif = true
+            }
+        );
+        context.SaveChanges();
+
+        // 2. Tesisler Seeding
         if (context.Tesisler.Any())
         {
             context.Tesisler.RemoveRange(context.Tesisler);
@@ -87,6 +97,7 @@ public static class DbSeeder
                 new Tesis
                 {
                     Ad = "Çay Dünyası",
+                    Slug = "cay-dunyasi",
                     Kategori = "Kafeterya",
                     Renk = "#10B981",
                     Harf = "Ç",
@@ -102,6 +113,7 @@ public static class DbSeeder
                 new Tesis
                 {
                     Ad = "Yentkent",
+                    Slug = "yentkent",
                     Kategori = "Pazar & Sosyal Alan",
                     Renk = "#059669",
                     Harf = "Y",
@@ -117,6 +129,7 @@ public static class DbSeeder
                 new Tesis
                 {
                     Ad = "P Market",
+                    Slug = "p-market",
                     Kategori = "Tanzim Satış & Market",
                     Renk = "#047857",
                     Harf = "P",
@@ -132,6 +145,7 @@ public static class DbSeeder
                 new Tesis
                 {
                     Ad = "Nehir Kafeterya",
+                    Slug = "nehir-kafeterya",
                     Kategori = "Kafeterya & Restoran",
                     Renk = "#065F46",
                     Harf = "N",
@@ -147,6 +161,7 @@ public static class DbSeeder
                 new Tesis
                 {
                     Ad = "İznik Kiralama",
+                    Slug = "iznik-kiralama",
                     Kategori = "Rekreasyon & Kiralama",
                     Renk = "#10B981",
                     Harf = "İ",
@@ -162,6 +177,7 @@ public static class DbSeeder
                 new Tesis
                 {
                     Ad = "Meclis Kafeteryası",
+                    Slug = "meclis-kafeteryasi",
                     Kategori = "Kafeterya",
                     Renk = "#047857",
                     Harf = "M",
@@ -177,6 +193,7 @@ public static class DbSeeder
                 new Tesis
                 {
                     Ad = "Büfe",
+                    Slug = "bufe",
                     Kategori = "Hızlı Gıda & Büfe",
                     Renk = "#059669",
                     Harf = "B",
@@ -192,6 +209,7 @@ public static class DbSeeder
                 new Tesis
                 {
                     Ad = "Ormanpark",
+                    Slug = "ormanpark",
                     Kategori = "Kafeterya & Restoran",
                     Renk = "#10B981",
                     Harf = "O",
@@ -207,6 +225,7 @@ public static class DbSeeder
                 new Tesis
                 {
                     Ad = "Elegant Restoran",
+                    Slug = "elegant-restoran",
                     Kategori = "Seçkin Restoran",
                     Renk = "#047857",
                     Harf = "E",
@@ -222,6 +241,7 @@ public static class DbSeeder
                 new Tesis
                 {
                     Ad = "Millet Kıraathanesi",
+                    Slug = "millet-kiraathanesi",
                     Kategori = "Kültür & Kütüphane",
                     Renk = "#059669",
                     Harf = "M",
@@ -237,6 +257,7 @@ public static class DbSeeder
                 new Tesis
                 {
                     Ad = "Acarlar Longozu",
+                    Slug = "acarlar-longozu",
                     Kategori = "Doğa Parkı & Tesis",
                     Renk = "#065F46",
                     Harf = "A",
@@ -252,16 +273,17 @@ public static class DbSeeder
                 new Tesis
                 {
                     Ad = "Kocaali Sosyal Tesisleri",
-                    Kategori = "Plaj & Sosyal Tesis",
+                    Slug = "kocaali-sosyal-tesisleri",
+                    Kategori = "Sosyal Tesis & Plaj",
                     Renk = "#10B981",
                     Harf = "K",
-                    Aciklama = "Mavi bayraklı Kocaali sahilinde kadınlarımıza ve çocuklarına özel plaj, şezlonglar, giyinme kabinleri, kafeterya ve restoran hizmeti sunan tatil tesisi.",
-                    Adres = "Alandere Mahallesi Sahil Cd., Kocaali / Sakarya",
+                    Aciklama = "Kocaali sahilinde, kadınlar plajı, kafeteryası, restoranı ve dinlenme alanlarıyla yaz boyunca ailelere özel hijyenik ve nezih deniz keyfi sunan sosyal tesis.",
+                    Adres = "Alandere Mahallesi Sahil Cad., Kocaali / Sakarya",
                     Telefon = "0264 272 00 21",
-                    ResimUrl = "/images/kocaali-sosyal-tesisleri.png",
-                    KonumUrl = "https://www.google.com/maps/place/Kocaali+Kad%C4%B1nlar+Plaj%C4%B1",
-                    HaftaIciSaat = "08:30–19:30",
-                    HaftaSonuSaat = "08:30–19:30",
+                    ResimUrl = "/images/kocaali-tesisleri.png",
+                    KonumUrl = "https://maps.google.com/?q=Kocaali+Sahil+Sakarya",
+                    HaftaIciSaat = "08:00–22:00",
+                    HaftaSonuSaat = "08:00–22:00",
                     Aktif = true
                 }
             );
