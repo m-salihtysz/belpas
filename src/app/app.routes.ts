@@ -47,7 +47,7 @@ export const routes: Routes = [
     path: 'tesisler',
     loadComponent: () =>
       import('./sayfalar/tesisler/tesisler').then(m => m.Tesisler),
-    title: 'Tesislerimiz & Sosyal Alanlar | BELPAŞ'
+    title: 'Birimlerimiz & Sosyal Alanlar | BELPAŞ'
   },
   {
     path: 'tesisler/:slug',

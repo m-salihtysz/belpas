@@ -21,7 +21,7 @@ export class Tesisler implements OnInit {
 
   ngOnInit(): void {
     this.seoService.generateTags({
-      title: 'Tesislerimiz | BELPAŞ',
+      title: 'Birimlerimiz | BELPAŞ',
       description: 'BELPAŞ bünyesindeki sosyal tesisler, kafeteryalar ve hizmet noktalarını keşfedin.',
       url: 'https://belpas.sakarya.bel.tr/tesisler',
       keywords: 'BELPAŞ tesisleri, Sakarya sosyal tesisler, kafeterya, aile facilityi',
