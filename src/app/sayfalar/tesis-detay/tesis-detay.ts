@@ -62,7 +62,7 @@ export class TesisDetay implements OnInit {
 
         if (data) {
           this.seoService.generateTags({
-            title: data.ad,
+            title: `${data.ad} - Menü ve İletişim | Sakarya BELPAŞ`,
             description: data.aciklama,
             image: data.resimUrl,
             url: `https://belpas.sakarya.bel.tr/tesisler/${data.slug || data.id}`,

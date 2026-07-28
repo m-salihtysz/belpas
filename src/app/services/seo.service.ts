@@ -33,41 +33,35 @@ export class SeoService {
       return clean;
     }
 
-    // 2. Marka eklenmeden önceki hali aşırı uzunsa (60 karakterden fazlaysa) kırp
-    if (clean.length > 55) {
-      let trimmed = clean.substring(0, 46).trim();
-      const lastSpace = trimmed.lastIndexOf(' ');
-      if (lastSpace > 32) {
-        trimmed = trimmed.substring(0, lastSpace);
-      }
-      return `${trimmed}... | Sakarya BELPAŞ`.substring(0, 60);
-    }
-
-    // 3. Markasız başlığa "| Sakarya BELPAŞ" ekle
+    // 2. Markasız halı 40-60 arasına giriyorsa "| Sakarya BELPAŞ" ekle
     const withFullBrand = clean.includes('BELPAŞ') ? clean : `${clean} | Sakarya BELPAŞ`;
     if (withFullBrand.length >= 40 && withFullBrand.length <= 60) {
       return withFullBrand;
     }
 
-    // 4. Eklendiğinde 60'ı geçiyorsa "| BELPAŞ" dene
+    // 3. Eklendiğinde 60'ı geçiyorsa "| BELPAŞ" dene
     const withShortBrand = clean.includes('BELPAŞ') ? clean : `${clean} | BELPAŞ`;
     if (withShortBrand.length >= 40 && withShortBrand.length <= 60) {
       return withShortBrand;
     }
 
-    // 5. Halen 60'ı geçiyorsa başlığı akıllıca kırpıp "| BELPAŞ" ekle (hedef 40-60 karakter)
-    if (withShortBrand.length > 60) {
-      let trimmed = clean.substring(0, 44).trim();
+    // 4. Aşırı uzun başlıklarda (60 karakterden fazla) kelime sınırından temizce kes, üç nokta koymadan marka ekle
+    if (clean.length > 35) {
+      let trimmed = clean.substring(0, 40).trim();
       const lastSpace = trimmed.lastIndexOf(' ');
-      if (lastSpace > 30) {
+      if (lastSpace > 22) {
         trimmed = trimmed.substring(0, lastSpace);
       }
-      return `${trimmed}... | BELPAŞ`;
+      const cleanTitleWithBrand = `${trimmed} | Sakarya BELPAŞ`;
+      if (cleanTitleWithBrand.length >= 40 && cleanTitleWithBrand.length <= 60) {
+        return cleanTitleWithBrand;
+      }
+      return `${trimmed} | BELPAŞ`.substring(0, 60);
     }
 
-    // 6. Halen 40 karakterden kısaysa SEO tamamlayıcı ekle
+    // 5. Halen 40'tan kısa ise tamamlayıcı ekle (üç nokta koymadan)
     if (withFullBrand.length < 40) {
-      const padded = `${clean} Tesisleri | Sakarya BELPAŞ`;
+      const padded = `${clean} - Menü ve İletişim | Sakarya BELPAŞ`;
       return padded.length <= 60 ? padded : padded.substring(0, 60);
     }
 
