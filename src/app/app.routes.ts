@@ -50,7 +50,7 @@ export const routes: Routes = [
     title: 'Tesislerimiz | BELPAŞ'
   },
   {
-    path: 'tesisler/:id',
+    path: 'tesisler/:slug',
     loadComponent: () =>
       import('./sayfalar/tesis-detay/tesis-detay').then(m => m.TesisDetay),
     title: 'Tesis Detayı | BELPAŞ'
@@ -97,7 +97,7 @@ export const routes: Routes = [
     title: 'Haberler | BELPAŞ'
   },
   {
-    path: 'haberler/:id',
+    path: 'haberler/:slug',
     loadComponent: () =>
       import('./sayfalar/haberler/haber-detay.component').then(m => m.HaberDetayComponent),
     title: 'Haber Detayı | BELPAŞ'

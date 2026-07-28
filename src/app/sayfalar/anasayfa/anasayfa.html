@@ -92,7 +92,7 @@
                             <h5 class="text-base font-bold text-emerald-950 m-0 mt-1">{{ enYakinTesis.ad }} ({{ enYakinTesis.kategori }})</h5>
                         </div>
                     </div>
-                    <a [routerLink]="['/tesisler', enYakinTesis.id]" class="py-2 px-3 border-round-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold no-underline flex align-items-center gap-1 transition-colors">
+                    <a [routerLink]="['/tesisler', enYakinTesis.slug || enYakinTesis.id]" class="py-2 px-3 border-round-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold no-underline flex align-items-center gap-1 transition-colors">
                         Tesis Detayı <i class="pi pi-arrow-right text-xs"></i>
                     </a>
                 </div>
@@ -102,7 +102,7 @@
         <div class="grid justify-content-center">
             @for (tesis of tesisler; track tesis.id) {
                 <div class="col-6 md:col-4 lg:col-3 xl:col-2 p-2 md:p-3">
-                    <a [routerLink]="['/tesisler', tesis.id]" class="modern-tesis-kart block relative p-3 md:p-4 border-round-3xl no-underline transition-all transition-duration-400 overflow-hidden bg-white">
+                    <a [routerLink]="['/tesisler', tesis.slug || tesis.id]" class="modern-tesis-kart block relative p-3 md:p-4 border-round-3xl no-underline transition-all transition-duration-400 overflow-hidden bg-white">
                         <!-- Decorative subtle background glow -->
                         <div class="kart-glow absolute top-0 left-0 w-full h-full opacity-0 transition-opacity transition-duration-400 pointer-events-none" [style.background]="'radial-gradient(circle at top right, color-mix(in srgb, ' + tesis.renk + ' 15%, transparent), transparent 70%)'"></div>
                         

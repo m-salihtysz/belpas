@@ -4,6 +4,7 @@ public class Tesis
 {
     public int Id { get; set; }
     public required string Ad { get; set; }
+    public string Slug { get; set; } = string.Empty;
     public string Kategori { get; set; } = "Tesis";
     public string Renk { get; set; } = "#8B4513";
     public string Harf { get; set; } = "T";

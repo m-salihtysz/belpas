@@ -18,7 +18,7 @@
           <div class="haberler-icerik">
             <h2>{{ haber.baslik }}</h2>
             <p>{{ haber.ozet }}</p>
-            <a [routerLink]="['/haberler', haber.id]" class="devamini-oku">Devamını Oku <span>&rarr;</span></a>
+            <a [routerLink]="['/haberler', haber.slug || haber.id]" class="devamini-oku">Devamını Oku <span>&rarr;</span></a>
           </div>
         </article>
       } @empty {

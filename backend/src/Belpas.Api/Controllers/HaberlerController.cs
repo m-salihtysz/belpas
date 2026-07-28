@@ -22,10 +22,21 @@ public class HaberlerController : ControllerBase
         return await _context.Haberler.Where(h => h.Aktif).OrderByDescending(h => h.OlusturmaTarihi).ToListAsync();
     }
 
-    [HttpGet("{id}")]
-    public async Task<ActionResult<Haber>> GetHaber(int id)
+    [HttpGet("{idOrSlug}")]
+    public async Task<ActionResult<Haber>> GetHaber(string idOrSlug)
     {
-        var haber = await _context.Haberler.FindAsync(id);
+        Haber? haber = null;
+        if (int.TryParse(idOrSlug, out int id))
+        {
+            haber = await _context.Haberler.FirstOrDefaultAsync(h => h.Id == id);
+        }
+
+        if (haber == null)
+        {
+            string slug = idOrSlug.ToLowerInvariant();
+            haber = await _context.Haberler.FirstOrDefaultAsync(h => h.Slug == slug);
+        }
+
         if (haber == null) return NotFound();
         return haber;
     }

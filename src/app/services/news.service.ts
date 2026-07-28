@@ -5,12 +5,14 @@ import { Observable } from 'rxjs';
 export interface Haber {
   id: number;
   baslik: string;
+  slug?: string;
   kategori: string;
   ozet: string;
   icerik: string;
   resimUrl: string;
   olusturmaTarihi: string;
   aktif: boolean;
+  link?: string | any[];
 }
 
 @Injectable({
@@ -24,7 +26,7 @@ export class NewsService {
     return this.http.get<Haber[]>(this.apiUrl);
   }
 
-  getHaber(id: number): Observable<Haber> {
-    return this.http.get<Haber>(`${this.apiUrl}/${id}`);
+  getHaber(idOrSlug: string | number): Observable<Haber> {
+    return this.http.get<Haber>(`${this.apiUrl}/${idOrSlug}`);
   }
 }

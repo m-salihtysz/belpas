@@ -22,10 +22,21 @@ public class TesislerController : ControllerBase
         return await _context.Tesisler.Where(t => t.Aktif).ToListAsync();
     }
 
-    [HttpGet("{id}")]
-    public async Task<ActionResult<Tesis>> GetTesis(int id)
+    [HttpGet("{idOrSlug}")]
+    public async Task<ActionResult<Tesis>> GetTesis(string idOrSlug)
     {
-        var tesis = await _context.Tesisler.FindAsync(id);
+        Tesis? tesis = null;
+        if (int.TryParse(idOrSlug, out int id))
+        {
+            tesis = await _context.Tesisler.FirstOrDefaultAsync(t => t.Id == id);
+        }
+
+        if (tesis == null)
+        {
+            string slug = idOrSlug.ToLowerInvariant();
+            tesis = await _context.Tesisler.FirstOrDefaultAsync(t => t.Slug == slug);
+        }
+
         if (tesis == null) return NotFound();
         return tesis;
     }

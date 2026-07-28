@@ -47,17 +47,17 @@ export class TesisDetay implements OnInit {
   }
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    if (!id) {
+    const param = this.route.snapshot.paramMap.get('slug') || this.route.snapshot.paramMap.get('id');
+    if (!param) {
       this.hata.set(true);
       this.yukleniyor.set(false);
       return;
     }
 
-    this.tesisService.getTesis(id).subscribe({
+    this.tesisService.getTesis(param).subscribe({
       next: (data) => {
         this.tesis.set(data);
-        this.menuKategorileri.set(this.tesisService.getMockMenuForFacility(id));
+        this.menuKategorileri.set(this.tesisService.getMockMenuForFacility(data.id));
         this.yukleniyor.set(false);
 
         if (data) {
@@ -65,17 +65,19 @@ export class TesisDetay implements OnInit {
             title: data.ad,
             description: data.aciklama,
             image: data.resimUrl,
-            url: `https://belpas.sakarya.bel.tr/tesisler/${data.id}`,
+            url: `https://belpas.sakarya.bel.tr/tesisler/${data.slug || data.id}`,
             keywords: `BELPAŞ, ${data.ad}, Sakarya tesisleri, sosyal tesis`
           });
         }
       },
       error: (err) => {
         console.warn('Tesis backend ulaşılamadı, yerel veri ve menü gösteriliyor:', err);
+        const numericId = Number(param) || 1;
         // 12 Tesis için Varsayılan Yedek Veri ve Menü Yükleme
         const yedekTesis: Tesis = {
-          id: id,
+          id: numericId,
           ad: 'BELPAŞ Sosyal Tesisi',
+          slug: typeof param === 'string' ? param : 'belpas-tesis',
           kategori: 'Sosyal Tesis',
           renk: '#10B981',
           harf: 'B',
@@ -89,7 +91,7 @@ export class TesisDetay implements OnInit {
           aktif: true
         };
         this.tesis.set(yedekTesis);
-        this.menuKategorileri.set(this.tesisService.getMockMenuForFacility(id));
+        this.menuKategorileri.set(this.tesisService.getMockMenuForFacility(numericId));
         this.hata.set(false);
         this.yukleniyor.set(false);
       }

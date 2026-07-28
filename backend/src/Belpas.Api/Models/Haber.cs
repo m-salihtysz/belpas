@@ -4,6 +4,7 @@ public class Haber
 {
     public int Id { get; set; }
     public required string Baslik { get; set; }
+    public string Slug { get; set; } = string.Empty;
     public string Kategori { get; set; } = "Haber";
     public required string Ozet { get; set; }
     public required string Icerik { get; set; }
