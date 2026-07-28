@@ -3,7 +3,7 @@
    ======================================================================= */
 
 .hero-slider-wrapper {
-    max-width: 1100px;
+    max-width: 1536px;
     margin: 32px auto 0;
     padding: 0 24px;
 }
@@ -320,8 +320,8 @@
     background: #f8fafc !important;
     border: 1px solid rgba(0, 0, 0, 0.06) !important;
     border-radius: 20px !important;
-    padding: 10px !important;
-    height: 120px !important;
+    padding: 16px !important;
+    height: 180px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -497,7 +497,7 @@
 
 /* Media Cards (Haber & Etkinlik) Carousel Layout */
 .modern-medya-kart {
-    height: 180px !important;
+    height: 280px !important;
     position: relative;
     overflow: hidden;
     border-radius: 1.5rem !important;
@@ -686,7 +686,7 @@
 
 .anasayfa-govde {
     background: #ffffff;
-    max-width: 1200px;
+    max-width: 1536px;
     margin: 0 auto;
     padding: 0 24px;
 
