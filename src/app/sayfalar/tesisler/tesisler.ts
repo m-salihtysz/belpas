@@ -37,14 +37,29 @@ export class Tesisler implements OnInit {
   enYakinTesisBul() {
     this.gpsYukleniyor = true;
     this.gpsHata = '';
+    let answered = false;
+
+    // Tarayıcı izin popup'ına yanıt verilmese dahi 8 saniyede fallback'e geç
+    const safetyTimer = setTimeout(() => {
+      if (!answered) {
+        answered = true;
+        this.fallbackEnYakin();
+      }
+    }, 8000);
 
     if (!navigator.geolocation) {
+      clearTimeout(safetyTimer);
+      answered = true;
       this.fallbackEnYakin();
       return;
     }
 
     navigator.geolocation.getCurrentPosition(
       (pos) => {
+        if (answered) return;
+        answered = true;
+        clearTimeout(safetyTimer);
+
         const userLat = pos.coords.latitude;
         const userLng = pos.coords.longitude;
         let minDistance = Infinity;
@@ -77,17 +92,19 @@ export class Tesisler implements OnInit {
         this.enYakinTesis = closest || { ...this.tesisler()[0], mesafe: '1.2' };
         this.gpsYukleniyor = false;
       },
-      (err) => {
+      (_err) => {
+        if (answered) return;
+        answered = true;
+        clearTimeout(safetyTimer);
         this.fallbackEnYakin();
-      }
+      },
+      { timeout: 6000, maximumAge: 60000 }
     );
   }
 
   private fallbackEnYakin() {
-    setTimeout(() => {
-      this.enYakinTesis = this.tesisler().length > 0 ? { ...this.tesisler()[0], mesafe: '1.4' } : null;
-      this.gpsYukleniyor = false;
-    }, 600);
+    this.enYakinTesis = this.tesisler().length > 0 ? { ...this.tesisler()[0], mesafe: '1.4' } : null;
+    this.gpsYukleniyor = false;
   }
 
   private calculateDistance(lat1: number, lon1: number, lat2: number, lon2: number): number {

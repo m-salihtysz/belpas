@@ -18,6 +18,7 @@ export class HeaderComponent implements OnInit {
   items: MenuItem[] | undefined;
   aramaAcik: boolean = false;
   aramaMetni: string = '';
+  menuAcik: boolean = false;
 
   ngOnInit() {
     this.items = [

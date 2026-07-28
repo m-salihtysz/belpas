@@ -55,11 +55,34 @@
         </button>
         
         <!-- Mobile Menu Toggle -->
-        <button class="lg:hidden p-link text-white ml-2">
-            <i class="pi pi-bars text-2xl"></i>
+        <button class="lg:hidden mobile-menu-btn border-none cursor-pointer text-white" (click)="menuAcik = !menuAcik">
+            <i class="pi text-2xl" [class.pi-bars]="!menuAcik" [class.pi-times]="menuAcik"></i>
         </button>
     </div>
 </header>
+
+<!-- Mobile Nav Panel -->
+<div class="mobile-nav lg:hidden" [class.mobile-nav-open]="menuAcik">
+    <a routerLink="/" class="mobile-nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="menuAcik = false">Ana Sayfa</a>
+    <a routerLink="/tesisler" class="mobile-nav-link" routerLinkActive="active" (click)="menuAcik = false">Birimlerimiz</a>
+    <a routerLink="/kurumsal/etkinlikler" class="mobile-nav-link" routerLinkActive="active" (click)="menuAcik = false">Etkinliklerimiz</a>
+    <a routerLink="/haberler" class="mobile-nav-link" routerLinkActive="active" (click)="menuAcik = false">Haberler</a>
+    <div class="mobile-nav-group">
+        <span class="mobile-nav-group-label">Kurumsal</span>
+        <a routerLink="/kurumsal/hakkimizda" class="mobile-nav-link mobile-nav-sub" routerLinkActive="active" (click)="menuAcik = false">Hakkımızda</a>
+        <a routerLink="/kurumsal/organizasyon-semasi" class="mobile-nav-link mobile-nav-sub" routerLinkActive="active" (click)="menuAcik = false">Organizasyon Şeması</a>
+        <a routerLink="/kurumsal/kurumsal-kimlik" class="mobile-nav-link mobile-nav-sub" routerLinkActive="active" (click)="menuAcik = false">Kurumsal Kimlik</a>
+        <a routerLink="/kurumsal/faaliyet-raporu" class="mobile-nav-link mobile-nav-sub" routerLinkActive="active" (click)="menuAcik = false">Faaliyet Raporu</a>
+    </div>
+    <div class="mobile-nav-group">
+        <span class="mobile-nav-group-label">Satın Alma</span>
+        <a routerLink="/ihaleler/ilanlar" class="mobile-nav-link mobile-nav-sub" routerLinkActive="active" (click)="menuAcik = false">Satın Alma İlanları</a>
+        <a routerLink="/ihaleler/komisyon" class="mobile-nav-link mobile-nav-sub" routerLinkActive="active" (click)="menuAcik = false">Satın Alma Komisyonu</a>
+        <a routerLink="/ihaleler/kriterler" class="mobile-nav-link mobile-nav-sub" routerLinkActive="active" (click)="menuAcik = false">Satın Alma Kriterleri</a>
+        <a routerLink="/ihaleler/surec" class="mobile-nav-link mobile-nav-sub" routerLinkActive="active" (click)="menuAcik = false">Satın Alma Süreci</a>
+    </div>
+    <a routerLink="/iletisim" class="mobile-nav-link" routerLinkActive="active" (click)="menuAcik = false">İletişim</a>
+</div>
 
 <p-dialog header="Ne aramak istersiniz?" [(visible)]="aramaAcik" [modal]="true" [style]="{ width: '40rem' }" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
     <div class="flex flex-column gap-3 mb-3">
