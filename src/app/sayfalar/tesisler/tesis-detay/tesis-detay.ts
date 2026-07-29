@@ -65,7 +65,7 @@ export class TesisDetay implements OnInit {
     this.tesisService.getTesis(param).subscribe({
       next: (data) => {
         this.tesis.set(data);
-        this.menuKategorileri.set(this.tesisService.getMockMenuForFacility(data.id, data.slug));
+        this.menuKategorileri.set(this.tesisService.getMockMenuForFacility(data.id, data.slug, data.kategori));
         this.yukleniyor.set(false);
 
         if (data) {
@@ -100,7 +100,7 @@ export class TesisDetay implements OnInit {
           aktif: true
         };
         this.tesis.set(yedekTesis);
-        this.menuKategorileri.set(this.tesisService.getMockMenuForFacility(numericId, currentSlug));
+        this.menuKategorileri.set(this.tesisService.getMockMenuForFacility(numericId, currentSlug, yedekTesis.kategori));
         this.hata.set(false);
         this.yukleniyor.set(false);
       }

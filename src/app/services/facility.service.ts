@@ -57,8 +57,11 @@ export class FacilityService {
   }
 
   // Digital Menu Generator for Facilities (Tesis Tipine Göre Özelleştirilmiş Menü)
-  getMockMenuForFacility(tesisId: number, slug?: string): MenuKategori[] {
-    const s = slug ? slug.toLowerCase() : '';
+  getMockMenuForFacility(tesisId: number, slug?: string, kategori?: string): MenuKategori[] {
+    if (kategori && kategori !== 'Restoran & Kafe') {
+      return [];
+    }
+    const s = (slug || '').toLowerCase();
 
     // 1. NEHİR ÇİKOLATA
     if (s.includes('nehir-cikolata')) {
