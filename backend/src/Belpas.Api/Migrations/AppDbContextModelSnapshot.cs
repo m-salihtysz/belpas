@@ -17,10 +17,64 @@ namespace Belpas.Api.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.28")
+                .HasAnnotation("ProductVersion", "8.0.29")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("Belpas.Api.Models.Etkinlik", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Baslik")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Detay")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Kategori")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Kontenjan")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Konum")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Ozet")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<bool>("Populer")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("ResimUrl")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Saat")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Tarih")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<bool>("Ucretsiz")
+                        .HasColumnType("boolean");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Etkinlikler");
+                });
 
             modelBuilder.Entity("Belpas.Api.Models.Haber", b =>
                 {
@@ -53,6 +107,10 @@ namespace Belpas.Api.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("ResimUrl")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Slug")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
@@ -118,6 +176,12 @@ namespace Belpas.Api.Migrations
                     b.Property<bool>("Aktif")
                         .HasColumnType("boolean");
 
+                    b.Property<string>("HaftaIciSaat")
+                        .HasColumnType("text");
+
+                    b.Property<string>("HaftaSonuSaat")
+                        .HasColumnType("text");
+
                     b.Property<string>("Harf")
                         .IsRequired()
                         .HasColumnType("text");
@@ -129,11 +193,30 @@ namespace Belpas.Api.Migrations
                     b.Property<string>("KonumUrl")
                         .HasColumnType("text");
 
+                    b.Property<double?>("Lat")
+                        .HasColumnType("double precision");
+
+                    b.Property<double?>("Lng")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("LogoUrl")
+                        .HasColumnType("text");
+
+                    b.Property<string>("MenuGorselUrl")
+                        .HasColumnType("text");
+
+                    b.Property<string>("MenuPdfUrl")
+                        .HasColumnType("text");
+
                     b.Property<string>("Renk")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("ResimUrl")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Slug")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Telefon")

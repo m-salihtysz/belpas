@@ -13,6 +13,12 @@
     <nav class="hidden lg:flex align-items-center gap-1 z-2 bg-black-alpha-40 px-3 py-2 border-round-3xl backdrop-blur-md border-1 border-white-alpha-15 shadow-4">
         <a routerLink="/" class="nav-pill" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Ana Sayfa</a>
 
+        <a routerLink="/tesisler" class="nav-pill" routerLinkActive="active">Birimlerimiz</a>
+
+        <a routerLink="/kurumsal/etkinlikler" class="nav-pill" routerLinkActive="active">Etkinliklerimiz</a>
+
+        <a routerLink="/haberler" class="nav-pill" routerLinkActive="active">Haberler</a>
+
         <!-- Kurumsal Dropdown -->
         <div class="nav-item-dropdown relative group">
             <a routerLink="/kurumsal/hakkimizda" class="nav-pill flex align-items-center gap-1 cursor-pointer" routerLinkActive="active">
@@ -23,7 +29,6 @@
                 <a routerLink="/kurumsal/organizasyon-semasi" class="dropdown-item block px-4 py-2 text-white-alpha-90 hover:text-white hover:bg-white-alpha-10 text-decoration-none transition-colors text-sm font-medium">Organizasyon Şeması</a>
                 <a routerLink="/kurumsal/kurumsal-kimlik" class="dropdown-item block px-4 py-2 text-white-alpha-90 hover:text-white hover:bg-white-alpha-10 text-decoration-none transition-colors text-sm font-medium">Kurumsal Kimlik</a>
                 <a routerLink="/kurumsal/faaliyet-raporu" class="dropdown-item block px-4 py-2 text-white-alpha-90 hover:text-white hover:bg-white-alpha-10 text-decoration-none transition-colors text-sm font-medium">Faaliyet Raporu</a>
-                <a routerLink="/kurumsal/etkinlikler" class="dropdown-item block px-4 py-2 text-white-alpha-90 hover:text-white hover:bg-white-alpha-10 text-decoration-none transition-colors text-sm font-medium">Etkinliklerimiz</a>
             </div>
         </div>
 
@@ -40,8 +45,6 @@
             </div>
         </div>
 
-        <a routerLink="/tesisler" class="nav-pill" routerLinkActive="active">Birimlerimiz</a>
-        <a routerLink="/haberler" class="nav-pill" routerLinkActive="active">Haberler</a>
         <a routerLink="/iletisim" class="nav-pill" routerLinkActive="active">İletişim</a>
     </nav>
 
@@ -52,11 +55,34 @@
         </button>
         
         <!-- Mobile Menu Toggle -->
-        <button class="lg:hidden p-link text-white ml-2">
-            <i class="pi pi-bars text-2xl"></i>
+        <button class="lg:hidden mobile-menu-btn border-none cursor-pointer text-white" (click)="menuAcik = !menuAcik">
+            <i class="pi text-2xl" [class.pi-bars]="!menuAcik" [class.pi-times]="menuAcik"></i>
         </button>
     </div>
 </header>
+
+<!-- Mobile Nav Panel -->
+<div class="mobile-nav lg:hidden" [class.mobile-nav-open]="menuAcik">
+    <a routerLink="/" class="mobile-nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="menuAcik = false">Ana Sayfa</a>
+    <a routerLink="/tesisler" class="mobile-nav-link" routerLinkActive="active" (click)="menuAcik = false">Birimlerimiz</a>
+    <a routerLink="/kurumsal/etkinlikler" class="mobile-nav-link" routerLinkActive="active" (click)="menuAcik = false">Etkinliklerimiz</a>
+    <a routerLink="/haberler" class="mobile-nav-link" routerLinkActive="active" (click)="menuAcik = false">Haberler</a>
+    <div class="mobile-nav-group">
+        <span class="mobile-nav-group-label">Kurumsal</span>
+        <a routerLink="/kurumsal/hakkimizda" class="mobile-nav-link mobile-nav-sub" routerLinkActive="active" (click)="menuAcik = false">Hakkımızda</a>
+        <a routerLink="/kurumsal/organizasyon-semasi" class="mobile-nav-link mobile-nav-sub" routerLinkActive="active" (click)="menuAcik = false">Organizasyon Şeması</a>
+        <a routerLink="/kurumsal/kurumsal-kimlik" class="mobile-nav-link mobile-nav-sub" routerLinkActive="active" (click)="menuAcik = false">Kurumsal Kimlik</a>
+        <a routerLink="/kurumsal/faaliyet-raporu" class="mobile-nav-link mobile-nav-sub" routerLinkActive="active" (click)="menuAcik = false">Faaliyet Raporu</a>
+    </div>
+    <div class="mobile-nav-group">
+        <span class="mobile-nav-group-label">Satın Alma</span>
+        <a routerLink="/ihaleler/ilanlar" class="mobile-nav-link mobile-nav-sub" routerLinkActive="active" (click)="menuAcik = false">Satın Alma İlanları</a>
+        <a routerLink="/ihaleler/komisyon" class="mobile-nav-link mobile-nav-sub" routerLinkActive="active" (click)="menuAcik = false">Satın Alma Komisyonu</a>
+        <a routerLink="/ihaleler/kriterler" class="mobile-nav-link mobile-nav-sub" routerLinkActive="active" (click)="menuAcik = false">Satın Alma Kriterleri</a>
+        <a routerLink="/ihaleler/surec" class="mobile-nav-link mobile-nav-sub" routerLinkActive="active" (click)="menuAcik = false">Satın Alma Süreci</a>
+    </div>
+    <a routerLink="/iletisim" class="mobile-nav-link" routerLinkActive="active" (click)="menuAcik = false">İletişim</a>
+</div>
 
 <p-dialog header="Ne aramak istersiniz?" [(visible)]="aramaAcik" [modal]="true" [style]="{ width: '40rem' }" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
     <div class="flex flex-column gap-3 mb-3">
@@ -64,8 +90,34 @@
             <span class="p-inputgroup-addon">
                 <i class="pi pi-search"></i>
             </span>
-            <input type="text" pInputText placeholder="Aramak istediğiniz kelimeyi yazın..." [(ngModel)]="aramaMetni" (keydown.enter)="aramaYap()" autofocus />
-            <button pButton type="button" label="Ara" (click)="aramaYap()"></button>
+            <input type="text" pInputText placeholder="Sayfa, tesis veya restoran adı yazın..." [(ngModel)]="aramaMetni" (ngModelChange)="aramaFiltrele()" (keydown.enter)="aramaYap()" autofocus />
+            <button pButton type="button" label="Git" (click)="aramaYap()"></button>
         </div>
+
+        @if (sonuclar.length > 0) {
+            <div class="arama-sonuc-liste">
+                @for (s of sonuclar; track s.link) {
+                    <button type="button" class="arama-sonuc-item" (click)="secimYap(s)">
+                        <span class="sonuc-ikon-wrap" [class.tip-tesis]="s.tip === 'tesis'">
+                            <i class="pi {{ s.ikon }}"></i>
+                        </span>
+                        <span class="sonuc-metin">
+                            <span class="sonuc-label">{{ s.label }}</span>
+                            @if (s.alt) {
+                                <span class="sonuc-alt">{{ s.alt }}</span>
+                            }
+                        </span>
+                        <i class="pi pi-arrow-right sonuc-ok"></i>
+                    </button>
+                }
+            </div>
+        }
+
+        @if (aramaMetni.length >= 2 && sonuclar.length === 0) {
+            <div class="arama-bos">
+                <i class="pi pi-search-minus text-2xl mb-2" style="color:#94a3b8"></i>
+                <p>"{{ aramaMetni }}" için sonuç bulunamadı.</p>
+            </div>
+        }
     </div>
 </p-dialog>

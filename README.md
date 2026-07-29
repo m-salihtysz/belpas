@@ -1,59 +1,185 @@
-# BelpasModernizasyon
+# BELPAŞ — Sakarya Büyükşehir Belediyesi Sosyal Tesisler Web Platformu
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.0.6.
+> Sakarya Büyükşehir Belediyesi iştiraki **BELPAŞ A.Ş.**'nin kurumsal web sitesi ve sosyal tesisler bilgi platformu.  
+> Modern Angular mimarisi, .NET 8 REST API ve PostgreSQL veritabanı üzerine inşa edilmiştir.
 
-## Development server
+---
 
-To start a local development server, run:
+## 📌 Proje Hakkında
 
-```bash
-ng serve
+Bu platform; BELPAŞ bünyesindeki sosyal tesislerin, haberlerin, etkinliklerin ve satın alma ilanlarının kamuoyuyla paylaşıldığı kurumsal bir web uygulamasıdır.
+
+**Öne çıkan özellikler:**
+
+- 🏢 Sakarya genelindeki tüm BELPAŞ tesislerini listeler ve detaylarını gösterir
+- 📰 Kurumsal haberler ve duyurular
+- 📅 Etkinlik takvimi
+- 🛒 Satın alma ilanları ve ihale bilgileri
+- 📍 GPS ile en yakın tesis bulma
+- 🔍 Akıllı arama (sayfa adı veya tesis/restoran adı yazılınca yönlendirir)
+- 📱 Tam responsive tasarım, mobil menü desteği
+- 🌐 SEO optimizasyonu (SSR, meta taglar, sitemap.xml, JSON-LD)
+
+---
+
+## 🛠️ Teknoloji Yığını
+
+### Frontend
+| Teknoloji | Versiyon | Açıklama |
+|-----------|----------|----------|
+| Angular | 22 | Standalone component mimarisi |
+| Angular SSR | 22 | Sunucu taraflı render (SEO) |
+| PrimeNG | 21 | UI bileşen kütüphanesi |
+| PrimeFlex | 4 | Utility CSS (grid, flex, spacing) |
+| PrimeIcons | 8 | İkon seti |
+| TypeScript | 6 | Tip güvenli geliştirme |
+| RxJS | 7.8 | Reaktif veri akışı |
+
+### Backend
+| Teknoloji | Versiyon | Açıklama |
+|-----------|----------|----------|
+| .NET | 8.0 | Web API framework |
+| Entity Framework Core | 8.0 | ORM |
+| Npgsql | 8.0 | PostgreSQL sürücüsü |
+| Swagger / Swashbuckle | 6.5 | API dokümantasyonu |
+
+### Veritabanı
+| Teknoloji | Versiyon | Açıklama |
+|-----------|----------|----------|
+| PostgreSQL | 16 | İlişkisel veritabanı |
+| Docker | - | Konteynerleştirme |
+
+---
+
+## 🗂️ Proje Klasör Yapısı
+
+```
+guncel/
+├── src/                          # Angular kaynak kodu
+│   └── app/
+│       ├── components/
+│       │   ├── header/           # Navbar, arama, mobil menü
+│       │   └── footer/
+│       ├── sayfalar/
+│       │   ├── anasayfa/         # Hero slider, tesis & haber carousel'ları
+│       │   ├── tesisler/         # Tesis listesi + GPS bulucu
+│       │   │   └── tesis-detay/  # Tesis detay & dijital menü
+│       │   ├── haberler/         # Haber listesi + detay
+│       │   ├── etkinlikler/      # Etkinlik takvimi
+│       │   ├── ihaleler/         # Satın alma alt sayfaları (4 adet)
+│       │   ├── kurumsal/         # Hakkımızda, org şeması vb. (4 adet)
+│       │   └── iletisim/
+│       └── services/
+│           ├── facility.service.ts   # Tesis API servisi
+│           ├── news.service.ts       # Haber API servisi
+│           ├── event.service.ts      # Etkinlik API servisi
+│           └── seo.service.ts        # SEO meta tag üretici
+│
+└── backend/
+    ├── docker-compose.yml        # PostgreSQL Docker ayarı
+    └── src/Belpas.Api/
+        ├── Controllers/          # 5 REST controller
+        ├── Models/               # 4 veri modeli
+        ├── Data/                 # DbContext + DbSeeder
+        └── Migrations/           # EF Core migration dosyaları
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## 🌐 API Endpoint'leri
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+| Method | Endpoint | Açıklama |
+|--------|----------|----------|
+| GET | `/api/Tesisler` | Tüm tesisleri listeler |
+| GET | `/api/Tesisler/{id}` | Tekil tesis detayı |
+| GET | `/api/Haberler` | Tüm haberleri listeler |
+| GET | `/api/Haberler/{id}` | Tekil haber detayı |
+| GET | `/api/Etkinlikler` | Etkinlik listesi |
+| GET | `/api/Ihaleler` | İhale ilanları |
+| GET | `/sitemap.xml` | SEO site haritası |
 
-```bash
-ng generate component component-name
-```
+API'yi tarayıcıdan keşfetmek için: [http://localhost:5000/swagger](http://localhost:5000/swagger)
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
-```
+## 🚀 Kurulum ve Çalıştırma
 
-## Building
+Sistemin tam çalışabilmesi için sırasıyla **Veritabanı → Backend → Frontend** başlatılmalıdır.
 
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+### 1. Veritabanı (PostgreSQL + Docker)
 
 ```bash
-ng test
+cd backend
+docker compose up -d
 ```
 
-## Running end-to-end tests
+Bu komut, `belpas_postgres` adlı PostgreSQL konteynerini **port 5433**'te arka planda başlatır.  
+Veriler kalıcı olarak `pgdata` Docker volume'unda saklanır.
 
-For end-to-end (e2e) testing, run:
+---
+
+### 2. Backend API (.NET 8)
 
 ```bash
-ng e2e
+cd backend/src/Belpas.Api
+dotnet run
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+- Sunucu `http://localhost:5000` adresinde çalışır.
+- İlk başlatmada `DbSeeder` otomatik devreye girer: tablolar oluşturulur, örnek veriler eklenir.
+- Swagger arayüzü: [http://localhost:5000/swagger](http://localhost:5000/swagger)
 
-## Additional Resources
+> [!NOTE]
+> macOS'ta AirPlay servisi 5000 portunu işgal edebilir. Bu durumda `appsettings.json` dosyasındaki port numarasını ve frontend servislerindeki `apiUrl` değerini güncellemeniz gerekir.
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+---
+
+### 3. Frontend (Angular)
+
+```bash
+# Proje kök dizininde:
+npm install
+npm start
+```
+
+Uygulama `http://localhost:4200` adresinde açılır.
+
+---
+
+## 🔗 Sayfalar ve Rotalar
+
+| URL | Sayfa |
+|-----|-------|
+| `/` | Ana Sayfa |
+| `/tesisler` | Tesis Listesi |
+| `/tesisler/:id` | Tesis Detayı |
+| `/haberler` | Haberler |
+| `/haberler/:id` | Haber Detayı |
+| `/kurumsal/etkinlikler` | Etkinlikler |
+| `/kurumsal/hakkimizda` | Hakkımızda |
+| `/kurumsal/organizasyon-semasi` | Organizasyon Şeması |
+| `/kurumsal/kurumsal-kimlik` | Kurumsal Kimlik |
+| `/kurumsal/faaliyet-raporu` | Faaliyet Raporu |
+| `/ihaleler/ilanlar` | Satın Alma İlanları |
+| `/ihaleler/komisyon` | Satın Alma Komisyonu |
+| `/ihaleler/kriterler` | Satın Alma Kriterleri |
+| `/ihaleler/surec` | Satın Alma Süreci |
+| `/iletisim` | İletişim |
+
+---
+
+## 🗄️ Veritabanı Bağlantı Bilgileri
+
+| Parametre | Değer |
+|-----------|-------|
+| Host | `localhost` |
+| Port | `5433` |
+| Veritabanı | `belpas_db` |
+| Kullanıcı | `belpas_user` |
+| Şifre | `belpas_password123` |
+
+---
+
+## 📄 Lisans
+
+Bu proje Sakarya Büyükşehir Belediyesi bünyesinde kurumsal kullanım amacıyla geliştirilmiştir.

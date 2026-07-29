@@ -40,20 +40,20 @@ export const routes: Routes = [
   {
     path: 'kurumsal/etkinlikler',
     loadComponent: () =>
-      import('./sayfalar/kurumsal/etkinlikler/etkinlikler').then(m => m.Etkinlikler),
-    title: 'Kültür & Sanat Etkinlikleri | BELPAŞ'
+      import('./sayfalar/etkinlikler/etkinlikler').then(m => m.Etkinlikler),
+    title: 'Etkinliklerimiz | BELPAŞ'
   },
   {
     path: 'tesisler',
     loadComponent: () =>
       import('./sayfalar/tesisler/tesisler').then(m => m.Tesisler),
-    title: 'Tesislerimiz & Sosyal Alanlar | BELPAŞ'
+    title: 'Birimlerimiz & Sosyal Alanlar | BELPAŞ'
   },
   {
     path: 'tesisler/:slug',
     loadComponent: () =>
-      import('./sayfalar/tesis-detay/tesis-detay').then(m => m.TesisDetay),
-    title: 'Tesis Detayı & Menü Kartı | BELPAŞ'
+      import('./sayfalar/tesisler/tesis-detay/tesis-detay').then(m => m.TesisDetay),
+    title: 'Tesis Detayı | BELPAŞ'
   },
   {
     path: 'ihaleler',

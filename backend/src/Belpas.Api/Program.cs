@@ -48,12 +48,4 @@ app.MapControllers();
 // Root path'e gelince Swagger'a yönlendir
 app.MapGet("/", () => Results.Redirect("/swagger"));
 
-// Otomatik Veri Tabanı Migrasyonu ve Seeding
-using (var scope = app.Services.CreateScope())
-{
-    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    // db.Database.Migrate();
-    DbSeeder.Seed(db);
-}
-
 app.Run();

@@ -1,257 +1,883 @@
 /* =======================================================================
-   ANASAYFA MODERNIZATION (Reference-based: Full Cover Style)
+   ANASAYFA — HERO SLIDER (Custom Ulasimpark-Style Center Text with Entry Animations)
    ======================================================================= */
 
-.hero-section {
-    height: 75vh;
-    min-height: 560px;
+.hero-slider-wrapper {
+    max-width: 1360px;
+    margin: 32px auto 0;
+    padding: 0 24px;
+}
+
+.custom-slider-container {
+    height: 52vh;
+    min-height: 400px;
     width: 100%;
     position: relative;
-    background: #023829; /* Brand green fallback */
+    background: #011a14;
+    overflow: hidden;
+    border-radius: 28px;
+    box-shadow: 0 20px 48px rgba(16, 185, 129, 0.08);
 }
 
-/* Geometric Slanted Overlay matching Reference Photo 1 (Yazlık Katlı Kavşağı) */
-.hero-geometric-overlay {
+.custom-slide {
+    position: absolute;
+    inset: 0;
     width: 100%;
-    background: linear-gradient(135deg, rgba(2, 40, 29, 0.96) 0%, rgba(4, 68, 52, 0.92) 60%, rgba(6, 91, 67, 0.85) 100%);
-    
-    @media (min-width: 768px) {
-        width: 50%; /* Pulled further left from 62% */
-        clip-path: polygon(0 0, 100% 0, 82% 100%, 0% 100%);
-        box-shadow: 20px 0 50px rgba(0, 0, 0, 0.5);
-    }
-}
+    height: 100%;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.85s ease-in-out;
+    z-index: 1;
 
-.hero-geometric-accent {
-    left: 42%; /* Pulled further left from 54% */
-    width: 12%;
-    background: linear-gradient(135deg, rgba(16, 185, 129, 0.35) 0%, rgba(5, 150, 105, 0.1) 100%);
-    clip-path: polygon(25% 0, 100% 0, 75% 100%, 0% 100%);
-    backdrop-filter: blur(4px);
-}
+    &.active {
+        opacity: 1;
+        pointer-events: auto;
+        z-index: 2;
 
-/* Action Button Hover Effect */
-.hero-action-btn {
-    &:hover {
-        transform: translateY(-3px) scale(1.02);
-        background-color: #f8f9fa !important;
-        i {
-            transform: translateX(4px);
-            transition: transform 0.2s ease;
+        .slide-bg {
+            animation: bgZoomSlow 7s ease-out forwards;
+        }
+
+        .slide-badge-new {
+            animation: slideUpIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+        }
+
+        .slide-title-new {
+            animation: slideUpIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+        }
+
+        .slide-desc-new {
+            animation: slideUpIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
+        }
+
+        .slide-btn-new {
+            animation: slideUpIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.6s both;
         }
     }
+
+    &.prev {
+        z-index: 1;
+        opacity: 0;
+    }
 }
 
-/* Custom Carousel & Full Height Enforcement inside Hero */
-::ng-deep .custom-hero-carousel {
-    height: 100% !important;
-    width: 100% !important;
-    display: block;
-    
-    .p-carousel,
-    .p-carousel-content,
-    .p-carousel-container,
-    .p-carousel-items-content,
-    .p-carousel-items-container,
-    .p-carousel-item {
-        height: 100% !important;
-        min-height: 100% !important;
-        width: 100% !important;
-    }
-    
-    .hero-slide-item {
-        height: 75vh !important;
-        min-height: 560px !important;
-        width: 100% !important;
+/* Background image slow zoom effect */
+.slide-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background-size: cover;
+    background-position: center center;
+    transform: scale(1.03);
+}
+
+/* Overlay for text contrast */
+.slide-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: linear-gradient(180deg,
+            rgba(1, 26, 20, 0.55) 0%,
+            rgba(1, 26, 20, 0.78) 100%);
+}
+
+/* Content wrapper centered */
+.slide-content-wrapper {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    pointer-events: none;
+
+    .max-w-45rem {
+        pointer-events: auto;
+        max-width: 45rem;
+        width: 100%;
+        margin: 0 auto;
         display: flex;
-    }
-
-    /* Move 3 dots right above the overlapping Tesisler cards with glassmorphism pill */
-    .p-carousel-indicators {
-        position: absolute;
-        bottom: 80px; /* Perfectly positioned right above the -65px overlapping cards */
-        left: 50%;
-        transform: translateX(-50%);
-        margin: 0;
-        padding: 6px 16px;
-        background: rgba(0, 0, 0, 0.4);
-        backdrop-filter: blur(10px);
-        border-radius: 20px;
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        z-index: 10;
-        
-        button {
-            background-color: rgba(255, 255, 255, 0.5) !important;
-            border-radius: 6px !important;
-            width: 24px !important;
-            height: 6px !important;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .p-highlight button {
-            background-color: #10B981 !important; /* Vibrant green active pill */
-            width: 44px !important;
-            box-shadow: 0 0 12px rgba(16, 185, 129, 0.9);
-        }
-    }
-    
-    .p-carousel-prev, .p-carousel-next {
-        display: none !important; 
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 }
 
-/* Custom GPS Aksiyon Barı & Sonuc Kartı */
+/* Welcome/Intro text (slanted/italic like Ulasimpark) */
+.slide-badge-new {
+    display: inline-block;
+    color: #a7f3d0;
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(0.8rem, 2vw, 1.05rem);
+    font-weight: 800;
+    font-style: italic;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+
+    i {
+        font-style: normal;
+        margin-right: 4px;
+    }
+}
+
+/* Title style (Ulasimpark-Style huge black uppercase text) */
+.slide-title-new {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(2rem, 4.5vw, 3.4rem);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: #ffffff;
+    text-transform: uppercase;
+    text-shadow: 0 4px 30px rgba(0, 0, 0, 0.65);
+    margin: 0;
+
+    .accent-text {
+        background: linear-gradient(135deg, #a7f3d0 0%, #10b981 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+}
+
+/* Description text style (Simple thin white text) */
+.slide-desc-new {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(0.85rem, 1.6vw, 1rem);
+    font-weight: 400;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55);
+}
+
+/* CTA button style */
+.slide-btn-new {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 28px;
+    background: #ffffff;
+    color: #064e3b;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 700;
+    border-radius: 9999px;
+    text-decoration: none;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+
+    &:hover {
+        transform: translateY(-2px);
+        background: #10b981;
+        color: #ffffff;
+        box-shadow: 0 12px 35px rgba(16, 185, 129, 0.3);
+    }
+}
+
+/* Navigation Arrow Controls */
+.nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    color: #64748b !important;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+    i {
+        font-weight: 800 !important;
+        font-size: 1.15rem !important;
+        color: #64748b !important;
+        transition: color 0.3s ease;
+    }
+
+    &:hover {
+        background: #f8f9fa !important;
+        border-color: #cbd5e1 !important;
+        color: #1e293b !important;
+        transform: translateY(-50%) scale(1.05);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08) !important;
+
+        i {
+            color: #1e293b !important;
+        }
+    }
+
+    &.prev {
+        left: 24px;
+    }
+
+    &.next {
+        right: 24px;
+    }
+}
+
+/* Bottom Pagination Dots */
+.slider-dots {
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+
+    .dot-btn {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        border: none;
+        background: rgba(255, 255, 255, 0.4);
+        cursor: pointer;
+        padding: 0;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+        &.active {
+            background: #10b981;
+            width: 24px;
+            border-radius: 5px;
+            box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+        }
+    }
+}
+
+/* Keyframes Animations */
+@keyframes bgZoomSlow {
+    from {
+        transform: scale(1.03);
+    }
+
+    to {
+        transform: scale(1.09);
+    }
+}
+
+@keyframes slideUpIn {
+    from {
+        opacity: 0;
+        transform: translateY(28px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Custom GPS Aksiyon Barı & Sonuc Kartı (Premium Frosted Glass) */
 .gps-aksiyon-bar {
-    background: linear-gradient(135deg, #022c22 0%, #011f18 100%) !important;
-    border: 1px solid #047857 !important;
+    background: rgba(2, 44, 34, 0.8) !important;
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(16, 185, 129, 0.25) !important;
     color: #ffffff !important;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
-    border-radius: 2rem !important;
+    box-shadow: 0 12px 40px rgba(2, 44, 34, 0.12) !important;
+    border-radius: 24px !important;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 
     .gps-btn {
         background: #10b981 !important;
         color: #ffffff !important;
         font-weight: 700 !important;
         border: none !important;
-        transition: all 0.3s ease;
+        border-radius: 14px !important;
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
         &:hover {
             background: #059669 !important;
-            transform: scale(1.02);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3);
         }
     }
 }
 
 .gps-sonuc-kart {
-    background: #ecfdf5 !important;
-    border: 1px solid #6ee7b7 !important;
+    background: rgba(236, 253, 245, 0.9) !important;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(110, 231, 183, 0.5) !important;
     color: #064e3b !important;
-    border-radius: 1.5rem !important;
+    border-radius: 18px !important;
+    box-shadow: 0 6px 20px rgba(6, 78, 59, 0.03) !important;
 }
 
-/* Ultra-Modern Tesisler (Hızlı Erişim) Kartları */
+/* Ultra-Modern Tesisler (Brand Logos) Cards */
+.relative-carousel-container {
+    position: relative;
+    width: 100%;
+}
+
 .modern-tesis-kart {
-    border: 1px solid rgba(0,0,0,0.05);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-    height: 220px !important;
+    background: #f8fafc !important;
+    border: 1px solid rgba(0, 0, 0, 0.06) !important;
+    border-radius: 20px !important;
+    padding: 16px !important;
+    height: 150px !important;
     display: flex !important;
-    flex-direction: column !important;
-    justify-content: space-between !important;
-    transform: translateY(0);
-    
-    .tesis-orb-wrapper {
-        height: 85px !important;
-        flex-shrink: 0 !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02) !important;
+    transition: all 0.3s ease !important;
+
+    .logo-wrapper {
+        width: 100% !important;
+        height: 100% !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-    }
+        background: #ffffff !important;
+        border-radius: 14px !important;
+        border: 1px solid rgba(0, 0, 0, 0.03) !important;
+        box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.02) !important;
 
-    .tesis-baslik-wrapper {
-        min-height: 50px !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        text-align: center !important;
-        flex-grow: 1 !important;
-    }
+        svg {
+            max-width: 85% !important;
+            max-height: 85% !important;
+            transition: transform 0.3s ease;
+        }
 
-    .tesis-orb {
-        width: 72px;
-        height: 72px;
-        margin: 0 auto;
-        
-        .orb-ring {
-            transform: scale(1);
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        img {
+            max-width: 90% !important;
+            max-height: 90% !important;
+            object-fit: contain !important;
+        }
+
+        .anasayfa-tesis-bas-harf {
+            width: 100%;
+            height: 100%;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: -1px;
         }
     }
-    
-    .kesfet-link {
-        height: 22px;
-        opacity: 0;
-        overflow: hidden;
-        transform: translateY(6px);
-        margin-top: 0;
-        transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    
+
     &:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 16px 40px rgba(0,0,0,0.08);
-        border-color: rgba(0,0,0,0.06);
-        
-        .kart-glow {
-            opacity: 1 !important;
-        }
-        
-        .tesis-orb {
-            transform: scale(1.08) translateY(-4px);
-            
-            .orb-ring {
-                transform: scale(1.35);
-                opacity: 0 !important;
+        transform: translateY(-4px) !important;
+        background: #ffffff !important;
+        border-color: #10B981 !important;
+        box-shadow: 0 12px 28px rgba(16, 185, 129, 0.08) !important;
+
+        .logo-wrapper {
+            svg {
+                transform: scale(1.05);
             }
         }
-        
-        .kesfet-link {
-            opacity: 1 !important;
-            transform: translateY(0);
-        }
     }
 }
 
-/* Z-Pattern Haber Kartlari */
-.modern-haber-kart {
-    border: 1px solid rgba(0,0,0,0.04);
-    &:hover {
-        box-shadow: 0 20px 40px rgba(0,0,0,0.08) !important;
-    }
-}
-
-/* Modern Etkinlik Kartları (Yeşil Sol Şerit / Kulakçık Accent) */
-.modern-etkinlik-kart {
+/* Modernized Tesisler Carousel Styling with Fading Gradient Overlay */
+::ng-deep .custom-tesis-carousel {
     position: relative;
-    background: #ffffff !important;
-    border-radius: 1.5rem !important;
-    border: 1px solid rgba(16, 185, 129, 0.15) !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
-    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
-    overflow: hidden;
+    padding: 0 52px !important;
 
-    .etkinlik-sol-serit {
+    @media (max-width: 768px) {
+        padding: 0 40px !important;
+    }
+
+    .p-carousel-content {
+        position: relative;
+    }
+
+    /* Left and Right Glassmorphism Fading Overlays */
+    &::before {
+        content: '';
         position: absolute;
         top: 0;
         left: 0;
-        width: 14px !important;
+        width: 60px;
         height: 100%;
-        background: linear-gradient(180deg, #10b981 0%, #047857 100%) !important;
-        border-top-left-radius: 1.5rem;
-        border-bottom-left-radius: 1.5rem;
+        background: linear-gradient(to right, rgba(255, 255, 255, 0.95) 30%, rgba(255, 255, 255, 0));
+        z-index: 2;
+        pointer-events: none;
+
+        @media (max-width: 768px) {
+            width: 44px;
+        }
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 60px;
+        height: 100%;
+        background: linear-gradient(to left, rgba(255, 255, 255, 0.95) 30%, rgba(255, 255, 255, 0));
+        z-index: 2;
+        pointer-events: none;
+
+        @media (max-width: 768px) {
+            width: 44px;
+        }
+    }
+
+    /* PrimeNG v21: prev/next butonlar doğrudan button elementi */
+    .p-carousel-prev-button,
+    .p-carousel-next-button {
+        position: absolute !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        width: 42px !important;
+        height: 42px !important;
+        min-width: 42px !important;
+        padding: 0 !important;
+        background: #ffffff !important;
+        border: none !important;
+        border-radius: 50% !important;
+        box-shadow: 0 4px 14px rgba(15, 23, 42, 0.12) !important;
+        color: #334155 !important;
+        z-index: 25 !important;
+        opacity: 1 !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        cursor: pointer !important;
+        pointer-events: auto !important;
+        transition: all 0.25s ease !important;
+
+        @media (max-width: 768px) {
+            width: 34px !important;
+            height: 34px !important;
+            min-width: 34px !important;
+        }
+
+        svg, span, i {
+            width: 1.1rem !important;
+            height: 1.1rem !important;
+            color: #334155 !important;
+            fill: #334155 !important;
+            display: block !important;
+            flex-shrink: 0 !important;
+        }
+
+        &:hover {
+            background: #f8fafc !important;
+            box-shadow: 0 6px 18px rgba(15, 23, 42, 0.16) !important;
+            transform: translateY(-50%) scale(1.06) !important;
+            color: #0f172a !important;
+
+            svg, span, i {
+                color: #0f172a !important;
+                fill: #0f172a !important;
+            }
+        }
+
+        &:focus-visible {
+            outline: 2px solid #94a3b8 !important;
+            outline-offset: 2px !important;
+        }
+    }
+
+    .p-carousel-prev-button {
+        left: 4px !important;
+    }
+
+    .p-carousel-next-button {
+        right: 4px !important;
+    }
+
+    .p-carousel-indicators {
+        display: none !important;
+    }
+}
+
+/* Media Cards (Haber & Etkinlik) Carousel Layout */
+.modern-medya-kart {
+    height: 230px !important;
+    position: relative;
+    overflow: hidden;
+    border-radius: 1.5rem !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03) !important;
+    transition: all 0.3s ease !important;
+
+    .kart-sol-serit-mavi,
+    .kart-sol-serit-yesil {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 6px;
+        background: #2563eb;
+        border-radius: 1.5rem 0 0 1.5rem;
+        transition: width 0.2s ease;
+        z-index: 1;
+    }
+
+    .resim-kutusu img {
+        transition: transform 0.4s ease;
+    }
+
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+
+        .kart-sol-serit-mavi,
+        .kart-sol-serit-yesil {
+            width: 8px;
+        }
+
+        .resim-kutusu img {
+            transform: scale(1.04);
+        }
+    }
+}
+
+.limit-text-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.limit-text-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.etkinlik-etiket {
+    background: #e6f4ea;
+    color: #10b981;
+    font-size: 0.7rem;
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: 6px;
+    text-transform: uppercase;
+}
+
+/* Shared Media Carousel Style (Arrow & Fading Overlays) */
+::ng-deep .custom-haber-carousel,
+::ng-deep .custom-etkinlik-carousel {
+    position: relative;
+    padding: 0 52px !important;
+
+    @media (max-width: 768px) {
+        padding: 0 40px !important;
+    }
+
+    .p-carousel-content {
+        position: relative;
+    }
+
+    /* Left & Right Fading Overlays */
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 60px;
+        height: 100%;
+        background: linear-gradient(to right, rgba(255, 255, 255, 0.95) 30%, rgba(255, 255, 255, 0));
+        z-index: 2;
+        pointer-events: none;
+
+        @media (max-width: 768px) {
+            width: 44px;
+        }
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 60px;
+        height: 100%;
+        background: linear-gradient(to left, rgba(255, 255, 255, 0.95) 30%, rgba(255, 255, 255, 0));
+        z-index: 2;
+        pointer-events: none;
+
+        @media (max-width: 768px) {
+            width: 44px;
+        }
+    }
+
+    /* PrimeNG v21: prev/next butonlar doğrudan button elementi */
+    .p-carousel-prev-button,
+    .p-carousel-next-button {
+        position: absolute !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        width: 42px !important;
+        height: 42px !important;
+        min-width: 42px !important;
+        padding: 0 !important;
+        background: #ffffff !important;
+        border: none !important;
+        border-radius: 50% !important;
+        box-shadow: 0 4px 14px rgba(15, 23, 42, 0.12) !important;
+        color: #334155 !important;
+        z-index: 25 !important;
+        opacity: 1 !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        cursor: pointer !important;
+        pointer-events: auto !important;
+        transition: all 0.25s ease !important;
+
+        @media (max-width: 768px) {
+            width: 34px !important;
+            height: 34px !important;
+            min-width: 34px !important;
+        }
+
+        svg, span, i {
+            width: 1.1rem !important;
+            height: 1.1rem !important;
+            color: #334155 !important;
+            fill: #334155 !important;
+            display: block !important;
+            flex-shrink: 0 !important;
+        }
+
+        &:hover {
+            background: #f8fafc !important;
+            box-shadow: 0 6px 18px rgba(15, 23, 42, 0.16) !important;
+            transform: translateY(-50%) scale(1.06) !important;
+            color: #0f172a !important;
+
+            svg, span, i {
+                color: #0f172a !important;
+                fill: #0f172a !important;
+            }
+        }
+
+        &:focus-visible {
+            outline: 2px solid #94a3b8 !important;
+            outline-offset: 2px !important;
+        }
+    }
+
+    .p-carousel-prev-button {
+        left: 4px !important;
+    }
+
+    .p-carousel-next-button {
+        right: 4px !important;
+    }
+
+    .p-carousel-indicators {
+        display: none !important;
+    }
+}
+
+/* ===================================================================
+   ANA SAYFA GÖVDE — TEK BEYAZ ZEMIN LAYOUT
+   =================================================================== */
+
+.anasayfa-govde {
+    background: #ffffff;
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 0 24px;
+
+    @media (min-width: 1440px) {
+        padding: 0 40px;
+    }
+}
+
+.govde-section {
+    padding: 56px 0;
+}
+
+/* Modern ince ayırıcı çizgi */
+.govde-ayirici {
+    height: 1px;
+    background: linear-gradient(to right, transparent, #d1fae5 30%, #a7f3d0 50%, #d1fae5 70%, transparent);
+    margin: 0;
+}
+
+/* Bölüm başlık alanı */
+.govde-section-baslik {
+    text-align: center;
+    margin-bottom: 40px;
+
+    h2 {
+        font-family: 'Outfit', sans-serif;
+        font-size: clamp(1.6rem, 3vw, 2.4rem);
+        font-weight: 800;
+        color: #022c22;
+        margin: 8px 0 10px;
+        line-height: 1.2;
+    }
+
+    p {
+        font-family: 'Inter', sans-serif;
+        font-size: 15px;
+        color: #667085;
+        margin: 0;
+        max-width: 480px;
+        margin-inline: auto;
+        line-height: 1.65;
+    }
+}
+
+/* Badge (tüm bölümlerde aynı stil) */
+.govde-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 14px;
+    border-radius: 9999px;
+    background: #f0fdf4;
+    border: 1px solid #a7f3d0;
+    color: #047857;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+}
+
+/* BİRİMLERİMİZ GRID */
+.birim-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+}
+
+.birim-kart {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 22px;
+    background: #ffffff;
+    border: 1px solid #e4fdf3;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+
+    .birim-ikon {
+        flex-shrink: 0;
+        width: 48px;
+        height: 48px;
+        border-radius: 14px;
+        background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #059669;
+        font-size: 1.2rem;
+        transition: all 0.3s ease;
+    }
+
+    h3 {
+        font-family: 'Outfit', sans-serif;
+        font-size: 15px;
+        font-weight: 700;
+        color: #022c22;
+        margin: 0 0 3px;
+    }
+
+    p {
+        font-family: 'Inter', sans-serif;
+        font-size: 12px;
+        color: #667085;
+        margin: 0;
+        line-height: 1.5;
+    }
+
+    .birim-ok {
+        margin-left: auto;
+        flex-shrink: 0;
+        color: #d1d5db;
+        font-size: 0.8rem;
         transition: all 0.3s ease;
     }
 
     &:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08) !important;
-        border-color: rgba(16, 185, 129, 0.4) !important;
+        border-color: #6ee7b7;
+        box-shadow: 0 8px 24px rgba(16, 185, 129, 0.08);
+        transform: translateY(-2px);
 
-        .etkinlik-sol-serit {
-            width: 22px !important;
-            background: linear-gradient(180deg, #34d399 0%, #059669 100%) !important;
+        .birim-ikon {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: #ffffff;
+        }
+
+        .birim-ok {
+            color: #10b981;
+            transform: translateX(3px);
         }
     }
 }
 
-/* Yumuşak Yeşil Arka Planlı Kategori Pill / Title Badge (Referans 1 Birebir) */
-.etkinlik-kategori-pill {
-    background-color: #e6f4ea !important;
-    color: #047857 !important;
-    font-weight: 800 !important;
-    padding: 0.35rem 0.9rem !important;
-    border-radius: 9999px !important;
-    font-size: 0.725rem !important;
-    letter-spacing: 0.06em !important;
-    display: inline-block !important;
-    border: none !important;
-    box-shadow: 0 2px 8px rgba(4, 120, 87, 0.06) !important;
+/* GPS BAR (küçültülmüş versiyon) */
+.gps-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    background: rgba(2, 44, 34, 0.82);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(16, 185, 129, 0.25);
+    border-radius: 20px;
+    padding: 16px 22px;
+    max-width: 700px;
+    margin-inline: auto;
+
+    @media (max-width: 640px) {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+/* "Tümünü Gör" butonu */
+.tumu-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 11px 26px;
+    border-radius: 9999px;
+    border: 1.5px solid #10b981;
+    color: #10b981;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+    &:hover {
+        background: #10b981;
+        color: #ffffff;
+        transform: translateY(-1px);
+        box-shadow: 0 6px 20px rgba(16, 185, 129, 0.25);
+    }
+}
+
+/* --- Carousel Scrollbar Hide (Encapsulated) --- */
+::ng-deep {
+    .p-carousel,
+    .p-carousel *,
+    .p-carousel-viewport,
+    .p-carousel-viewport *,
+    .p-carousel-items-content,
+    .p-carousel-items-content * {
+        scrollbar-width: none !important;
+        -ms-overflow-style: none !important;
+        &::-webkit-scrollbar {
+            display: none !important;
+            width: 0 !important;
+            height: 0 !important;
+        }
+    }
 }
