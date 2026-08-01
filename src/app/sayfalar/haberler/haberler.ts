@@ -23,7 +23,14 @@ export class Haberler implements OnInit {
     });
 
     this.haberService.getHaberler().subscribe({
-      next: (data) => this.haberler.set(data),
+      next: (data) => {
+        const sortedData = [...(data || [])].sort((a, b) => {
+          const timeA = a.olusturmaTarihi ? new Date(a.olusturmaTarihi).getTime() : 0;
+          const timeB = b.olusturmaTarihi ? new Date(b.olusturmaTarihi).getTime() : 0;
+          return timeB - timeA || (b.id || 0) - (a.id || 0);
+        });
+        this.haberler.set(sortedData);
+      },
       error: (err) => console.error('Haberler yüklenirken hata oluştu:', err)
     });
   }

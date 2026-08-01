@@ -235,7 +235,12 @@ export class Anasayfa implements OnInit, OnDestroy {
 
     this.haberService.getHaberler().subscribe({
       next: (data: any[]) => {
-        this.haberler = data.map((h: any) => ({
+        const sorted = [...(data || [])].sort((a, b) => {
+          const timeA = a.olusturmaTarihi ? new Date(a.olusturmaTarihi).getTime() : 0;
+          const timeB = b.olusturmaTarihi ? new Date(b.olusturmaTarihi).getTime() : 0;
+          return timeB - timeA || (b.id || 0) - (a.id || 0);
+        });
+        this.haberler = sorted.map((h: any) => ({
           id: h.id,
           kategori: h.kategori,
           baslik: h.baslik,

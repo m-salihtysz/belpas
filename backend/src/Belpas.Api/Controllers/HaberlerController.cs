@@ -19,7 +19,11 @@ public class HaberlerController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Haber>>> GetHaberler()
     {
-        return await _context.Haberler.Where(h => h.Aktif).OrderByDescending(h => h.OlusturmaTarihi).ToListAsync();
+        return await _context.Haberler
+            .Where(h => h.Aktif)
+            .OrderByDescending(h => h.OlusturmaTarihi)
+            .ThenByDescending(h => h.Id)
+            .ToListAsync();
     }
 
     [HttpGet("{idOrSlug}")]
@@ -44,6 +48,11 @@ public class HaberlerController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<Haber>> PostHaber(Haber haber)
     {
+        if (haber.OlusturmaTarihi == default)
+        {
+            haber.OlusturmaTarihi = DateTime.UtcNow;
+        }
+
         _context.Haberler.Add(haber);
         await _context.SaveChangesAsync();
         return CreatedAtAction(nameof(GetHaber), new { id = haber.Id }, haber);
