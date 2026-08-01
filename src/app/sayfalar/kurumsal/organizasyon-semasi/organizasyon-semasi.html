@@ -1,35 +1,90 @@
-<section class="sayfa">
-  
-  <div class="baslik-kutusu">
-    <h1>Organizasyon Şeması</h1>
-  </div>
+<div class="kurumsal-alt-sayfa">
 
-  <div class="sema-kapsayici">
+  <!-- HERO BANNER -->
+  <section class="hero-banner-container mb-6">
+    <div class="hero-banner-bg" style="background-image: url('/images/tesisler/ormanpark.jpg');">
+      <div class="hero-overlay"></div>
+      
+      <div class="hero-curved-box p-4 md:p-6">
+        <span class="hero-badge mb-2">
+          <i class="pi pi-sitemap mr-1"></i> YÖNETİM KADROSU
+        </span>
+        <h1 class="text-3xl md:text-5xl font-black text-white m-0 mb-3 tracking-tight">Organizasyon Şeması</h1>
+        <p class="text-sm md:text-base text-white-alpha-90 m-0 line-height-3 max-w-28rem font-medium">
+          BELPAŞ A.Ş. Üst Yönetim Kurulu ve Şirket İdari Yapılanması.
+        </p>
+      </div>
+
+      <div class="hero-right-badge hidden lg:flex align-items-center gap-3 p-3 px-4 border-round-3xl bg-white-alpha-20 backdrop-blur border-1 border-white-alpha-30">
+        <div class="w-3rem h-3rem border-round-2xl bg-blue-600 text-white flex align-items-center justify-content-center shadow-2">
+          <i class="pi pi-users text-xl"></i>
+        </div>
+        <div>
+          <span class="block text-xs text-white-alpha-80 font-semibold uppercase tracking-wider">Kurumsal Yapı</span>
+          <span class="block text-sm font-bold text-white">Yönetim & İdare</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container max-w-1100px mx-auto px-4 pb-6">
     
-    <!-- 1. Kademe -->
-    <div class="sema-kart">
-      <span class="unvan">GENEL MÜDÜR</span>
-      <h2 class="isim">ERTUĞRUL ÖZCAN</h2>
-    </div>
+    <!-- ŞEMA KAPSAYICI -->
+    <div class="sema-kapsayici flex flex-column align-items-center">
 
-    <!-- 2. Kademe -->
-    <div class="sema-kart">
-      <span class="unvan">GENEL MÜDÜR YARDIMCISI</span>
-      <h2 class="isim">MUZAFFER GÜL</h2>
-    </div>
+      <!-- 1. KADEME: GENEL MÜDÜR -->
+      <div class="sema-kart genel-mudur-kart p-5 border-round-3xl bg-white border-1 border-blue-200 shadow-3 text-center mb-5 relative hover:shadow-5 transition-all w-full max-w-28rem">
+        <div class="w-4rem h-4rem border-round-2xl bg-gradient-emerald text-white flex align-items-center justify-content-center text-2xl font-bold mx-auto mb-3 shadow-2">
+          <i class="pi pi-user text-2xl"></i>
+        </div>
+        <span class="unvan-badge inline-block px-3 py-1 border-round-2xl bg-blue-50 text-blue-700 font-extrabold text-xs uppercase tracking-wider mb-2 border-1 border-blue-200">
+          GENEL MÜDÜR
+        </span>
+        <h2 class="isim text-2xl md:text-3xl font-black text-900 m-0">ERTUĞRUL ÖZCAN</h2>
+      </div>
 
-    <!-- 3. Kademe -->
-    <div class="sema-kart">
-      <span class="unvan">GENEL MÜDÜR YARDIMCISI</span>
-      <h2 class="isim">MEHMET ERDOĞAN</h2>
-    </div>
+      <div class="dikey-baglanti-cizgi"></div>
 
-    <!-- 4. Kademe -->
-    <div class="sema-kart">
-      <span class="unvan">GENEL MÜDÜR YARDIMCISI</span>
-      <h2 class="isim">YASİN KORKUT</h2>
+      <!-- 2. KADEME: GENEL MÜDÜR YARDIMCILARI GRID -->
+      <div class="w-full">
+        <div class="text-center mb-4">
+          <span class="text-xs font-bold text-500 uppercase tracking-widest">— GENEL MÜDÜR YARDIMCILARI —</span>
+        </div>
+
+        <div class="grid justify-content-center">
+          <div class="col-12 md:col-4 p-3">
+            <div class="sema-kart p-4 border-round-3xl bg-white border-1 border-blue-100 shadow-2 text-center h-full hover:border-blue-300 hover:shadow-4 transition-all">
+              <div class="w-3rem h-3rem border-round-2xl bg-blue-50 text-blue-600 flex align-items-center justify-content-center text-xl font-bold mx-auto mb-3 border-1 border-blue-200">
+                <i class="pi pi-user-check"></i>
+              </div>
+              <span class="unvan text-xs font-bold text-500 uppercase tracking-wider block mb-1">GENEL MÜDÜR YARDIMCISI</span>
+              <h3 class="isim text-xl font-black text-900 m-0">MUZAFFER GÜL</h3>
+            </div>
+          </div>
+
+          <div class="col-12 md:col-4 p-3">
+            <div class="sema-kart p-4 border-round-3xl bg-white border-1 border-blue-100 shadow-2 text-center h-full hover:border-blue-300 hover:shadow-4 transition-all">
+              <div class="w-3rem h-3rem border-round-2xl bg-blue-50 text-blue-600 flex align-items-center justify-content-center text-xl font-bold mx-auto mb-3 border-1 border-blue-200">
+                <i class="pi pi-user-check"></i>
+              </div>
+              <span class="unvan text-xs font-bold text-500 uppercase tracking-wider block mb-1">GENEL MÜDÜR YARDIMCISI</span>
+              <h3 class="isim text-xl font-black text-900 m-0">MEHMET ERDOĞAN</h3>
+            </div>
+          </div>
+
+          <div class="col-12 md:col-4 p-3">
+            <div class="sema-kart p-4 border-round-3xl bg-white border-1 border-blue-100 shadow-2 text-center h-full hover:border-blue-300 hover:shadow-4 transition-all">
+              <div class="w-3rem h-3rem border-round-2xl bg-blue-50 text-blue-600 flex align-items-center justify-content-center text-xl font-bold mx-auto mb-3 border-1 border-blue-200">
+                <i class="pi pi-user-check"></i>
+              </div>
+              <span class="unvan text-xs font-bold text-500 uppercase tracking-wider block mb-1">GENEL MÜDÜR YARDIMCISI</span>
+              <h3 class="isim text-xl font-black text-900 m-0">YASİN KORKUT</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
 
   </div>
-
-</section>
+</div>

@@ -35,7 +35,7 @@ export class EventService {
       tarih: '1 Ağustos 2026',
       saat: '19:00',
       konum: 'Sakarya Millet Bahçesi Kıraathanesi',
-      resimUrl: '/images/millet-kiraathanesi.png',
+      resimUrl: '/images/Millet_Kıraathanesi.jpg',
       kontenjan: '150 Kişi',
       ucretsiz: true,
       populer: true
@@ -49,7 +49,7 @@ export class EventService {
       tarih: '3 Ağustos 2026',
       saat: '09:00',
       konum: 'Ormanpark Tesis Bahçesi',
-      resimUrl: '/images/ormanpark.png',
+      resimUrl: '/images/OrmanPark.jpg',
       kontenjan: '200 Kişi',
       ucretsiz: false,
       populer: true
@@ -63,7 +63,7 @@ export class EventService {
       tarih: '5 Ağustos 2026',
       saat: '10:30',
       konum: 'Acarlar Longozu Tesis Alanı',
-      resimUrl: '/images/acarlar-longozu.png',
+      resimUrl: '/images/Acarlar_Longozu.jpg',
       kontenjan: '80 Kişi',
       ucretsiz: true,
       populer: false
@@ -77,7 +77,7 @@ export class EventService {
       tarih: '8 Ağustos 2026',
       saat: '20:30',
       konum: 'Kocaali Sosyal Tesisleri Sahil Etkinlik Alanı',
-      resimUrl: '/images/kocaali-sosyal-tesisleri.png',
+      resimUrl: '/images/Kocaali_Sosyal_Tesisleri.jpg',
       kontenjan: 'Açık Alan',
       ucretsiz: true,
       populer: true
@@ -91,7 +91,7 @@ export class EventService {
       tarih: '12 Ağustos 2026',
       saat: '20:00',
       konum: 'Nehir Kafeterya Tesisleri (Erenler)',
-      resimUrl: '/images/nehir-kafeterya.png',
+      resimUrl: '/images/Erenler_Kafe.jpg',
       kontenjan: 'Tesis Kapasitesi',
       ucretsiz: true,
       populer: false

@@ -1,23 +1,89 @@
-/* --- GENEL SAYFA YAPISI --- */
-.sayfa { 
-  max-width: 1100px; 
-  margin: 0 auto; 
-  padding: 48px 24px 96px; 
-}
+.kurumsal-alt-sayfa {
+  padding-bottom: 80px;
 
-.baslik-kutusu {
-  background: linear-gradient(120deg, #e6f4ef 0%, #ffffff 60%, #d1fae5 100%);
-  border: 1px solid #a7f3d0; 
-  border-radius: 28px; 
-  padding: 40px 48px; 
-  margin-bottom: 48px;
-  
-  h1 { 
-    font-family: 'Outfit', sans-serif; 
-    font-weight: 800; 
-    font-size: 40px; 
-    color: #022c22; 
-    margin: 0; 
+  /* HERO BANNER */
+  .hero-banner-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 24px auto 48px;
+    padding: 0 16px;
+  }
+
+  .hero-banner-bg {
+    position: relative;
+    width: 100%;
+    min-height: 380px;
+    border-radius: 36px;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px;
+    box-shadow: 0 12px 40px rgba(2, 132, 199, 0.15);
+
+    @media (max-width: 768px) {
+      min-height: 320px;
+      padding: 24px;
+      border-radius: 28px;
+    }
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      110deg,
+      rgba(15, 23, 42, 0.85) 0%,
+      rgba(3, 105, 161, 0.65) 45%,
+      rgba(15, 23, 42, 0.4) 100%
+    );
+    z-index: 1;
+  }
+
+  .hero-curved-box {
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(135deg, rgba(3, 105, 161, 0.9) 0%, rgba(2, 132, 199, 0.82) 100%);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(2, 132, 199, 0.35);
+    border-radius: 32px 32px 32px 10px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+    max-width: 520px;
+
+    @media (max-width: 768px) {
+      border-radius: 24px;
+      max-width: 100%;
+    }
+
+    h1 {
+      font-family: 'Outfit', sans-serif;
+    }
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 14px;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .hero-right-badge {
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+
+    span {
+      font-family: 'Outfit', sans-serif;
+    }
   }
 }
 
@@ -31,8 +97,8 @@
 .harita-kutusu { 
   border-radius: 28px; 
   overflow: hidden; 
-  border: 1px solid #a7f3d0;
-  box-shadow: 0px 12px 32px rgba(16, 185, 129, 0.06); 
+  border: 1px solid #bfdbfe;
+  box-shadow: 0px 12px 32px rgba(2, 132, 199, 0.06); 
   
   iframe { display: block; }
 }
@@ -42,13 +108,13 @@
   align-items: center; 
   gap: 16px;
   background: #ffffff; 
-  border: 1px solid #d1fae5; 
+  border: 1px solid #dbeafe; 
   border-radius: 20px;
   padding: 24px; 
   font-family: 'Inter', sans-serif; 
   font-weight: 600; 
   color: #101828;
-  box-shadow: 0px 8px 24px rgba(16, 185, 129, 0.04);
+  box-shadow: 0px 8px 24px rgba(2, 132, 199, 0.04);
 }
 
 .iletisim-grid { 
@@ -62,24 +128,24 @@
   align-items: center; 
   gap: 16px;
   background: #ffffff; 
-  border: 1px solid #d1fae5; 
+  border: 1px solid #dbeafe; 
   border-radius: 20px;
   padding: 24px; 
   font-family: 'Inter', sans-serif; 
   font-weight: 600;
-  box-shadow: 0px 8px 24px rgba(16, 185, 129, 0.04);
+  box-shadow: 0px 8px 24px rgba(2, 132, 199, 0.04);
 }
 
 .ikon { 
   width: 48px; 
   height: 48px; 
-  background: #ecfdf5; 
+  background: #eff6ff; 
   border-radius: 14px;
   display: flex; 
   align-items: center; 
   justify-content: center;
   flex-shrink: 0;
-  svg path, svg stroke { stroke: #10b981; }
+  svg path, svg stroke { stroke: #0284c7; }
 }
 
 /* --- FORM ALANI --- */
@@ -106,7 +172,7 @@
     border: 1px solid #d0d5dd; 
     border-radius: 12px;
     font-family: 'Inter', sans-serif;
-    outline-color: #10b981;
+    outline-color: #0284c7;
   }
 
   .input-grup { 
@@ -136,7 +202,7 @@
     }
     
     a { 
-      color: #10b981; 
+      color: #0284c7; 
       font-weight: 600; 
       text-decoration: none; 
     }
@@ -145,14 +211,14 @@
   .btn-gonder {
     width: 100%; 
     padding: 16px; 
-    background: #10b981; 
+    background: #0284c7; 
     color: white;
     border: none; 
     border-radius: 12px; 
     font-weight: 700; 
     cursor: pointer;
     transition: background 0.2s;
-    &:hover { background: #059669; }
+    &:hover { background: #0284c7; }
   }
 }
 

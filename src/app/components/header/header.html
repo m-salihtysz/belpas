@@ -1,10 +1,10 @@
 <header class="custom-header flex align-items-center justify-content-between fixed top-0 left-0 w-full z-5">
     <!-- Logo -->
-    <a routerLink="/" class="flex align-items-center gap-2 text-decoration-none z-2">
-        <div class="font-bold text-3xl text-white tracking-wider">
-            <span>BEL</span><span class="text-white-alpha-70">PAŞ</span>
+    <a routerLink="/" class="flex align-items-center gap-3 text-decoration-none z-2">
+        <div class="header-logo-bg flex align-items-center justify-content-center">
+            <img src="/images/belpas_logo.png" alt="BELPAŞ Logo" class="header-logo-img">
         </div>
-        <div class="hidden md:block text-xs text-white-alpha-80 line-height-1 border-left-1 border-white-alpha-30 pl-2 ml-2">
+        <div class="hidden md:block text-xs text-white-alpha-90 line-height-1 border-left-1 border-white-alpha-30 pl-3 font-semibold">
             Sakarya Büyükşehir<br>Belediyesi
         </div>
     </a>
@@ -14,8 +14,6 @@
         <a routerLink="/" class="nav-pill" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Ana Sayfa</a>
 
         <a routerLink="/tesisler" class="nav-pill" routerLinkActive="active">Birimlerimiz</a>
-
-        <a routerLink="/kurumsal/etkinlikler" class="nav-pill" routerLinkActive="active">Etkinliklerimiz</a>
 
         <a routerLink="/haberler" class="nav-pill" routerLinkActive="active">Haberler</a>
 
@@ -29,19 +27,6 @@
                 <a routerLink="/kurumsal/organizasyon-semasi" class="dropdown-item block px-4 py-2 text-white-alpha-90 hover:text-white hover:bg-white-alpha-10 text-decoration-none transition-colors text-sm font-medium">Organizasyon Şeması</a>
                 <a routerLink="/kurumsal/kurumsal-kimlik" class="dropdown-item block px-4 py-2 text-white-alpha-90 hover:text-white hover:bg-white-alpha-10 text-decoration-none transition-colors text-sm font-medium">Kurumsal Kimlik</a>
                 <a routerLink="/kurumsal/faaliyet-raporu" class="dropdown-item block px-4 py-2 text-white-alpha-90 hover:text-white hover:bg-white-alpha-10 text-decoration-none transition-colors text-sm font-medium">Faaliyet Raporu</a>
-            </div>
-        </div>
-
-        <!-- Satın Alma Dropdown -->
-        <div class="nav-item-dropdown relative group">
-            <a routerLink="/ihaleler/ilanlar" class="nav-pill flex align-items-center gap-1 cursor-pointer" routerLinkActive="active">
-                Satın Alma <i class="pi pi-angle-down text-xs ml-1 opacity-70"></i>
-            </a>
-            <div class="dropdown-menu absolute left-0 top-100 py-2 border-round-2xl shadow-8 border-1 border-white-alpha-15 min-w-16rem z-5">
-                <a routerLink="/ihaleler/ilanlar" class="dropdown-item block px-4 py-2 text-white-alpha-90 hover:text-white hover:bg-white-alpha-10 text-decoration-none transition-colors text-sm font-medium">Satın Alma İlanları</a>
-                <a routerLink="/ihaleler/komisyon" class="dropdown-item block px-4 py-2 text-white-alpha-90 hover:text-white hover:bg-white-alpha-10 text-decoration-none transition-colors text-sm font-medium">Satın Alma Komisyonu</a>
-                <a routerLink="/ihaleler/kriterler" class="dropdown-item block px-4 py-2 text-white-alpha-90 hover:text-white hover:bg-white-alpha-10 text-decoration-none transition-colors text-sm font-medium">Satın Alma Kriterleri</a>
-                <a routerLink="/ihaleler/surec" class="dropdown-item block px-4 py-2 text-white-alpha-90 hover:text-white hover:bg-white-alpha-10 text-decoration-none transition-colors text-sm font-medium">Satın Alma Süreci</a>
             </div>
         </div>
 
@@ -65,7 +50,6 @@
 <div class="mobile-nav lg:hidden" [class.mobile-nav-open]="menuAcik">
     <a routerLink="/" class="mobile-nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="menuAcik = false">Ana Sayfa</a>
     <a routerLink="/tesisler" class="mobile-nav-link" routerLinkActive="active" (click)="menuAcik = false">Birimlerimiz</a>
-    <a routerLink="/kurumsal/etkinlikler" class="mobile-nav-link" routerLinkActive="active" (click)="menuAcik = false">Etkinliklerimiz</a>
     <a routerLink="/haberler" class="mobile-nav-link" routerLinkActive="active" (click)="menuAcik = false">Haberler</a>
     <div class="mobile-nav-group">
         <span class="mobile-nav-group-label">Kurumsal</span>
@@ -73,13 +57,6 @@
         <a routerLink="/kurumsal/organizasyon-semasi" class="mobile-nav-link mobile-nav-sub" routerLinkActive="active" (click)="menuAcik = false">Organizasyon Şeması</a>
         <a routerLink="/kurumsal/kurumsal-kimlik" class="mobile-nav-link mobile-nav-sub" routerLinkActive="active" (click)="menuAcik = false">Kurumsal Kimlik</a>
         <a routerLink="/kurumsal/faaliyet-raporu" class="mobile-nav-link mobile-nav-sub" routerLinkActive="active" (click)="menuAcik = false">Faaliyet Raporu</a>
-    </div>
-    <div class="mobile-nav-group">
-        <span class="mobile-nav-group-label">Satın Alma</span>
-        <a routerLink="/ihaleler/ilanlar" class="mobile-nav-link mobile-nav-sub" routerLinkActive="active" (click)="menuAcik = false">Satın Alma İlanları</a>
-        <a routerLink="/ihaleler/komisyon" class="mobile-nav-link mobile-nav-sub" routerLinkActive="active" (click)="menuAcik = false">Satın Alma Komisyonu</a>
-        <a routerLink="/ihaleler/kriterler" class="mobile-nav-link mobile-nav-sub" routerLinkActive="active" (click)="menuAcik = false">Satın Alma Kriterleri</a>
-        <a routerLink="/ihaleler/surec" class="mobile-nav-link mobile-nav-sub" routerLinkActive="active" (click)="menuAcik = false">Satın Alma Süreci</a>
     </div>
     <a routerLink="/iletisim" class="mobile-nav-link" routerLinkActive="active" (click)="menuAcik = false">İletişim</a>
 </div>

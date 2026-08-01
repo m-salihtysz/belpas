@@ -1,146 +1,162 @@
-.sayfa {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 48px 24px 96px;
+.kurumsal-alt-sayfa {
+  padding-bottom: 80px;
 
-  /* Senin Gönderdiğin Orijinal Başlık Kutusu */
-  .baslik-kutusu {
-    background: linear-gradient(120deg, #e6f4ef 0%, #ffffff 60%, #d1fae5 100%);
-    border: 1px solid #a7f3d0;
-    border-radius: 28px;
-    padding: 40px 48px;
-    margin-bottom: 32px;
-
-    h1 {
-      font-family: 'Outfit', sans-serif;
-      font-weight: 800;
-      font-size: clamp(28px, 4vw, 40px);
-      color: #022c22;
-      margin: 0;
-    }
+  /* HERO BANNER */
+  .hero-banner-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 24px auto 48px;
+    padding: 0 16px;
   }
 
-  /* Yeni Şablona Uygun Uyumlu Ana Kart */
-  .ana-kart {
-    background: #ffffff;
-    border: 1px solid #d1fae5; /* Başlıkla aynı kenarlık */
-    border-radius: 28px; /* Şablonun 28px kıvrımları kullanıldı */
-    padding: 48px;
-    min-height: 400px;
+  .hero-banner-bg {
+    position: relative;
+    width: 100%;
+    min-height: 380px;
+    border-radius: 36px;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px;
+    box-shadow: 0 12px 40px rgba(2, 132, 199, 0.15);
 
-    .logo-alani {
-      margin-bottom: 60px;
-      img {
-        height: 60px;
-        object-fit: contain;
-      }
-    }
-
-    /* İndirme Kartı ve Ortalama */
-    .indirme-karti-kapsayici {
-      display: flex;
-      justify-content: center;
-      width: 100%;
-    }
-
-    .indirme-karti {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-      max-width: 650px;
-      background: #ffffff;
-      border: 1px solid #e6f4ef;
-      border-radius: 18px; /* Gönderdiğin şablondaki 18px değerini kullandım */
-      padding: 20px 24px;
-      box-shadow: 0px 12px 32px rgba(16, 185, 129, 0.06); /* Çok hafif, modern bir gölge */
-
-      .sol-bilgi {
-        display: flex;
-        align-items: center;
-        gap: 16px;
-
-        .ikon-kutusu {
-          background-color: #ecfdf5;
-          width: 52px;
-          height: 52px;
-          border-radius: 12px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-
-          svg {
-            width: 24px;
-            height: 24px;
-          }
-        }
-
-        .metin {
-          font-family: 'Inter', sans-serif;
-          
-          h3 {
-            margin: 0 0 4px 0;
-            font-size: 16px;
-            font-weight: 700;
-            color: #101828;
-          }
-          p {
-            margin: 0;
-            font-size: 13px;
-            color: #667085; /* Şablondaki standart gri renk */
-            font-weight: 500;
-          }
-        }
-      }
-
-      /* İndir Butonu Link Görünümü */
-      .btn-indir {
-        font-family: 'Inter', sans-serif;
-        background-color: #10b981;
-        color: #ffffff;
-        text-decoration: none;
-        display: inline-block;
-        text-align: center;
-        border-radius: 100px;
-        padding: 12px 28px;
-        font-size: 14px;
-        font-weight: 600;
-        transition: all 0.2s ease;
-        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
-
-        &:hover {
-          background-color: #059669;
-          transform: translateY(-2px);
-          box-shadow: 0 6px 16px rgba(16, 185, 129, 0.35);
-        }
-      }
-    }
-  }
-}
-
-/* Telefonlar İçin Mobil Uyum (Responsive) */
-@media (max-width: 640px) {
-  .sayfa {
-    padding: 24px 16px 64px;
-
-    .baslik-kutusu {
-      padding: 28px 24px;
-      border-radius: 20px;
-    }
-    
-    .ana-kart {
+    @media (max-width: 768px) {
+      min-height: 320px;
       padding: 24px;
-      border-radius: 20px;
+      border-radius: 28px;
+    }
+  }
 
-      /* Mobilde yan yana sığmayacağı için alt alta alıyoruz */
-      .indirme-karti {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 20px;
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      110deg,
+      rgba(15, 23, 42, 0.85) 0%,
+      rgba(3, 105, 161, 0.65) 45%,
+      rgba(15, 23, 42, 0.4) 100%
+    );
+    z-index: 1;
+  }
 
-        .btn-indir {
-          width: 100%; /* Buton mobilde tam genişlik kaplasın */
-        }
+  .hero-curved-box {
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(135deg, rgba(3, 105, 161, 0.9) 0%, rgba(2, 132, 199, 0.82) 100%);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(2, 132, 199, 0.35);
+    border-radius: 32px 32px 32px 10px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+    max-width: 520px;
+
+    @media (max-width: 768px) {
+      border-radius: 24px;
+      max-width: 100%;
+    }
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 14px;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .hero-right-badge {
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  }
+
+  /* --- DOKÜMAN / RAPOR KARTI STİLLERİ --- */
+  .dokuman-kart-wrapper {
+    background: #ffffff;
+    border: 1px solid rgba(2, 132, 199, 0.2);
+    border-radius: 28px;
+    padding: 32px;
+    box-shadow: 0 10px 30px rgba(2, 132, 199, 0.06);
+    transition: all 0.3s ease;
+
+    @media (max-width: 768px) {
+      padding: 20px;
+      border-radius: 22px;
+    }
+  }
+
+  .dokuman-ic-kutusu {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 24px;
+    padding: 24px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 20px;
+    }
+  }
+
+  .dokuman-ikon-kutusu {
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #0284c7 0%, #0284c7 100%);
+    color: #ffffff !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 0 6px 16px rgba(2, 132, 199, 0.3);
+  }
+
+  .dokuman-indir-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 28px;
+    border-radius: 9999px;
+    background: linear-gradient(135deg, #0284c7 0%, #0284c7 100%) !important;
+    color: #ffffff !important;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none !important;
+    box-shadow: 0 6px 20px rgba(2, 132, 199, 0.35);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    white-space: nowrap;
+    border: none;
+    cursor: pointer;
+
+    i {
+      font-size: 1rem;
+      color: #ffffff !important;
+      transition: transform 0.3s ease;
+    }
+
+    &:hover {
+      background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%) !important;
+      color: #ffffff !important;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(2, 132, 199, 0.45);
+
+      i {
+        transform: translateY(2px);
       }
     }
   }

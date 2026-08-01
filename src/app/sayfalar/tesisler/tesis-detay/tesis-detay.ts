@@ -1,6 +1,7 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { FacilityService, Tesis, MenuKategori } from '../../../services/facility.service';
 import { SeoService } from '../../../services/seo.service'; 
 
@@ -15,6 +16,7 @@ export class TesisDetay implements OnInit {
   private route = inject(ActivatedRoute);
   private tesisService = inject(FacilityService);
   private seoService = inject(SeoService); 
+  private sanitizer = inject(DomSanitizer);
 
   tesis = signal<Tesis | null>(null);
   menuKategorileri = signal<MenuKategori[]>([]);
@@ -25,6 +27,12 @@ export class TesisDetay implements OnInit {
   yukleniyor = signal(true);
   hata = signal(false);
   resimHata = signal(false);
+
+  getSafeMenuPdfUrl(): SafeResourceUrl | null {
+    const url = this.tesis()?.menuPdfUrl;
+    if (!url) return null;
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
 
   onResimHata(): void {
     this.resimHata.set(true);
@@ -57,7 +65,7 @@ export class TesisDetay implements OnInit {
     this.tesisService.getTesis(param).subscribe({
       next: (data) => {
         this.tesis.set(data);
-        this.menuKategorileri.set(this.tesisService.getMockMenuForFacility(data.id));
+        this.menuKategorileri.set(this.tesisService.getMockMenuForFacility(data.id, data.slug));
         this.yukleniyor.set(false);
 
         if (data) {
@@ -73,13 +81,14 @@ export class TesisDetay implements OnInit {
       error: (err) => {
         console.warn('Tesis backend ulaşılamadı, yerel veri ve menü gösteriliyor:', err);
         const numericId = Number(param) || 1;
+        const currentSlug = typeof param === 'string' ? param : 'belpas-tesis';
         // 12 Tesis için Varsayılan Yedek Veri ve Menü Yükleme
         const yedekTesis: Tesis = {
           id: numericId,
           ad: 'BELPAŞ Sosyal Tesisi',
-          slug: typeof param === 'string' ? param : 'belpas-tesis',
+          slug: currentSlug,
           kategori: 'Sosyal Tesis',
-          renk: '#10B981',
+          renk: '#0284C7',
           harf: 'B',
           aciklama: 'Sakarya Büyükşehir Belediyesi iştiraki BELPAŞ güvencesiyle kaliteli ve leziz ikramlar sunulan sosyal tesisimizdir.',
           adres: 'Sakarya Büyükşehir Belediyesi Tesisler Bölgesi',
@@ -91,7 +100,7 @@ export class TesisDetay implements OnInit {
           aktif: true
         };
         this.tesis.set(yedekTesis);
-        this.menuKategorileri.set(this.tesisService.getMockMenuForFacility(numericId));
+        this.menuKategorileri.set(this.tesisService.getMockMenuForFacility(numericId, currentSlug));
         this.hata.set(false);
         this.yukleniyor.set(false);
       }

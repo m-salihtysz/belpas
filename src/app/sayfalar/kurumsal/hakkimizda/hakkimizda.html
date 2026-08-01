@@ -1,55 +1,67 @@
-<section class="hakkimizda">
+<div class="hakkimizda-sayfasi">
 
-  <div class="baslik-kutusu">
-    <h1>Hakkımızda</h1>
-  </div>
-
-  <div class="istatistik-satiri">
-    @for (istatistik of istatistikler; track istatistik.etiket) {
-      <div class="istatistik-kart">
-        <span class="deger">{{ istatistik.deger }}</span>
-        <span class="etiket">{{ istatistik.etiket }}</span>
+  <!-- ─── HERO BANNER SECTION ─── -->
+  <section class="hero-banner-container mb-6">
+    <div class="hero-banner-bg" style="background-image: url('/images/tesisler/ormanpark.jpg');">
+      <div class="hero-overlay"></div>
+      
+      <!-- Sol Taraf Yuvarlatılmış Kavisli Kart -->
+      <div class="hero-curved-box p-4 md:p-6">
+        <span class="hero-badge mb-2">
+          <i class="pi pi-building mr-1"></i> KURUMSAL BİLGİLER
+        </span>
+        <h1 class="text-3xl md:text-5xl font-black text-white m-0 mb-3 tracking-tight">Hakkımızda</h1>
+        <p class="text-sm md:text-base text-white-alpha-90 m-0 line-height-3 max-w-28rem font-medium">
+          1992'den günümüze Sakarya'ya değer katan, güvenilir ve sürdürülebilir sosyal alanların öncü markası.
+        </p>
       </div>
-    }
+
+      <!-- Sağ Taraf Rozet / Kart -->
+      <div class="hero-right-badge hidden lg:flex align-items-center gap-3 p-3 px-4 border-round-3xl bg-white-alpha-20 backdrop-blur border-1 border-white-alpha-30">
+        <div class="w-3rem h-3rem border-round-2xl bg-blue-600 text-white flex align-items-center justify-content-center shadow-2">
+          <i class="pi pi-check-circle text-xl"></i>
+        </div>
+        <div>
+          <span class="block text-xs text-white-alpha-80 font-semibold uppercase tracking-wider">Hizmet Anlayışı</span>
+          <span class="block text-sm font-bold text-white">Kamu Yararı & Kalite</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SADE VE PREMİUM METİN ALANI ─── -->
+  <div class="container max-w-1000px mx-auto px-4 pb-6">
+    <div class="p-5 md:p-7 border-round-3xl bg-white border-1 border-blue-100 shadow-2">
+      
+      <div class="flex align-items-center gap-2 mb-4">
+        <span class="inline-flex align-items-center gap-1 px-3 py-1 border-round-2xl bg-blue-50 text-blue-700 border-1 border-blue-200 text-xs font-bold uppercase tracking-wider">
+          KURUMSAL YAPIMIZ VE ANLAYIŞIMIZ
+        </span>
+      </div>
+
+      <div class="text-base md:text-lg text-800 line-height-4 flex flex-column gap-4 font-medium" style="color: #334155; line-height: 1.85;">
+        <p class="m-0">
+          <strong>Belpaş Sakarya Büyükşehir Belediyesi İhtiyaç Maddeleri Pazarlama Ticaret ve Sanayi A.Ş.</strong>, Sakarya Büyükşehir Belediyesi’nin %100 iştiraki olarak, şehir yaşamına değer katan nitelikli, güvenilir ve erişilebilir sosyal alanlar oluşturmak amacıyla 1992 yılında kurulmuştur. <strong>700.000.000 TL’lik</strong> güçlü sermaye yapısıyla Belpaş; kamu yararını gözeten, sürdürülebilir ve yenilikçi bir işletmecilik anlayışının Sakarya’daki temsilcisidir.
+        </p>
+
+        <p class="m-0">
+          Belpaş, Sakarya’nın en stratejik noktalarında misafirlerine eşsiz lokasyonlar, taze lezzetler ve samimi bir hizmet sunarak şehir yaşamına keyif ve konfor katan bir markadır. Şehrin parklarından sosyal donatı alanlarına, rekreasyon projelerinden stratejik hizmet noktalarına kadar uzanan geniş hizmet ağıyla; ulaşımı kolay, ferah ve modern sosyal alanlar oluşturarak kentin sosyal dokusunu herkes için erişilebilir kılmayı amaçlamaktadır.
+        </p>
+
+        <p class="m-0">
+          Şirketimizin temel faaliyet alanı, Sakarya genelinde yaygınlaşan sosyal tesis ve kafe işletmeciliğidir. Bunun yanı sıra, kentin geleceğine yön veren geniş kapsamlı rekreasyon projeleri ve yatırım faaliyetleriyle şehrin ekonomik ve sosyal kalkınmasına öncülük etmektedir. Tüm operasyonlarında "kalite ve güven" ilkelerini esas alan Belpaş; güvenilir tedarik zinciri ve titiz kalite standartlarıyla, Sakarya halkına yüksek nitelikli hizmeti en uygun koşullarda sunmayı temel sorumluluk kabul eder.
+        </p>
+
+        <p class="m-0">
+          Operasyonel süreçlerinde modern dönüşümü ve profesyonel yönetim anlayışını benimseyen şirketimiz; misafir memnuniyetini düzenli olarak ölçümlemekte, geri bildirimleri hizmet kalitesine yansıtmakta ve güler yüzlü hizmeti kurumsal kültürünün merkezinde tutmaktadır. Belpaş için her temas noktası, misafirlerine güvenilir ve ayrıcalıklı bir deneyim sunma alanıdır.
+        </p>
+
+        <p class="m-0">
+          Belpaş A.Ş., kamu yararını temel alan işletmecilik modeliyle; hizmet ve kâr dengesini hassasiyetle koruyan, kaynaklarını Sakarya’nın geleceği için etkin kullanan ve elde ettiği katma değeri yeniden vatandaşın hizmetine yatırıma dönüştüren sürdürülebilir bir yapıya sahiptir.
+        </p>
+      </div>
+
+    </div>
   </div>
 
-  <div class="icerik">
-    <p>
-      <strong>Belpaş Sakarya Büyükşehir Belediyesi İhtiyaç Maddeleri Pazarlama Ticaret ve Sanayi A.Ş.</strong>,
-      Sakarya Büyükşehir Belediyesi'nin %100 iştiraki olarak, şehir yaşamına değer katan nitelikli, güvenilir
-      ve erişilebilir sosyal alanlar oluşturmak amacıyla 1992 yılında kurulmuştur.
-      <strong>700.000.000 TL'lik</strong> güçlü sermaye yapısıyla Belpaş; kamu yararını gözeten, sürdürülebilir
-      ve yenilikçi bir işletmecilik anlayışının Sakarya'daki temsilcisidir.
-    </p>
-
-    <p>
-      Belpaş, Sakarya'nın en stratejik noktalarında misafirlerine eşsiz lokasyonlar, taze lezzetler ve samimi
-      bir hizmet sunarak şehir yaşamına keyif ve konfor katan bir markadır. Şehrin parklarından sosyal donatı
-      alanlarına, rekreasyon projelerinden stratejik hizmet noktalarına kadar uzanan geniş hizmet ağıyla;
-      ulaşımı kolay, ferah ve modern <strong>sosyal alanlar oluşturarak</strong> kentin sosyal dokusunu herkes
-      için erişilebilir kılmayı amaçlamaktadır.
-    </p>
-
-    <p>
-      Şirketimizin temel faaliyet alanı, Sakarya genelinde yaygınlaşan sosyal tesis ve kafe işletmeciliğidir.
-      Bunun yanı sıra, kentin geleceğine yön veren geniş kapsamlı rekreasyon projeleri ve yatırım faaliyetleriyle
-      şehrin ekonomik ve sosyal kalkınmasına öncülük etmektedir. Tüm operasyonlarında "kalite ve güven"
-      ilkelerini esas alan Belpaş; güvenilir tedarik zinciri ve titiz kalite standartlarıyla, Sakarya halkına
-      yüksek nitelikli hizmeti en uygun koşullarda sunmayı temel sorumluluk kabul eder.
-    </p>
-
-    <p>
-      Operasyonel süreçlerinde modern dönüşümü ve profesyonel yönetim anlayışını benimseyen şirketimiz;
-      misafir memnuniyetini düzenli olarak ölçümlemekte, geri bildirimleri hizmet kalitesine yansıtmakta ve
-      güler yüzlü hizmeti kurumsal kültürünün merkezinde tutmaktadır. Belpaş için her temas noktası,
-      misafirlerine güvenilir ve ayrıcalıklı bir deneyim sunma alanıdır.
-    </p>
-
-    <p>
-      Belpaş A.Ş., kamu yararını temel alan işletmecilik modeliyle; hizmet ve kâr dengesini hassasiyetle
-      koruyan, kaynaklarını Sakarya'nın geleceği için etkin kullanan ve elde ettiği katma değeri yeniden
-      vatandaşın hizmetine yatırıma dönüştüren sürdürülebilir bir yapıya sahiptir.
-    </p>
-  </div>
-
-</section>
+</div>

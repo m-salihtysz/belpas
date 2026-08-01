@@ -11,9 +11,39 @@ export class Hakkimizda implements OnInit {
   private seoService = inject(SeoService);
 
   istatistikler = [
-    { deger: '1992', etiket: 'Kuruluş Yılı' },
-    { deger: '%100', etiket: 'Sakarya B.Şehir Belediyesi İştiraki' },
-    { deger: '700.000.000 TL', etiket: 'Sermaye Yapısı' }
+    { deger: '1992', etiket: 'Kuruluş Yılı', ikon: 'pi-history', aciklama: '30 yılı aşkın tecrübe' },
+    { deger: '%100', etiket: 'Sakarya B.Şehir İştiraki', ikon: 'pi-building', aciklama: 'Halkın hizmetinde' },
+    { deger: '700M ₺', etiket: 'Sermaye Yapısı', ikon: 'pi-chart-line', aciklama: 'Güçlü mali yapı' },
+    { deger: '36+', etiket: 'Hizmet Noktası', ikon: 'pi-map-marker', aciklama: 'Şehrin her yerinde' }
+  ];
+
+  degerlerimiz = [
+    { 
+      baslik: 'Misyonumuz', 
+      ikon: 'pi-compass', 
+      renk: 'emerald',
+      aciklama: 'Sakarya halkına güvenilir, kaliteli, hijyenik ve ekonomik sosyal alanlar sunarak kentin yaşam kalitesini artırmak.' 
+    },
+    { 
+      baslik: 'Vizyonumuz', 
+      ikon: 'pi-eye', 
+      renk: 'teal',
+      aciklama: 'Sosyal belediyecilik ve kamu iştirakleri alanında Türkiye\'ye örnek gösterilen, yenilikçi ve sürdürülebilir bir kurumsal marka olmak.' 
+    },
+    { 
+      baslik: 'Temel Değerlerimiz', 
+      ikon: 'pi-shield', 
+      renk: 'cyan',
+      aciklama: 'Kamu yararı, tam şeffaflık, güler yüzlü hizmet, yüksek kalite standartları ve çevre dostu sürdürülebilir işletmecilik.' 
+    }
+  ];
+
+  ozellikler = [
+    'Kamu Yararını Temel Alan İşletmecilik Anlayışı',
+    'Yüksek Hijyen ve Kalite Standartları',
+    'Erişilebilir ve Ulaşılabilir Sosyal Alanlar',
+    'Sürdürülebilir ve Doğa Dostu Yatırımlar',
+    'Sakarya\'nın Yerel Üreticilerine Destek'
   ];
 
   ngOnInit(): void {

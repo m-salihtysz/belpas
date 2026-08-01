@@ -28,6 +28,7 @@ interface Tesis {
   renk: string;
   harf: string;
   resimUrl?: string;
+  logoUrl?: string;
 }
 
 interface Haber {
@@ -97,16 +98,23 @@ export class Anasayfa implements OnInit, OnDestroy {
 
   tesisler: Tesis[] = [];
   haberler: Haber[] = [];
+  
+  // Dinamik Kent Rehberi Banner Objesi (İleride DB / API'den yüklenebilir)
+  kentRehberiBanner = {
+    rozet: 'KENT REHBERİ',
+    baslikSol: 'SAKARYA BÜYÜKŞEHİR',
+    baslikSag: 'KENT REHBERİ',
+    aciklama: 'Sakarya Büyükşehir Belediyesi ulaşım hatları, harita bilgileri ve sosyal imkanlarına tek tıkla kolayca ulaşın.',
+    gorselUrl: '/images/bottom-banner-1775830519-609.png',
+    link: 'https://rehber.sakarya.bel.tr/harita/kent/sosyal-tesisler'
+  };
 
   birimler = [
     { id: 1, ad: 'Catering & Kafeteryalar', aciklama: 'Kurumsal yemek hizmetleri ve kafeteryalarımız', ikon: 'pi-coffee', link: '/tesisler' },
     { id: 2, ad: 'Sosyal Tesisler', aciklama: 'Spor alanları, dinlenme ve rekreasyon tesisleri', ikon: 'pi-building', link: '/tesisler' },
-    { id: 3, ad: 'Satın Alma', aciklama: 'İhale duyuruları ve tedarik süreçleri', ikon: 'pi-shopping-bag', link: '/ihaleler' },
-    { id: 4, ad: 'Haberler & Duyurular', aciklama: 'Güncel kurumsal haberler ve basın açıklamaları', ikon: 'pi-megaphone', link: '/haberler' },
-    { id: 5, ad: 'Etkinlikler', aciklama: 'Kültürel ve sosyal etkinlik takvimi', ikon: 'pi-calendar', link: '/kurumsal/etkinlikler' },
-    { id: 6, ad: 'İletişim', aciklama: 'Bize ulaşın, görüş ve önerilerinizi paylaşın', ikon: 'pi-phone', link: '/iletisim' },
+    { id: 3, ad: 'Haberler & Duyurular', aciklama: 'Güncel kurumsal haberler ve basın açıklamaları', ikon: 'pi-megaphone', link: '/haberler' },
+    { id: 4, ad: 'İletişim', aciklama: 'Bize ulaşın, görüş ve önerilerinizi paylaşın', ikon: 'pi-phone', link: '/iletisim' },
   ];
-
 
   etkinlikler: any[] = [];
 
@@ -150,7 +158,7 @@ export class Anasayfa implements OnInit, OnDestroy {
   responsiveOptions = [
     {
         breakpoint: '1199px',
-        numVisible: 4,
+        numVisible: 5,
         numScroll: 1
     },
     {
@@ -164,8 +172,8 @@ export class Anasayfa implements OnInit, OnDestroy {
         numScroll: 1
     },
     {
-        breakpoint: '480px',
-        numVisible: 1,
+        breakpoint: '576px',
+        numVisible: 2,
         numScroll: 1
     }
   ];
@@ -190,6 +198,25 @@ export class Anasayfa implements OnInit, OnDestroy {
     this.startAutoplay();
   }
 
+  getEventImage(e: any): string {
+    if (e.resimUrl && e.resimUrl.includes('/images/')) {
+      return e.resimUrl;
+    }
+    if (e.id === 1 || (e.baslik && e.baslik.toLowerCase().includes('kıraathane'))) return '/images/Millet_Kıraathanesi.jpg';
+    if (e.id === 2 || (e.baslik && e.baslik.toLowerCase().includes('ormanpark'))) return '/images/OrmanPark.jpg';
+    if (e.id === 3 || (e.baslik && e.baslik.toLowerCase().includes('acarlar'))) return '/images/Acarlar_Longozu.jpg';
+    if (e.id === 4 || (e.baslik && e.baslik.toLowerCase().includes('kocaali'))) return '/images/Kocaali_Sosyal_Tesisleri.jpg';
+    if (e.id === 5 || (e.baslik && e.baslik.toLowerCase().includes('nehir'))) return '/images/Erenler_Kafe.jpg';
+    return e.resimUrl || '/images/Acarlar_Longozu.jpg';
+  }
+
+  getHaberImage(h: any): string {
+    if (h.resimUrl && h.resimUrl.includes('/images/')) return h.resimUrl;
+    if (h.id === 1) return '/images/kent_rehberi.png';
+    if (h.id === 2) return '/images/sbb_mekan.jpg';
+    return '/images/sbb_mekan.jpg';
+  }
+
   verileriYukle() {
     this.tesisService.getTesisler().subscribe({
       next: (data: any[]) => {
@@ -197,9 +224,10 @@ export class Anasayfa implements OnInit, OnDestroy {
           id: t.id,
           ad: t.ad,
           kategori: t.kategori,
-          renk: t.renk || '#10B981',
+          renk: t.renk || '#0284C7',
           harf: t.harf || t.ad.charAt(0),
-          resimUrl: t.resimUrl
+          resimUrl: t.resimUrl,
+          logoUrl: t.logoUrl
         }));
       },
       error: (err: any) => console.error('Anasayfa Tesisler yüklenirken hata oluştu:', err)
@@ -214,8 +242,8 @@ export class Anasayfa implements OnInit, OnDestroy {
           aciklama: h.ozet,
           tarih: new Date(h.olusturmaTarihi).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' }),
           link: '/haberler/' + (h.slug || h.id),
-          resimUrl: h.resimUrl
-        })).slice(0, 3);
+          resimUrl: this.getHaberImage(h)
+        })).slice(0, 4);
       },
       error: (err: any) => console.error('Anasayfa Haberler yüklenirken hata oluştu:', err)
     });
@@ -230,9 +258,9 @@ export class Anasayfa implements OnInit, OnDestroy {
           saat: e.saat,
           konum: e.konum,
           ozet: e.ozet,
-          resimUrl: e.resimUrl,
+          resimUrl: this.getEventImage(e),
           link: '/kurumsal/etkinlikler'
-        })).slice(0, 3);
+        })).slice(0, 4);
       },
       error: (err: any) => console.error('Anasayfa Etkinlikler yüklenirken hata oluştu:', err)
     });

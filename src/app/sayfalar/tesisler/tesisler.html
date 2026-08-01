@@ -1,18 +1,38 @@
-<section class="sayfa">
-  
-  <!-- Yeni Şablon Başlık Kutusu -->
-  <div class="baslik-kutusu">
-    <span class="tesis-badge">
-      <i class="pi pi-building mr-1" style="font-size:0.7rem;"></i> SOSYAL TESİSLER
-    </span>
-    <h1>Birimlerimiz</h1>
-    <p class="alt-baslik">Sakarya genelinde hizmet veren birimlerimizi keşfedin, konum ve bilgilere kolayca ulaşın.</p>
-  </div>
+<div class="kurumsal-alt-sayfa">
+
+  <!-- HERO BANNER -->
+  <section class="hero-banner-container mb-6">
+    <div class="hero-banner-bg" style="background-image: url('/images/sbb_mekan.jpg');">
+      <div class="hero-overlay"></div>
+      
+      <div class="hero-curved-box p-4 md:p-6">
+        <span class="hero-badge mb-2">
+          <i class="pi pi-building mr-1"></i> SOSYAL TESİSLER
+        </span>
+        <h1 class="text-3xl md:text-5xl font-black text-white m-0 mb-3 tracking-tight">Birimlerimiz</h1>
+        <p class="text-sm md:text-base text-white-alpha-90 m-0 line-height-3 max-w-28rem font-medium">
+          Sakarya genelinde hizmet veren birimlerimizi keşfedin, konum ve bilgilere kolayca ulaşın.
+        </p>
+      </div>
+
+      <div class="hero-right-badge hidden lg:flex align-items-center gap-3 p-3 px-4 border-round-3xl bg-white-alpha-20 backdrop-blur border-1 border-white-alpha-30">
+        <div class="w-3rem h-3rem border-round-2xl bg-blue-600 text-white flex align-items-center justify-content-center shadow-2">
+          <i class="pi pi-compass text-xl"></i>
+        </div>
+        <div>
+          <span class="block text-xs text-white-alpha-80 font-semibold uppercase tracking-wider">BELPAŞ Tesisleri</span>
+          <span class="block text-sm font-bold text-white">36+ Aktif Hizmet Noktası</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container max-w-1100px mx-auto px-4 pb-6">
 
   <!-- GPS Bar -->
   <div class="gps-bar mb-6" style="margin-top: -10px; margin-bottom: 30px;">
     <div class="flex align-items-center gap-3">
-      <div class="w-3rem h-3rem border-circle bg-emerald-500 flex align-items-center justify-content-center text-white flex-shrink-0">
+      <div class="w-3rem h-3rem border-circle bg-blue-600 flex align-items-center justify-content-center text-white flex-shrink-0">
         <i class="pi pi-map-marker text-lg"></i>
       </div>
       <div>
@@ -28,17 +48,17 @@
   </div>
 
   @if (enYakinTesis) {
-    <div class="gps-sonuc-kart mb-5 p-3 flex align-items-center justify-content-between gap-3 fadein animation-duration-400" style="background: rgba(16, 185, 129, 0.05); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 16px;">
+    <div class="gps-sonuc-kart mb-5 p-3 flex align-items-center justify-content-between gap-3 fadein animation-duration-400" style="background: rgba(2, 132, 199, 0.05); border: 1px solid rgba(2, 132, 199, 0.2); border-radius: 16px;">
       <div class="flex align-items-center gap-3">
-        <div class="w-2rem h-2rem border-circle bg-emerald-600 text-white font-black flex align-items-center justify-content-center text-xs">
+        <div class="w-2rem h-2rem border-circle bg-blue-600 text-white font-black flex align-items-center justify-content-center text-xs">
           {{ enYakinTesis.harf || 'T' }}
         </div>
         <div>
-          <span class="bg-emerald-600 text-white text-3xs font-black px-2 py-1 border-round-md uppercase" style="font-size: 10px; padding: 2px 6px; border-radius: 4px;">EN YAKIN: {{ enYakinTesis.mesafe }} KM</span>
-          <h5 class="text-sm font-bold text-emerald-950 m-0 mt-1">{{ enYakinTesis.ad }}</h5>
+          <span class="bg-blue-600 text-white text-3xs font-black px-2 py-1 border-round-md uppercase" style="font-size: 10px; padding: 2px 6px; border-radius: 4px;">EN YAKIN: {{ enYakinTesis.mesafe }} KM</span>
+          <h5 class="text-sm font-bold text-slate-950 m-0 mt-1">{{ enYakinTesis.ad }}</h5>
         </div>
       </div>
-      <a [routerLink]="['/tesisler', enYakinTesis.id]" class="py-2 px-3 border-round-xl bg-emerald-600 text-white text-xs font-bold no-underline flex align-items-center gap-1">
+      <a [routerLink]="['/tesisler', enYakinTesis.id]" class="py-2 px-3 border-round-xl bg-blue-600 text-white text-xs font-bold no-underline flex align-items-center gap-1">
         Detay <i class="pi pi-arrow-right text-xs"></i>
       </a>
     </div>
@@ -67,7 +87,7 @@
                [value]="aramaMetni()"
                (input)="aramaMetni.set($any($event.target).value)"
                placeholder="Birim veya konum ara..."
-               class="w-full py-2 px-4 pr-6 border-round-3xl border-1 border-gray-300 text-sm outline-none focus:border-emerald-500 shadow-1">
+               class="w-full py-2 px-4 pr-6 border-round-3xl border-1 border-gray-300 text-sm outline-none focus:border-blue-500 shadow-1">
         <i class="pi pi-search absolute right-0 top-50 transform-translate-y-half mr-3 text-gray-400"></i>
       </div>
 
@@ -79,10 +99,10 @@
     @for (tesis of filtreliTesisler(); track tesis.id) {
       <a [routerLink]="['/tesisler', tesis.slug || tesis.id]" class="tesis-kart tesis-kart-link">
         <div class="logo-kutu">
-          @if (tesis.resimUrl) {
-            <img [src]="tesis.resimUrl" [alt]="tesis.ad" (error)="tesis.resimUrl = ''">
+          @if (tesis.logoUrl) {
+            <img [src]="tesis.logoUrl" [alt]="tesis.ad" (error)="tesis.logoUrl = ''">
           } @else {
-            <div class="tesis-bas-harf" [style.background]="tesis.renk || '#10B981'">
+            <div class="tesis-bas-harf" [style.background]="tesis.renk || '#0284C7'">
               {{ (tesis.harf || tesis.ad?.charAt(0) || 'T').toUpperCase() }}
             </div>
           }
@@ -106,4 +126,5 @@
       <div class="veri-yok" style="grid-column: 1 / -1; text-align: center; padding: 40px; color: #667085; font-size: 1.1rem;">Henüz tesis eklenmemiş.</div>
     }
   </div>
-</section>
+</div>
+</div>

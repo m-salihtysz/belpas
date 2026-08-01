@@ -1,5 +1,5 @@
 /* =======================================================================
-   ANASAYFA — HERO SLIDER (Custom Ulasimpark-Style Center Text with Entry Animations)
+   ANASAYFA — HERO SLIDER (Custom Ulasimpark-Style Center Text with Entry Animations - BLUE THEME)
    ======================================================================= */
 
 .hero-slider-wrapper {
@@ -13,10 +13,10 @@
     min-height: 400px;
     width: 100%;
     position: relative;
-    background: #011a14;
+    background: #0b1329;
     overflow: hidden;
     border-radius: 28px;
-    box-shadow: 0 20px 48px rgba(16, 185, 129, 0.08);
+    box-shadow: 0 20px 48px rgba(2, 132, 199, 0.08);
 }
 
 .custom-slide {
@@ -77,8 +77,8 @@
     inset: 0;
     z-index: 2;
     background: linear-gradient(180deg,
-            rgba(1, 26, 20, 0.55) 0%,
-            rgba(1, 26, 20, 0.78) 100%);
+            rgba(15, 23, 42, 0.55) 0%,
+            rgba(15, 23, 42, 0.78) 100%);
 }
 
 /* Content wrapper centered */
@@ -108,7 +108,7 @@
 /* Welcome/Intro text (slanted/italic like Ulasimpark) */
 .slide-badge-new {
     display: inline-block;
-    color: #a7f3d0;
+    color: #93c5fd;
     font-family: 'Outfit', sans-serif;
     font-size: clamp(0.8rem, 2vw, 1.05rem);
     font-weight: 800;
@@ -137,7 +137,7 @@
     margin: 0;
 
     .accent-text {
-        background: linear-gradient(135deg, #a7f3d0 0%, #10b981 100%);
+        background: linear-gradient(135deg, #93c5fd 0%, #0284c7 100%);
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -160,7 +160,7 @@
     align-items: center;
     padding: 12px 28px;
     background: #ffffff;
-    color: #064e3b;
+    color: #172554;
     font-family: 'Outfit', sans-serif;
     font-size: 0.92rem;
     font-weight: 700;
@@ -171,9 +171,9 @@
 
     &:hover {
         transform: translateY(-2px);
-        background: #10b981;
+        background: #0284c7;
         color: #ffffff;
-        box-shadow: 0 12px 35px rgba(16, 185, 129, 0.3);
+        box-shadow: 0 12px 35px rgba(2, 132, 199, 0.3);
     }
 }
 
@@ -243,10 +243,10 @@
         transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 
         &.active {
-            background: #10b981;
+            background: #0284c7;
             width: 24px;
             border-radius: 5px;
-            box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+            box-shadow: 0 0 8px rgba(2, 132, 199, 0.6);
         }
     }
 }
@@ -274,19 +274,18 @@
     }
 }
 
-
 /* Custom GPS Aksiyon Barı & Sonuc Kartı (Premium Frosted Glass) */
 .gps-aksiyon-bar {
-    background: rgba(2, 44, 34, 0.8) !important;
+    background: rgba(15, 23, 42, 0.82) !important;
     backdrop-filter: blur(16px);
-    border: 1px solid rgba(16, 185, 129, 0.25) !important;
+    border: 1px solid rgba(2, 132, 199, 0.25) !important;
     color: #ffffff !important;
-    box-shadow: 0 12px 40px rgba(2, 44, 34, 0.12) !important;
+    box-shadow: 0 12px 40px rgba(15, 23, 42, 0.12) !important;
     border-radius: 24px !important;
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 
     .gps-btn {
-        background: #10b981 !important;
+        background: #0284c7 !important;
         color: #ffffff !important;
         font-weight: 700 !important;
         border: none !important;
@@ -294,20 +293,20 @@
         transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 
         &:hover {
-            background: #059669 !important;
+            background: #0284c7 !important;
             transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3);
+            box-shadow: 0 6px 20px rgba(2, 132, 199, 0.3);
         }
     }
 }
 
 .gps-sonuc-kart {
-    background: rgba(236, 253, 245, 0.9) !important;
+    background: rgba(239, 246, 255, 0.9) !important;
     backdrop-filter: blur(8px);
-    border: 1px solid rgba(110, 231, 183, 0.5) !important;
-    color: #064e3b !important;
+    border: 1px solid rgba(147, 197, 253, 0.5) !important;
+    color: #172554 !important;
     border-radius: 18px !important;
-    box-shadow: 0 6px 20px rgba(6, 78, 59, 0.03) !important;
+    box-shadow: 0 6px 20px rgba(23, 37, 84, 0.03) !important;
 }
 
 /* Ultra-Modern Tesisler (Brand Logos) Cards */
@@ -317,177 +316,157 @@
 }
 
 .modern-tesis-kart {
-    background: #f8fafc !important;
-    border: 1px solid rgba(0, 0, 0, 0.06) !important;
-    border-radius: 20px !important;
+    background: #ffffff !important;
+    border: 1px solid rgba(2, 132, 199, 0.2) !important;
+    border-radius: 24px !important;
     padding: 16px !important;
-    height: 150px !important;
+    height: 125px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02) !important;
-    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04) !important;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
 
-    .logo-wrapper {
-        width: 100% !important;
-        height: 100% !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        background: #ffffff !important;
-        border-radius: 14px !important;
-        border: 1px solid rgba(0, 0, 0, 0.03) !important;
-        box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.02) !important;
-
-        svg {
-            max-width: 85% !important;
-            max-height: 85% !important;
-            transition: transform 0.3s ease;
-        }
-
-        img {
-            max-width: 90% !important;
-            max-height: 90% !important;
-            object-fit: contain !important;
-        }
-
-        .anasayfa-tesis-bas-harf {
-            width: 100%;
-            height: 100%;
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Outfit', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: #ffffff;
-            letter-spacing: -1px;
-        }
+    .tesis-logo-img {
+        max-width: 88% !important;
+        max-height: 82% !important;
+        width: auto !important;
+        height: auto !important;
+        object-fit: contain !important;
+        display: block !important;
+        margin: 0 auto !important;
+        transition: transform 0.35s ease !important;
     }
 
     &:hover {
         transform: translateY(-4px) !important;
         background: #ffffff !important;
-        border-color: #10B981 !important;
-        box-shadow: 0 12px 28px rgba(16, 185, 129, 0.08) !important;
+        border-color: rgba(2, 132, 199, 0.5) !important;
+        box-shadow: 0 12px 28px rgba(2, 132, 199, 0.15) !important;
 
-        .logo-wrapper {
-            svg {
-                transform: scale(1.05);
-            }
+        .tesis-logo-img {
+            transform: scale(1.06) !important;
+        }
+    }
+
+    @media (max-width: 768px) {
+        height: 110px !important;
+        padding: 12px !important;
+        border-radius: 20px !important;
+
+        .tesis-logo-img {
+            max-width: 92% !important;
+            max-height: 88% !important;
         }
     }
 }
 
-/* Modernized Tesisler Carousel Styling with Fading Gradient Overlay */
-::ng-deep .custom-tesis-carousel {
+/* Custom External Carousel Navigation Buttons */
+.custom-carousel-outer-wrapper {
     position: relative;
-    padding: 0 52px !important;
+    width: 100%;
+}
+
+.custom-carousel-nav-btn {
+    width: 48px !important;
+    height: 48px !important;
+    min-width: 48px !important;
+    border-radius: 50% !important;
+    background: linear-gradient(135deg, #0284c7 0%, #0284c7 100%) !important;
+    color: #ffffff !important;
+    border: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    box-shadow: 0 8px 24px rgba(2, 132, 199, 0.35) !important;
+    flex-shrink: 0 !important;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    z-index: 20 !important;
+    outline: none !important;
+
+    i {
+        color: #ffffff !important;
+        font-size: 1.2rem !important;
+        font-weight: 900 !important;
+        line-height: 1 !important;
+        display: block !important;
+        transition: transform 0.2s ease !important;
+    }
+
+    &:hover {
+        background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%) !important;
+        transform: scale(1.14) !important;
+        box-shadow: 0 12px 28px rgba(2, 132, 199, 0.5) !important;
+    }
+
+    &:active {
+        transform: scale(0.96) !important;
+    }
 
     @media (max-width: 768px) {
-        padding: 0 40px !important;
+        width: 38px !important;
+        height: 38px !important;
+        min-width: 38px !important;
     }
+}
+
+/* Bottom Banner Styling */
+.bottom-banner-wrapper {
+    position: relative;
+    border-radius: 28px;
+    padding: 10px;
+    background: #ffffff;
+    border: 1px solid rgba(2, 132, 199, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+
+    img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 20px;
+        transition: transform 0.45s ease;
+    }
+
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 18px 40px rgba(2, 132, 199, 0.18);
+        border-color: rgba(2, 132, 199, 0.4);
+
+        img {
+            transform: scale(1.01);
+        }
+    }
+
+    @media (max-width: 768px) {
+        padding: 6px;
+        border-radius: 22px;
+
+        img {
+            border-radius: 16px;
+        }
+    }
+}
+
+::ng-deep .custom-tesis-carousel,
+::ng-deep .custom-haber-carousel,
+::ng-deep .custom-etkinlik-carousel {
+    position: relative;
+    padding: 0 !important;
 
     .p-carousel-content {
         position: relative;
     }
 
-    /* Left and Right Glassmorphism Fading Overlays */
-    &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 60px;
-        height: 100%;
-        background: linear-gradient(to right, rgba(255, 255, 255, 0.95) 30%, rgba(255, 255, 255, 0));
-        z-index: 2;
-        pointer-events: none;
-
-        @media (max-width: 768px) {
-            width: 44px;
-        }
+    .p-carousel-viewport {
+        overflow: hidden;
+        border-radius: 28px;
     }
 
-    &::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 60px;
-        height: 100%;
-        background: linear-gradient(to left, rgba(255, 255, 255, 0.95) 30%, rgba(255, 255, 255, 0));
-        z-index: 2;
-        pointer-events: none;
-
-        @media (max-width: 768px) {
-            width: 44px;
-        }
-    }
-
-    /* PrimeNG v21: prev/next butonlar doğrudan button elementi */
     .p-carousel-prev-button,
     .p-carousel-next-button {
-        position: absolute !important;
-        top: 50% !important;
-        transform: translateY(-50%) !important;
-        width: 42px !important;
-        height: 42px !important;
-        min-width: 42px !important;
-        padding: 0 !important;
-        background: #ffffff !important;
-        border: none !important;
-        border-radius: 50% !important;
-        box-shadow: 0 4px 14px rgba(15, 23, 42, 0.12) !important;
-        color: #334155 !important;
-        z-index: 25 !important;
-        opacity: 1 !important;
-        display: inline-flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        cursor: pointer !important;
-        transition: all 0.25s ease !important;
-
-        @media (max-width: 768px) {
-            width: 34px !important;
-            height: 34px !important;
-            min-width: 34px !important;
-        }
-
-        svg, span, i {
-            width: 1.1rem !important;
-            height: 1.1rem !important;
-            color: #334155 !important;
-            fill: #334155 !important;
-            display: block !important;
-            flex-shrink: 0 !important;
-        }
-
-        &:hover {
-            background: #f8fafc !important;
-            box-shadow: 0 6px 18px rgba(15, 23, 42, 0.16) !important;
-            transform: translateY(-50%) scale(1.06) !important;
-            color: #0f172a !important;
-
-            svg, span, i {
-                color: #0f172a !important;
-                fill: #0f172a !important;
-            }
-        }
-
-        &:focus-visible {
-            outline: 2px solid #94a3b8 !important;
-            outline-offset: 2px !important;
-        }
-    }
-
-    .p-carousel-prev-button {
-        left: 4px !important;
-    }
-
-    .p-carousel-next-button {
-        right: 4px !important;
+        display: none !important;
     }
 
     .p-carousel-indicators {
@@ -497,12 +476,19 @@
 
 /* Media Cards (Haber & Etkinlik) Carousel Layout */
 .modern-medya-kart {
-    height: 230px !important;
+    min-height: auto !important;
+    height: 100% !important;
     position: relative;
     overflow: hidden;
-    border-radius: 1.5rem !important;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03) !important;
-    transition: all 0.3s ease !important;
+    border-radius: 1.75rem !important;
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+
+    @media (min-width: 640px) {
+        min-height: 210px !important;
+    }
 
     .kart-sol-serit-mavi,
     .kart-sol-serit-yesil {
@@ -510,28 +496,38 @@
         top: 0;
         left: 0;
         bottom: 0;
-        width: 6px;
-        background: #2563eb;
-        border-radius: 1.5rem 0 0 1.5rem;
-        transition: width 0.2s ease;
-        z-index: 1;
+        width: 7px;
+        background: linear-gradient(180deg, #0284c7 0%, #0284c7 100%) !important;
+        border-radius: 1.75rem 0 0 1.75rem;
+        transition: all 0.3s ease;
+        z-index: 2;
     }
 
     .resim-kutusu img {
-        transition: transform 0.4s ease;
+        transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .haber-oku-link i {
+        transition: transform 0.3s ease;
     }
 
     &:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+        transform: translateY(-6px) !important;
+        border-color: rgba(2, 132, 199, 0.4) !important;
+        box-shadow: 0 16px 36px rgba(2, 132, 199, 0.12) !important;
 
         .kart-sol-serit-mavi,
         .kart-sol-serit-yesil {
-            width: 8px;
+            width: 10px;
+            background: linear-gradient(180deg, #38bdf8 0%, #0284c7 100%) !important;
         }
 
         .resim-kutusu img {
-            transform: scale(1.04);
+            transform: scale(1.06);
+        }
+
+        .haber-oku-link i {
+            transform: translateX(4px);
         }
     }
 }
@@ -554,17 +550,20 @@
     text-overflow: ellipsis;
 }
 
+.haber-etiket,
 .etkinlik-etiket {
-    background: #e6f4ea;
-    color: #10b981;
+    background: #eff6ff;
+    color: #0369a1;
+    border: 1px solid #bfdbfe;
     font-size: 0.7rem;
     font-weight: 800;
-    padding: 3px 8px;
-    border-radius: 6px;
+    padding: 4px 12px;
+    border-radius: 20px;
     text-transform: uppercase;
+    letter-spacing: 0.04em;
 }
 
-/* Shared Media Carousel Style (Arrow & Fading Overlays) */
+/* Shared Media Carousel Style */
 ::ng-deep .custom-haber-carousel,
 ::ng-deep .custom-etkinlik-carousel {
     position: relative;
@@ -611,7 +610,6 @@
         }
     }
 
-    /* PrimeNG v21: prev/next butonlar doğrudan button elementi */
     .p-carousel-prev-button,
     .p-carousel-next-button {
         position: absolute !important;
@@ -702,48 +700,60 @@
 /* Modern ince ayırıcı çizgi */
 .govde-ayirici {
     height: 1px;
-    background: linear-gradient(to right, transparent, #d1fae5 30%, #a7f3d0 50%, #d1fae5 70%, transparent);
+    background: linear-gradient(to right, transparent, #dbeafe 30%, #bfdbfe 50%, #dbeafe 70%, transparent);
     margin: 0;
 }
 
 /* Bölüm başlık alanı */
 .govde-section-baslik {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 28px;
+    background: transparent;
+    border: none;
+    padding: 0 12px;
+    box-shadow: none;
 
     h2 {
         font-family: 'Outfit', sans-serif;
-        font-size: clamp(1.6rem, 3vw, 2.4rem);
-        font-weight: 800;
-        color: #022c22;
-        margin: 8px 0 10px;
-        line-height: 1.2;
+        font-size: clamp(1.35rem, 4.5vw, 3.0rem);
+        font-weight: 900;
+        color: #0f172a;
+        text-transform: uppercase;
+        margin: 6px 0 10px;
+        line-height: 1.15;
+        letter-spacing: -0.01em;
+        word-break: break-word;
     }
 
     p {
         font-family: 'Inter', sans-serif;
-        font-size: 15px;
-        color: #667085;
+        font-size: clamp(0.82rem, 2vw, 0.95rem);
+        color: #64748b;
         margin: 0;
-        max-width: 480px;
+        max-width: 580px;
         margin-inline: auto;
-        line-height: 1.65;
+        line-height: 1.5;
+        font-weight: 500;
     }
 }
 
-/* Badge (tüm bölümlerde aynı stil) */
-.govde-badge {
+/* Eğik Rozet */
+.govde-badge-slanted {
     display: inline-flex;
     align-items: center;
-    padding: 4px 14px;
-    border-radius: 9999px;
-    background: #f0fdf4;
-    border: 1px solid #a7f3d0;
-    color: #047857;
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.09em;
+    gap: 6px;
+    color: #0284c7;
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(0.75rem, 1.8vw, 0.95rem);
+    font-weight: 800;
+    font-style: italic;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
+    margin-bottom: 4px;
+
+    i {
+        font-style: normal;
+    }
 }
 
 /* BİRİMLERİMİZ GRID */
@@ -759,7 +769,7 @@
     gap: 16px;
     padding: 20px 22px;
     background: #ffffff;
-    border: 1px solid #e4fdf3;
+    border: 1px solid #eff6ff;
     border-radius: 20px;
     text-decoration: none;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -770,11 +780,11 @@
         width: 48px;
         height: 48px;
         border-radius: 14px;
-        background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+        background: linear-gradient(135deg, #eff6ff, #dbeafe);
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #059669;
+        color: #0284c7;
         font-size: 1.2rem;
         transition: all 0.3s ease;
     }
@@ -783,7 +793,7 @@
         font-family: 'Outfit', sans-serif;
         font-size: 15px;
         font-weight: 700;
-        color: #022c22;
+        color: #0f172a;
         margin: 0 0 3px;
     }
 
@@ -804,31 +814,31 @@
     }
 
     &:hover {
-        border-color: #6ee7b7;
-        box-shadow: 0 8px 24px rgba(16, 185, 129, 0.08);
+        border-color: #93c5fd;
+        box-shadow: 0 8px 24px rgba(2, 132, 199, 0.08);
         transform: translateY(-2px);
 
         .birim-ikon {
-            background: linear-gradient(135deg, #10b981, #059669);
+            background: linear-gradient(135deg, #0284c7, #0284c7);
             color: #ffffff;
         }
 
         .birim-ok {
-            color: #10b981;
+            color: #0284c7;
             transform: translateX(3px);
         }
     }
 }
 
-/* GPS BAR (küçültülmüş versiyon) */
+/* GPS BAR */
 .gps-bar {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 16px;
-    background: rgba(2, 44, 34, 0.82);
+    background: rgba(15, 23, 42, 0.82);
     backdrop-filter: blur(14px);
-    border: 1px solid rgba(16, 185, 129, 0.25);
+    border: 1px solid rgba(2, 132, 199, 0.25);
     border-radius: 20px;
     padding: 16px 22px;
     max-width: 700px;
@@ -844,25 +854,35 @@
 .tumu-btn {
     display: inline-flex;
     align-items: center;
-    padding: 11px 26px;
+    padding: 12px 32px;
     border-radius: 9999px;
-    border: 1.5px solid #10b981;
-    color: #10b981;
+    background: linear-gradient(135deg, #0284c7 0%, #0284c7 100%);
+    border: none;
+    color: #ffffff !important;
     font-family: 'Outfit', sans-serif;
-    font-size: 0.88rem;
-    font-weight: 700;
+    font-size: 0.9rem;
+    font-weight: 800;
     text-decoration: none;
+    box-shadow: 0 4px 16px rgba(2, 132, 199, 0.25);
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 
+    i {
+        transition: transform 0.3s ease;
+    }
+
     &:hover {
-        background: #10b981;
-        color: #ffffff;
-        transform: translateY(-1px);
-        box-shadow: 0 6px 20px rgba(16, 185, 129, 0.25);
+        background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+        color: #ffffff !important;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(2, 132, 199, 0.35);
+
+        i {
+            transform: translateX(4px);
+        }
     }
 }
 
-/* --- Carousel Scrollbar Hide (Encapsulated) --- */
+/* --- Carousel Scrollbar Hide --- */
 ::ng-deep {
     .p-carousel,
     .p-carousel *,

@@ -38,12 +38,6 @@ export const routes: Routes = [
     title: 'Faaliyet Raporları | Sakarya BELPAŞ'
   },
   {
-    path: 'kurumsal/etkinlikler',
-    loadComponent: () =>
-      import('./sayfalar/etkinlikler/etkinlikler').then(m => m.Etkinlikler),
-    title: 'Etkinliklerimiz | BELPAŞ'
-  },
-  {
     path: 'tesisler',
     loadComponent: () =>
       import('./sayfalar/tesisler/tesisler').then(m => m.Tesisler),
@@ -55,39 +49,6 @@ export const routes: Routes = [
       import('./sayfalar/tesisler/tesis-detay/tesis-detay').then(m => m.TesisDetay),
     title: 'Tesis Detayı | BELPAŞ'
   },
-  {
-    path: 'ihaleler',
-    loadComponent: () =>
-      import('./sayfalar/ihaleler/ihaleler').then(m => m.Ihaleler),
-    title: 'Satın Alma İhaleleri | Sakarya BELPAŞ'
-  },
-  
-  // EKLENEN YENİ 4 ALT SAYFA BURADAN BAŞLIYOR
-  {
-    path: 'ihaleler/ilanlar',
-    loadComponent: () =>
-      import('./sayfalar/ihaleler/ilanlar/ilanlar').then(m => m.Ilanlar),
-    title: 'Satın Alma İlanları | Sakarya BELPAŞ'
-  },
-  {
-    path: 'ihaleler/komisyon',
-    loadComponent: () =>
-      import('./sayfalar/ihaleler/komisyon/komisyon').then(m => m.Komisyon),
-    title: 'Satın Alma Komisyonu | Sakarya BELPAŞ'
-  },
-  {
-    path: 'ihaleler/kriterler',
-    loadComponent: () =>
-      import('./sayfalar/ihaleler/kriterler/kriterler').then(m => m.Kriterler),
-    title: 'Satın Alma Kriterleri | Sakarya BELPAŞ'
-  },
-  {
-    path: 'ihaleler/surec',
-    loadComponent: () =>
-      import('./sayfalar/ihaleler/surec/surec').then(m => m.Surec),
-    title: 'Satın Alma Süreci | Sakarya BELPAŞ'
-  },
-  // YENİ SAYFALAR BİTİŞ
 
   // YENİ EKLENEN HABERLER SAYFASI
   {

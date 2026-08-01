@@ -1,5 +1,5 @@
 <!-- =====================================================================
-     ANA SAYFA — TEK SAYFA LAYOUT (Hero → Birimler → Tesisler → Haberler)
+     ANA SAYFA — TEK SAYFA LAYOUT (Hero → Birimler → Tesisler → Haberler - BLUE THEME)
      ===================================================================== -->
 
 <!-- 1. HERO SLIDER WRAPPER (Card-Style Slider with Soft Rounded Corners) -->
@@ -25,12 +25,12 @@
                      <div class="max-w-45rem">
                          <!-- Category/Welcome Badge -->
                          <span class="slide-badge-new mb-3 inline-flex align-items-center gap-2">
-                             <i class="pi pi-star-fill text-xs"></i> {{ slide.kategori | uppercase }}
+                             {{ slide.kategori | uppercase }}
                          </span>
                          
                          <!-- Big Header -->
                          <h1 class="slide-title-new text-white mb-3">
-                             {{ slide.baslik }} <span class="accent-text">{{ slide.altyazi }}</span>
+                             {{ slide.baslik }} {{ slide.altyazi }}
                          </h1>
                          
                          <!-- Paragraph description -->
@@ -73,47 +73,50 @@
 <div class="anasayfa-govde">
 
 
-    <!-- ─── BÖLÜM 2: TESİSLERİMİZ ─── -->
+    <!-- ─── BÖLÜM 2: TESİSLERİMİZ / BİRİMLERİMİZ ─── -->
     <section class="govde-section">
         <div class="govde-section-baslik">
-            <span class="govde-badge">
-                <i class="pi pi-compass mr-1" style="font-size:0.65rem;"></i> HİZMET NOKTALARI
-            </span>
-            <h2>Birimlerimiz</h2>
-            <p>Sakarya genelinde konfor, kalite ve lezzeti buluşturan sosyal yaşam alanları.</p>
+            <h2>BİRİMLERİMİZ</h2>
+            <p>Sakarya genelinde hizmet veren birimlerimizi keşfedin, konum ve bilgilere kolayca ulaşın.</p>
         </div>
 
-        <div class="w-full relative-carousel-container">
-            <p-carousel
-                [value]="tesisler"
-                [numVisible]="6"
-                [numScroll]="1"
-                [circular]="true"
-                [autoplayInterval]="3000"
-                [responsiveOptions]="responsiveOptions"
-                [showIndicators]="false"
-                styleClass="custom-tesis-carousel">
-                <ng-template let-tesis pTemplate="item">
-                    <div class="p-2">
-                        <a [routerLink]="['/tesisler', tesis.id]" class="modern-tesis-kart block relative border-round-2xl no-underline transition-all transition-duration-300 bg-gray-100 border-1 border-black-alpha-10 hover:bg-white hover:shadow-4">
-                            <div class="flex align-items-center justify-content-center h-full w-full p-2">
-                                <div class="logo-wrapper w-full h-full flex align-items-center justify-content-center bg-white border-round-2xl overflow-hidden shadow-1">
-                                    @if (tesis.resimUrl) {
-                                        <img [src]="tesis.resimUrl" [alt]="tesis.ad"
-                                             style="object-fit: contain; max-width: 100%; max-height: 100%;"
-                                             (error)="tesis.resimUrl = ''">
-                                    } @else {
-                                        <div class="anasayfa-tesis-bas-harf"
-                                             [style.background]="tesis.renk || '#10B981'">
-                                            {{ (tesis.harf || tesis.ad?.charAt(0) || 'T').toUpperCase() }}
-                                        </div>
-                                    }
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </ng-template>
-            </p-carousel>
+        <div class="custom-carousel-outer-wrapper flex align-items-center gap-2 md:gap-3 w-full">
+            <button type="button" class="custom-carousel-nav-btn prev-btn" (click)="tesisCarousel.navBackward($event)" title="Önceki Tesis">
+                <i class="pi pi-chevron-left"></i>
+            </button>
+            <div class="flex-grow-1 overflow-hidden min-w-0">
+                <p-carousel #tesisCarousel
+                    [value]="tesisler"
+                    [numVisible]="6"
+                    [numScroll]="1"
+                    [circular]="true"
+                    [autoplayInterval]="3000"
+                    [responsiveOptions]="responsiveOptions"
+                    [showIndicators]="false"
+                    [showNavigators]="false">
+                    <ng-template let-tesis pTemplate="item">
+                        <div class="p-2 h-full">
+                            <a [routerLink]="['/tesisler', tesis.id]" 
+                               class="modern-tesis-kart flex align-items-center justify-content-center w-full h-full border-round-3xl bg-white border-1 border-blue-100 no-underline shadow-1 hover:shadow-4 transition-all">
+                                 @if (tesis.logoUrl) {
+                                    <img [src]="tesis.logoUrl" 
+                                         [alt]="tesis.ad"
+                                         class="tesis-logo-img"
+                                         (error)="tesis.logoUrl = ''">
+                                 } @else {
+                                    <div class="anasayfa-tesis-bas-harf w-full h-full border-round-2xl flex align-items-center justify-content-center font-black text-2xl text-white shadow-1"
+                                         [style.background]="tesis.renk || '#0284c7'">
+                                        {{ (tesis.harf || tesis.ad?.charAt(0) || 'T').toUpperCase() }}
+                                    </div>
+                                }
+                            </a>
+                        </div>
+                    </ng-template>
+                </p-carousel>
+            </div>
+            <button type="button" class="custom-carousel-nav-btn next-btn" (click)="tesisCarousel.navForward($event)" title="Sonraki Tesis">
+                <i class="pi pi-chevron-right"></i>
+            </button>
         </div>
     </section>
 
@@ -122,40 +125,63 @@
     <!-- ─── BÖLÜM 3: HABERLER ─── -->
     <section class="govde-section">
         <div class="govde-section-baslik">
-            <span class="govde-badge">
-                <i class="pi pi-megaphone mr-1" style="font-size:0.65rem;"></i> GÜNCEL
-            </span>
-            <h2>Belpaş'tan Haberler</h2>
+            <h2>BELPAŞ'TAN HABERLER</h2>
             <p>Kurumsal duyurular ve toplumsal etkinlikleri takip edin.</p>
         </div>
 
-        <div class="w-full relative-carousel-container">
-            <p-carousel
-                [value]="haberler"
-                [numVisible]="2"
-                [numScroll]="1"
-                [circular]="true"
-                [autoplayInterval]="5000"
-                [responsiveOptions]="[{ breakpoint: '1024px', numVisible: 1, numScroll: 1 }]"
-                [showIndicators]="false"
-                styleClass="custom-haber-carousel">
-                <ng-template let-haber pTemplate="item">
-                    <div class="p-3">
-                        <a [routerLink]="['/haberler', haber.id]" class="modern-medya-kart block relative border-round-2xl no-underline transition-all transition-duration-300 bg-white border-1 border-black-alpha-10 hover:shadow-4">
-                            <div class="kart-sol-serit-mavi"></div>
-                            <div class="flex align-items-center justify-content-between h-full w-full p-4 pl-5">
-                                <div class="flex-grow-1 pr-4">
-                                    <h4 class="text-base font-bold text-800 m-0 line-height-2 mb-2 limit-text-2">{{ haber.baslik }}</h4>
-                                    <p class="text-xs m-0 line-height-3 limit-text-3" style="color: var(--renk-metin-acik);">{{ haber.aciklama }}</p>
+        <div class="custom-carousel-outer-wrapper flex align-items-center gap-2 md:gap-3 w-full">
+            <button type="button" class="custom-carousel-nav-btn prev-btn" (click)="haberCarousel.navBackward($event)" title="Önceki Haber">
+                <i class="pi pi-chevron-left"></i>
+            </button>
+            <div class="flex-grow-1 overflow-hidden min-w-0">
+                <p-carousel #haberCarousel
+                    [value]="haberler"
+                    [numVisible]="2"
+                    [numScroll]="1"
+                    [circular]="true"
+                    [autoplayInterval]="5000"
+                    [responsiveOptions]="[{ breakpoint: '1024px', numVisible: 1, numScroll: 1 }]"
+                    [showIndicators]="false"
+                    [showNavigators]="false">
+                    <ng-template let-haber pTemplate="item">
+                        <div class="p-2 sm:p-3 h-full">
+                            <a [routerLink]="['/haberler', haber.id]" class="modern-medya-kart block relative border-round-3xl no-underline transition-all transition-duration-300 bg-white border-1 border-blue-100 hover:shadow-4 overflow-hidden h-full">
+                                <div class="kart-sol-serit-yesil"></div>
+                                <div class="flex flex-column sm:flex-row align-items-stretch justify-content-between h-full w-full p-3 sm:p-4 md:p-5 gap-3 sm:gap-4">
+                                    <!-- Resim (Mobilde Üstte Görsel / Masaüstünde Sağda) -->
+                                    <div class="resim-kutusu order-1 sm:order-2 flex-shrink-0 w-full sm:w-auto">
+                                        <img [src]="haber.resimUrl || '/images/sbb_mekan.jpg'"
+                                             [alt]="haber.baslik"
+                                             (error)="haber.resimUrl = '/images/sbb_mekan.jpg'"
+                                             class="w-full sm:w-9rem md:w-13rem h-9rem sm:h-7rem md:h-9rem object-cover border-round-2xl shadow-2 block">
+                                    </div>
+
+                                    <!-- İçerik Alanı -->
+                                    <div class="order-2 sm:order-1 flex-grow-1 flex flex-column justify-content-between min-w-0">
+                                        <div>
+                                            <div class="flex align-items-center gap-2 sm:gap-3 mb-2 flex-wrap">
+                                                <span class="haber-etiket"><i class="pi pi-tag mr-1"></i>{{ haber.kategori || 'GÜNCEL' }}</span>
+                                                @if (haber.tarih) {
+                                                    <span class="text-xs font-bold text-600 flex align-items-center gap-1"><i class="pi pi-calendar text-blue-600"></i>{{ haber.tarih }}</span>
+                                                }
+                                            </div>
+                                            <h4 class="text-base sm:text-base md:text-xl font-black text-900 m-0 line-height-2 mb-2 limit-text-2">{{ haber.baslik }}</h4>
+                                            <p class="text-xs md:text-sm m-0 line-height-3 text-600 limit-text-2 mb-3">{{ haber.aciklama }}</p>
+                                        </div>
+
+                                        <div class="haber-oku-link inline-flex align-items-center font-bold text-xs text-blue-600 mt-2">
+                                            Detayı İncele <i class="pi pi-arrow-right ml-1 transition-transform"></i>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="resim-kutusu flex-shrink-0">
-                                    <img [src]="haber.resimUrl || '/images/sbb_mekan.jpg'" alt="{{ haber.baslik }}" class="w-9rem h-6rem object-cover border-round-2xl shadow-1">
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </ng-template>
-            </p-carousel>
+                            </a>
+                        </div>
+                    </ng-template>
+                </p-carousel>
+            </div>
+            <button type="button" class="custom-carousel-nav-btn next-btn" (click)="haberCarousel.navForward($event)" title="Sonraki Haber">
+                <i class="pi pi-chevron-right"></i>
+            </button>
         </div>
 
         <div class="text-center mt-5">
@@ -167,54 +193,22 @@
 
     <div class="govde-ayirici"></div>
 
-    <!-- ─── BÖLÜM 4: ETKİNLİKLER ─── -->
+    <!-- ─── BÖLÜM 4: SAKARYA BÜYÜKŞEHİR KENT REHBERİ BANNER (DİNAMİK) ─── -->
     <section class="govde-section">
         <div class="govde-section-baslik">
-            <span class="govde-badge">
-                <i class="pi pi-calendar mr-1" style="font-size:0.65rem;"></i> SOSYAL YAŞAM
-            </span>
-            <h2>Duyuru ve Etkinlikler</h2>
-            <p>Kültürel, sosyal etkinlikleri ve kurumsal duyuruları buradan takip edin.</p>
+            <h2>SAKARYA BÜYÜKŞEHİR KENT REHBERİ</h2>
+            <p>{{ kentRehberiBanner.aciklama }}</p>
         </div>
 
-        <div class="w-full relative-carousel-container">
-            <p-carousel
-                [value]="etkinlikler"
-                [numVisible]="2"
-                [numScroll]="1"
-                [circular]="true"
-                [autoplayInterval]="6000"
-                [responsiveOptions]="[{ breakpoint: '1024px', numVisible: 1, numScroll: 1 }]"
-                [showIndicators]="false"
-                styleClass="custom-etkinlik-carousel">
-                <ng-template let-etk pTemplate="item">
-                    <div class="p-3">
-                        <a [routerLink]="['/kurumsal/etkinlikler']" class="modern-medya-kart block relative border-round-2xl no-underline transition-all transition-duration-300 bg-white border-1 border-black-alpha-10 hover:shadow-4">
-                            <div class="kart-sol-serit-yesil"></div>
-                            <div class="flex align-items-center justify-content-between h-full w-full p-4 pl-5">
-                                <div class="flex-grow-1 pr-4">
-                                    <div class="flex align-items-center gap-2 mb-2">
-                                        <span class="etkinlik-etiket">{{ etk.kategori }}</span>
-                                        <span class="text-xs font-bold" style="color: var(--renk-metin-acik);"><i class="pi pi-calendar mr-1"></i>{{ etk.tarih }}</span>
-                                    </div>
-                                    <h4 class="text-base font-bold text-800 m-0 line-height-2 mb-2 limit-text-2">{{ etk.baslik }}</h4>
-                                    <p class="text-xs m-0 line-height-3 limit-text-3" style="color: var(--renk-metin-acik);">{{ etk.ozet }}</p>
-                                </div>
-                                <div class="resim-kutusu flex-shrink-0">
-                                    <img [src]="etk.resimUrl || '/images/acarlar-longozu.png'" alt="{{ etk.baslik }}" class="w-9rem h-6rem object-cover border-round-2xl shadow-1">
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </ng-template>
-            </p-carousel>
-        </div>
-
-        <div class="text-center mt-5">
-            <a routerLink="/kurumsal/etkinlikler" class="tumu-btn">
-                Tüm Etkinlikleri Gör <i class="pi pi-arrow-right ml-2"></i>
-            </a>
-        </div>
+        <a [href]="kentRehberiBanner.link" 
+           target="_blank" 
+           rel="noopener" 
+           class="bottom-banner-wrapper block w-full no-underline border-round-3xl overflow-hidden shadow-2 transition-all hover:shadow-4 border-1 border-blue-100 bg-white p-2 md:p-3">
+            <img [src]="kentRehberiBanner.gorselUrl" 
+                 alt="Sakarya Büyükşehir Kent Rehberi" 
+                 class="w-full h-auto object-cover block border-round-2xl transition-transform duration-500 hover:scale-101 cursor-pointer"
+                 (error)="kentRehberiBanner.gorselUrl = '/images/bottom-banner-1775830519-609.png'">
+        </a>
     </section>
 
 </div>
