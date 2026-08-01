@@ -5,6 +5,12 @@ using Belpas.Api.Models;
 
 namespace Belpas.Api.Controllers;
 
+public class TesisSiraDto
+{
+    public int TesisId { get; set; }
+    public int Sira { get; set; }
+}
+
 [ApiController]
 [Route("api/[controller]")]
 public class TesislerController : ControllerBase
@@ -19,7 +25,11 @@ public class TesislerController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Tesis>>> GetTesisler()
     {
-        return await _context.Tesisler.Where(t => t.Aktif).ToListAsync();
+        return await _context.Tesisler
+            .Where(t => t.Aktif)
+            .OrderBy(t => t.Sira)
+            .ThenBy(t => t.Id)
+            .ToListAsync();
     }
 
     [HttpGet("{idOrSlug}")]
@@ -47,6 +57,23 @@ public class TesislerController : ControllerBase
         _context.Tesisler.Add(tesis);
         await _context.SaveChangesAsync();
         return CreatedAtAction(nameof(GetTesis), new { id = tesis.Id }, tesis);
+    }
+
+    [HttpPost("siralama-guncelle")]
+    public async Task<IActionResult> UpdateSiralama([FromBody] List<TesisSiraDto> siralamalar)
+    {
+        if (siralamalar == null || !siralamalar.Any()) return BadRequest("Sıralama listesi boş olamaz.");
+
+        foreach (var item in siralamalar)
+        {
+            var tesis = await _context.Tesisler.FindAsync(item.TesisId);
+            if (tesis != null)
+            {
+                tesis.Sira = item.Sira;
+            }
+        }
+        await _context.SaveChangesAsync();
+        return Ok(new { mesaj = "Sıralama başarıyla güncellendi." });
     }
 
     [HttpPut("{id}")]

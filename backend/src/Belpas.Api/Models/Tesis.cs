@@ -20,5 +20,6 @@ public class Tesis
     public string? HaftaSonuSaat { get; set; } // Örn: 09:00–23:00
     public double? Lat { get; set; }
     public double? Lng { get; set; }
+    public int Sira { get; set; } = 0;
     public bool Aktif { get; set; } = true;
 }

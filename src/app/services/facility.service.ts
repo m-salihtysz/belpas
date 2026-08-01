@@ -37,6 +37,7 @@ export interface Tesis {
   haftaSonuSaat: string;
   lat?: number;
   lng?: number;
+  sira?: number;
   menuKategorileri?: MenuKategori[];
   aktif: boolean;
 }
