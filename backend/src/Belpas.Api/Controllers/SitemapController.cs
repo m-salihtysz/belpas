@@ -35,11 +35,6 @@ public class SitemapController : ControllerBase
             ("/kurumsal/kurumsal-kimlik",         "monthly", "0.6"),
             ("/kurumsal/faaliyet-raporu",         "monthly", "0.6"),
             ("/tesisler",                         "weekly",  "0.9"),
-            ("/ihaleler",                         "daily",   "0.9"),
-            ("/ihaleler/ilanlar",                 "daily",   "0.8"),
-            ("/ihaleler/komisyon",                "monthly", "0.6"),
-            ("/ihaleler/kriterler",               "monthly", "0.6"),
-            ("/ihaleler/surec",                   "monthly", "0.6"),
             ("/haberler",                         "daily",   "0.9"),
             ("/iletisim",                         "monthly", "0.7"),
         };
@@ -59,7 +54,7 @@ public class SitemapController : ControllerBase
         foreach (var tesis in tesisler)
         {
             urlset.Add(new XElement(xmlns + "url",
-                new XElement(xmlns + "loc", $"{_frontendUrl}/tesisler/{tesis.Id}"),
+                new XElement(xmlns + "loc", $"{_frontendUrl}/tesisler/{tesis.Slug ?? tesis.Id.ToString()}"),
                 new XElement(xmlns + "lastmod", today),
                 new XElement(xmlns + "changefreq", "monthly"),
                 new XElement(xmlns + "priority", "0.8")
@@ -73,7 +68,7 @@ public class SitemapController : ControllerBase
         foreach (var haber in haberler)
         {
             urlset.Add(new XElement(xmlns + "url",
-                new XElement(xmlns + "loc", $"{_frontendUrl}/haberler/{haber.Id}"),
+                new XElement(xmlns + "loc", $"{_frontendUrl}/haberler/{haber.Slug ?? haber.Id.ToString()}"),
                 new XElement(xmlns + "lastmod", haber.OlusturmaTarihi.ToString("yyyy-MM-dd")),
                 new XElement(xmlns + "changefreq", "weekly"),
                 new XElement(xmlns + "priority", "0.7")

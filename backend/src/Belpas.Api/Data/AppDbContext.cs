@@ -10,14 +10,11 @@ public class AppDbContext : DbContext
     }
 
     public DbSet<Haber> Haberler => Set<Haber>();
-    public DbSet<Ihale> Ihaleler => Set<Ihale>();
     public DbSet<Tesis> Tesisler => Set<Tesis>();
-    public DbSet<Etkinlik> Etkinlikler => Set<Etkinlik>();
+    public DbSet<Calisan> Calisanlar => Set<Calisan>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        
-        // Tablo yapılandırmaları ve ilk örnek (seed) veriler burada tanımlanabilir
     }
 }

@@ -50,7 +50,7 @@ public static class DbSeeder
             {
                 Baslik = "Yentkent Pazar'ında Yaz Festivali",
                 Slug = "yentkent-pazarinda-yaz-festivali",
-                Kategori = "Etkinlik",
+                Kategori = "Duyuru",
                 Ozet = "Her hafta sonu düzenlenen yaz festivali etkinliklerimize katılın, yerel üreticilerle tanışın.",
                 Icerik = "Her hafta sonu düzenlenen yaz festivali etkinliklerimize katılın, yerel üreticilerle tanışın.",
                 ResimUrl = "/images/screen3.png",
@@ -144,85 +144,58 @@ public static class DbSeeder
             new Tesis { Ad = "Hafriyat Sahaları", Slug = "hafriyat-sahalari", Kategori = "Ulaşım & Otopark", Aciklama = string.Empty, Harf = "H", LogoUrl = "/images/logolar/hafriyat-sahalari.png", ResimUrl = "/images/tesisler/hafriyat-sahalari.png" }
         );
 
-            context.SaveChanges();
+        context.SaveChanges();
 
-        // 4. Etkinlikler Seeding
-        if (!context.Etkinlikler.Any())
+        // 3. Çalışanlar (Organizasyon Şeması) Seeding
+        if (context.Calisanlar.Any())
         {
-            context.Etkinlikler.AddRange(
-                new Etkinlik
-                {
-                    Baslik = "Millet Kıraathanesi Gençlik & Yazar Söyleşisi",
-                    Kategori = "Kültür & Sanat",
-                    Ozet = "Ünlü araştırmacı yazarlarımızın katılımıyla gerçekleşecek olan imza günü ve gençlik söyleşisi.",
-                    Detay = "Sakarya Millet Bahçesi içerisindeki Millet Kıraathanemizde düzenlenecek bu özel etkinlikte kitap tahlili, yazar söyleşisi ve katılımcılara ücretsiz çay ikramı yapılacaktır.",
-                    Tarih = "1 Ağustos 2026",
-                    Saat = "19:00",
-                    Konum = "Sakarya Millet Bahçesi Kıraathanesi",
-                    ResimUrl = "/images/millet-kiraathanesi.png",
-                    Kontenjan = "150 Kişi",
-                    Ucretsiz = true,
-                    Populer = true
-                },
-                new Etkinlik
-                {
-                    Baslik = "Ormanpark Doğa Yürüyüşü & Serpme Kahvaltı Buluşması",
-                    Kategori = "Doğa & Spor",
-                    Ozet = "Asırlık çınar ağaçları altında sabah doğa yürüyüşü ve ardından leziz serpme kahvaltı.",
-                    Detay = "Ormanpark tesislerimizin eşsiz doğasında temiz hava eşliğinde yürüyüşümüz saat 09:00 da başlayacak, ardından tesis bahçemizde kahvaltı ikramı sunulacaktır.",
-                    Tarih = "3 Ağustos 2026",
-                    Saat = "09:00",
-                    Konum = "Ormanpark Tesis Bahçesi",
-                    ResimUrl = "/images/ormanpark.png",
-                    Kontenjan = "200 Kişi",
-                    Ucretsiz = false,
-                    Populer = true
-                },
-                new Etkinlik
-                {
-                    Baslik = "Acarlar Longozu Fotoğrafçılık & Tabiat Gezisi",
-                    Kategori = "Doğa & Spor",
-                    Ozet = "Türkiye’nin en büyük subasar ormanında profesyonel fotoğrafçılarla doğa keşif rotası.",
-                    Detay = "Karasu Acarlar Longozu yürüyüş yolunda rehber eşliğinde flora ve fauna gözlemi yapılıp, ahşap seyir terasında fotoğraf atölyesi gerçekleştirilecektir.",
-                    Tarih = "5 Ağustos 2026",
-                    Saat = "10:30",
-                    Konum = "Acarlar Longozu Tesis Alanı",
-                    ResimUrl = "/images/acarlar-longozu.png",
-                    Kontenjan = "80 Kişi",
-                    Ucretsiz = true,
-                    Populer = false
-                },
-                new Etkinlik
-                {
-                    Baslik = "Kocaali Sahili Çocuk Açık Hava Sinema Etkinliği",
-                    Kategori = "Çocuk & Aile",
-                    Ozet = "Mavi bayraklı Kocaali sahil tesislerimizde çocuklar için patlamış mısır eşliğinde açık hava sineması.",
-                    Detay = "Kadınlar ve aileler plaj alanında akşam gün batımıyla birlikte dev perdede eğlenceli animasyon çizgi film gösterimi sunulacaktır.",
-                    Tarih = "8 Ağustos 2026",
-                    Saat = "20:30",
-                    Konum = "Kocaali Sosyal Tesisleri Sahil Etkinlik Alanı",
-                    ResimUrl = "/images/kocaali-sosyal-tesisleri.png",
-                    Kontenjan = "Açık Alan",
-                    Ucretsiz = true,
-                    Populer = true
-                },
-                new Etkinlik
-                {
-                    Baslik = "Nehir Kafeterya Akustik Canlı Müzik Dinletisi",
-                    Kategori = "Kültür & Sanat",
-                    Ozet = "Sakarya Nehri kıyısında ney ve gitar eşliğinde akustik müzik dinletisi.",
-                    Detay = "Sakarya Park içerisinde yer alan Nehir Kafeteryamızda nehir manzarasına karşı dinlendirici canlı müzik performansı.",
-                    Tarih = "12 Ağustos 2026",
-                    Saat = "20:00",
-                    Konum = "Nehir Kafeterya Tesisleri (Erenler)",
-                    ResimUrl = "/images/nehir-kafeterya.png",
-                    Kontenjan = "Tesis Kapasitesi",
-                    Ucretsiz = true,
-                    Populer = false
-                }
-            );
-
+            context.Calisanlar.RemoveRange(context.Calisanlar);
             context.SaveChanges();
         }
+
+        context.Calisanlar.AddRange(
+            new Calisan
+            {
+                AdSoyad = "Ertuğrul Özcan",
+                Unvan = "Genel Müdür",
+                Departman = "Yönetim Kurulu",
+                Eposta = "ertugrul.ozcan@belpas.com.tr",
+                Telefon = "0264 273 78 52",
+                Sira = 1,
+                Aktif = true
+            },
+            new Calisan
+            {
+                AdSoyad = "Muzaffer Gül",
+                Unvan = "Genel Müdür Yardımcısı",
+                Departman = "İdari ve Sosyal İşler",
+                Eposta = "muzaffer.gul@belpas.com.tr",
+                Telefon = "0264 273 78 52",
+                Sira = 2,
+                Aktif = true
+            },
+            new Calisan
+            {
+                AdSoyad = "Mehmet Erdoğan",
+                Unvan = "Genel Müdür Yardımcısı",
+                Departman = "Mali ve Finansal İşler",
+                Eposta = "mehmet.erdogan@belpas.com.tr",
+                Telefon = "0264 273 78 52",
+                Sira = 3,
+                Aktif = true
+            },
+            new Calisan
+            {
+                AdSoyad = "Yasin Korkut",
+                Unvan = "Genel Müdür Yardımcısı",
+                Departman = "Teknik ve Operasyonel İşler",
+                Eposta = "yasin.korkut@belpas.com.tr",
+                Telefon = "0264 273 78 52",
+                Sira = 4,
+                Aktif = true
+            }
+        );
+
+        context.SaveChanges();
     }
 }

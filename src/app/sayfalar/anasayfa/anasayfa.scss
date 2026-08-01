@@ -3,20 +3,21 @@
    ======================================================================= */
 
 .hero-slider-wrapper {
-    max-width: 1360px;
-    margin: 32px auto 0;
-    padding: 0 24px;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 .custom-slider-container {
-    height: 52vh;
-    min-height: 400px;
+    height: 60vh;
+    min-height: 480px;
     width: 100%;
     position: relative;
     background: #0b1329;
     overflow: hidden;
-    border-radius: 28px;
-    box-shadow: 0 20px 48px rgba(2, 132, 199, 0.08);
+    border-radius: 0;
+    box-shadow: none;
 }
 
 .custom-slide {
@@ -684,17 +685,20 @@
 
 .anasayfa-govde {
     background: #ffffff;
-    max-width: 1360px;
-    margin: 0 auto;
-    padding: 0 24px;
-
-    @media (min-width: 1440px) {
-        padding: 0 40px;
-    }
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 .govde-section {
-    padding: 56px 0;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 56px 24px;
+
+    @media (max-width: 768px) {
+        padding: 40px 16px;
+    }
 }
 
 /* Modern ince ayırıcı çizgi */
