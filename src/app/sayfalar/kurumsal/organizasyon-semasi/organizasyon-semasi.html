@@ -34,9 +34,14 @@
 
       <!-- 1. KADEME: GENEL MÜDÜR -->
       @if (genelMudur) {
-        <div class="sema-kart genel-mudur-kart p-5 border-round-3xl bg-white border-1 border-blue-200 shadow-3 text-center mb-5 relative hover:shadow-5 transition-all w-full max-w-28rem">
-          <div class="w-4rem h-4rem border-round-2xl bg-gradient-emerald text-white flex align-items-center justify-content-center text-2xl font-bold mx-auto mb-3 shadow-2">
-            <i class="pi pi-user text-2xl"></i>
+        <div (click)="openModal(genelMudur)"
+             class="sema-kart genel-mudur-kart p-5 border-round-3xl bg-white border-1 border-blue-200 shadow-3 text-center mb-5 relative hover:shadow-5 transition-all w-full max-w-28rem cursor-pointer">
+          <div class="w-5rem h-5rem border-circle overflow-hidden mx-auto mb-3 shadow-2 border-2 border-blue-100 flex align-items-center justify-content-center bg-blue-50">
+            @if (genelMudur.fotoUrl) {
+              <img [src]="genelMudur.fotoUrl" [alt]="genelMudur.adSoyad" class="w-full h-full object-cover" />
+            } @else {
+              <i class="pi pi-user text-3xl text-blue-600"></i>
+            }
           </div>
           <span class="unvan-badge inline-block px-3 py-1 border-round-2xl bg-blue-50 text-blue-700 font-extrabold text-xs uppercase tracking-wider mb-2 border-1 border-blue-200">
             {{ genelMudur.unvan | uppercase }}
@@ -56,9 +61,14 @@
         <div class="grid justify-content-center">
           @for (calisan of yardimcilar; track calisan.id) {
             <div class="col-12 md:col-4 p-3">
-              <div class="sema-kart p-4 border-round-3xl bg-white border-1 border-blue-100 shadow-2 text-center h-full hover:border-blue-300 hover:shadow-4 transition-all">
-                <div class="w-3rem h-3rem border-round-2xl bg-blue-50 text-blue-600 flex align-items-center justify-content-center text-xl font-bold mx-auto mb-3 border-1 border-blue-200">
-                  <i class="pi pi-user-check"></i>
+              <div (click)="openModal(calisan)"
+                   class="sema-kart p-4 border-round-3xl bg-white border-1 border-blue-100 shadow-2 text-center h-full hover:border-blue-300 hover:shadow-4 transition-all cursor-pointer">
+                <div class="w-4rem h-4rem border-circle overflow-hidden mx-auto mb-3 border-2 border-blue-100 flex align-items-center justify-content-center bg-blue-50">
+                  @if (calisan.fotoUrl) {
+                    <img [src]="calisan.fotoUrl" [alt]="calisan.adSoyad" class="w-full h-full object-cover" />
+                  } @else {
+                    <i class="pi pi-user text-2xl text-blue-600"></i>
+                  }
                 </div>
                 <span class="unvan text-xs font-bold text-500 uppercase tracking-wider block mb-1">{{ calisan.unvan | uppercase }}</span>
                 <h3 class="isim text-xl font-black text-900 m-0">{{ calisan.adSoyad | uppercase }}</h3>
@@ -71,4 +81,85 @@
     </div>
 
   </div>
+
+  <!-- POP-UP MODAL DIALOG -->
+  @if (isModalOpen && selectedCalisan) {
+    <div class="calisan-modal-backdrop" (click)="closeModal()">
+      <div class="calisan-modal-card" (click)="$event.stopPropagation()">
+        
+        <!-- Kapatma Butonu -->
+        <button class="calisan-modal-close-btn" (click)="closeModal()" aria-label="Kapat">
+          <i class="pi pi-times"></i>
+        </button>
+
+        <!-- Profil Fotoğrafı ve Başlıklar -->
+        <div class="text-center pt-2 pb-4">
+          <div class="modal-avatar-wrapper">
+            @if (selectedCalisan.fotoUrl) {
+              <img [src]="selectedCalisan.fotoUrl" [alt]="selectedCalisan.adSoyad" class="modal-avatar-img" />
+            } @else {
+              <i class="pi pi-user text-5xl text-blue-600"></i>
+            }
+          </div>
+          
+          <span class="modal-unvan-text block text-xs font-bold text-600 uppercase tracking-widest mb-1 mt-3">
+            {{ selectedCalisan.unvan | uppercase }}
+          </span>
+          <h2 class="modal-name-text text-3xl md:text-4xl font-black text-900 m-0 tracking-tight">
+            {{ selectedCalisan.adSoyad | uppercase }}
+          </h2>
+        </div>
+
+        <!-- Detay İçerik Grid (İletişim & Özgeçmiş) -->
+        <div class="modal-body-grid">
+          
+          <!-- Sol Kolon: İletişim Bilgileri & Görevler -->
+          <div class="modal-left-col">
+            <div class="mb-4">
+              <h4 class="col-section-title uppercase">İLETİŞİM BİLGİLERİ</h4>
+              @if (selectedCalisan.telefon) {
+                <p class="contact-info-item"><i class="pi pi-phone text-blue-600 mr-2"></i> {{ selectedCalisan.telefon }}</p>
+              }
+              @if (selectedCalisan.eposta) {
+                <p class="contact-info-item"><i class="pi pi-envelope text-blue-600 mr-2"></i> {{ selectedCalisan.eposta }}</p>
+              }
+            </div>
+
+            <div class="mb-4">
+              <h4 class="col-section-title uppercase">GÖREVLER / SORUMLULUKLAR:</h4>
+              @if (getGorevlerList(selectedCalisan).length > 0) {
+                <ul class="duties-list pl-0 m-0 list-none">
+                  @for (gorev of getGorevlerList(selectedCalisan); track gorev) {
+                    <li class="duty-item py-1 text-700 font-medium">
+                      {{ gorev }}
+                    </li>
+                  }
+                </ul>
+              } @else {
+                <p class="text-600 text-sm">Belirtilmedi</p>
+              }
+            </div>
+          </div>
+
+          <!-- Sağ Kolon: Özgeçmiş -->
+          <div class="modal-right-col">
+            <h4 class="col-section-title">Özgeçmiş</h4>
+            
+            @if (getOzgecmisParagraphs(selectedCalisan).length > 0) {
+              @for (paragraph of getOzgecmisParagraphs(selectedCalisan); track paragraph) {
+                <p class="bio-paragraph text-700 line-height-3 mb-3 text-sm md:text-base">
+                  {{ paragraph }}
+                </p>
+              }
+            } @else {
+              <p class="text-600 text-sm">Özgeçmiş bilgisi mevcut değil.</p>
+            }
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  }
+
 </div>

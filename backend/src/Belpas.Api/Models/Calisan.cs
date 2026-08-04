@@ -9,6 +9,8 @@ namespace Belpas.Api.Models
         public string? Eposta { get; set; }
         public string? Telefon { get; set; }
         public string? FotoUrl { get; set; }
+        public string? Ozgecmis { get; set; }
+        public string? Gorevler { get; set; }
         public int Sira { get; set; } = 0;
         public bool Aktif { get; set; } = true;
     }

@@ -17,6 +17,9 @@ export class OrganizasyonSemasi implements OnInit {
   genelMudur: Calisan | null = null;
   yardimcilar: Calisan[] = [];
 
+  selectedCalisan: Calisan | null = null;
+  isModalOpen: boolean = false;
+
   ngOnInit(): void {
     this.seoService.generateTags({
       title: 'Organizasyon Şeması | BELPAŞ',
@@ -31,5 +34,25 @@ export class OrganizasyonSemasi implements OnInit {
         this.yardimcilar = data.filter(c => c !== this.genelMudur);
       }
     });
+  }
+
+  openModal(calisan: Calisan): void {
+    this.selectedCalisan = calisan;
+    this.isModalOpen = true;
+  }
+
+  closeModal(): void {
+    this.isModalOpen = false;
+    this.selectedCalisan = null;
+  }
+
+  getGorevlerList(calisan: Calisan): string[] {
+    if (!calisan.gorevler) return [];
+    return calisan.gorevler.split('\n').filter(g => g.trim().length > 0);
+  }
+
+  getOzgecmisParagraphs(calisan: Calisan): string[] {
+    if (!calisan.ozgecmis) return [];
+    return calisan.ozgecmis.split('\n\n').filter(p => p.trim().length > 0);
   }
 }

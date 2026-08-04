@@ -7,7 +7,7 @@ import { ButtonModule } from 'primeng/button';
 import { NewsService } from '../../services/news.service';
 import { FacilityService } from '../../services/facility.service';
 import { SeoService } from '../../services/seo.service';
-import { EventService } from '../../services/event.service';
+import { SliderService } from '../../services/slider.service';
 
 interface Slide {
   id: number;
@@ -43,6 +43,7 @@ interface Haber {
 
 @Component({
   selector: 'app-anasayfa',
+  standalone: true,
   imports: [RouterLink, CommonModule, CarouselModule, CardModule, ButtonModule],
   templateUrl: './anasayfa.html',
   styleUrl: './anasayfa.scss'
@@ -51,14 +52,14 @@ export class Anasayfa implements OnInit, OnDestroy {
   private haberService = inject(NewsService);
   private tesisService = inject(FacilityService);
   private seoService = inject(SeoService);
-  private eventService = inject(EventService);
+  private sliderService = inject(SliderService);
 
   sliderlar: Slide[] = [
     {
       id: 1,
       kategori: 'BELPAŞ\'A HOŞ GELDİNİZ',
-      baslik: 'NEHİR ÇİKOLATA EŞSİZ LEZZET',
-      altyazi: 'DUBAİ LEZZETİ',
+      baslik: 'NEHİR ÇİKOLATA EŞSİZ LEZZET DUBAİ LEZZETİ',
+      altyazi: '',
       aciklama: 'Her lokmada geleneksel tatları modern dokunuşlarla buluşturan prestijli Nehir Çikolata serimiz.',
       btnMetni: 'KEŞFEDİN',
       btnLink: '/tesisler',
@@ -68,8 +69,8 @@ export class Anasayfa implements OnInit, OnDestroy {
     {
       id: 2,
       kategori: 'HİZMET NOKTALARI VE TESİSLER',
-      baslik: 'ŞEHRE HAYAT İNSANA DEĞER KATAN MEKANLAR',
-      altyazi: 'SOSYAL TESİSLER',
+      baslik: 'ŞEHRE HAYAT İNSANA DEĞER KATAN MEKANLAR SOSYAL TESİSLER',
+      altyazi: '',
       aciklama: 'Sakarya genelinde konfor, kalite ve lezzeti bir araya getiren prestijli sosyal yaşam alanlarımız.',
       btnMetni: 'TESİSLERİMİZ',
       btnLink: '/tesisler',
@@ -79,8 +80,8 @@ export class Anasayfa implements OnInit, OnDestroy {
     {
       id: 3,
       kategori: 'DİJİTAL VE AKILLI ŞEHİR ÇÖZÜMLERİ',
-      baslik: 'ULAŞIMDA VE KENTE DİJİTAL KOLAYLIK',
-      altyazi: 'KENT REHBERİ',
+      baslik: 'ULAŞIMDA VE KENTE DİJİTAL KOLAYLIK KENT REHBERİ',
+      altyazi: '',
       aciklama: 'Büyükşehrin tüm ulaşım hatları, harita bilgileri ve sosyal imkanlarına tek tıkla kolayca erişin.',
       btnMetni: 'İNCELEYİN',
       btnLink: '/haberler',
@@ -98,8 +99,31 @@ export class Anasayfa implements OnInit, OnDestroy {
 
   tesisler: Tesis[] = [];
   haberler: Haber[] = [];
+
+  responsiveOptions = [
+    {
+      breakpoint: '1400px',
+      numVisible: 5,
+      numScroll: 1
+    },
+    {
+      breakpoint: '1024px',
+      numVisible: 4,
+      numScroll: 1
+    },
+    {
+      breakpoint: '768px',
+      numVisible: 3,
+      numScroll: 1
+    },
+    {
+      breakpoint: '560px',
+      numVisible: 2,
+      numScroll: 1
+    }
+  ];
   
-  // Dinamik Kent Rehberi Banner Objesi (İleride DB / API'den yüklenebilir)
+  // Dinamik Kent Rehberi Banner Objesi
   kentRehberiBanner = {
     rozet: 'KENT REHBERİ',
     baslikSol: 'SAKARYA BÜYÜKŞEHİR',
@@ -116,98 +140,60 @@ export class Anasayfa implements OnInit, OnDestroy {
     { id: 4, ad: 'İletişim', aciklama: 'Bize ulaşın, görüş ve önerilerinizi paylaşın', ikon: 'pi-phone', link: '/iletisim' },
   ];
 
-  etkinlikler: any[] = [];
-
-  private timerInterval: any;
-
-  startAutoplay() {
-    this.stopAutoplay();
-    this.sliderTimer = setInterval(() => this.nextSlide(), this.SLIDE_INTERVAL);
-  }
-
-  stopAutoplay() {
-    if (this.sliderTimer) clearInterval(this.sliderTimer);
-  }
-
-  goToSlide(index: number) {
-    if (this.isAnimating || index === this.activeSlide) return;
-    this.isAnimating = true;
-    this.prevSlide = this.activeSlide;
-    this.activeSlide = index;
-    setTimeout(() => {
-      this.isAnimating = false;
-      this.prevSlide = -1;
-    }, 900);
-    this.startAutoplay();
-  }
-
-  nextSlide() {
-    const next = (this.activeSlide + 1) % this.sliderlar.length;
-    this.goToSlide(next);
-  }
-
-  prevSlideAction() {
-    const prev = (this.activeSlide - 1 + this.sliderlar.length) % this.sliderlar.length;
-    this.goToSlide(prev);
-  }
-
-  ngOnDestroy() {
-    this.stopAutoplay();
-  }
-
-  responsiveOptions = [
-    {
-        breakpoint: '1199px',
-        numVisible: 5,
-        numScroll: 1
-    },
-    {
-        breakpoint: '991px',
-        numVisible: 3,
-        numScroll: 1
-    },
-    {
-        breakpoint: '767px',
-        numVisible: 2,
-        numScroll: 1
-    },
-    {
-        breakpoint: '576px',
-        numVisible: 2,
-        numScroll: 1
-    }
-  ];
-
-  ngOnInit() {
+  ngOnInit(): void {
     this.seoService.generateTags({
-      title: 'BELPAŞ - Sakarya Büyükşehir Belediyesi',
-      description: 'Sakarya Büyükşehir Belediyesi iştiraki olan BELPAŞ, sosyal tesisler, kafeteryalar ve kurumsal hizmetler sunar.',
-      url: 'https://belpas.sakarya.bel.tr/',
-      keywords: 'BELPAŞ, Sakarya, Büyükşehir Belediyesi, sosyal tesisler, kafeterya, ihaleler'
-    });
-
-    this.seoService.setJsonLd({
-      '@context': 'https://schema.org',
-      '@type': 'GovernmentOrganization',
-      'name': 'BELPAŞ - Sakarya Büyükşehir Belediyesi A.Ş.',
-      'url': 'https://belpas.sakarya.bel.tr',
-      'logo': 'https://belpas.sakarya.bel.tr/images/sbb_seffaf.png'
+      title: 'BELPAŞ — Sakarya Büyükşehir Belediyesi İhtiyaç Maddeleri A.Ş.',
+      description: 'Sakarya Büyükşehir Belediyesi iştiraki BELPAŞ A.Ş. Sosyal tesisler, kafeteryalar, yöresel ürünler ve şehir içi tesis hizmetleri.',
+      url: 'https://belpas.sakarya.bel.tr',
+      keywords: 'BELPAŞ, Sakarya Büyükşehir Belediyesi, Ormanpark, Sosyal Tesisler, Kent Rehberi, Kart54'
     });
 
     this.verileriYukle();
-    this.startAutoplay();
+    this.startAutoSlide();
   }
 
-  getEventImage(e: any): string {
-    if (e.resimUrl && e.resimUrl.includes('/images/')) {
-      return e.resimUrl;
+  ngOnDestroy(): void {
+    this.stopAutoSlide();
+  }
+
+  // --- CUSTOM SLIDER METOTLARI ---
+  startAutoSlide() {
+    this.stopAutoSlide();
+    this.sliderTimer = setInterval(() => {
+      this.nextSlide();
+    }, this.SLIDE_INTERVAL);
+  }
+
+  stopAutoSlide() {
+    if (this.sliderTimer) {
+      clearInterval(this.sliderTimer);
+      this.sliderTimer = null;
     }
-    if (e.id === 1 || (e.baslik && e.baslik.toLowerCase().includes('kıraathane'))) return '/images/Millet_Kıraathanesi.jpg';
-    if (e.id === 2 || (e.baslik && e.baslik.toLowerCase().includes('ormanpark'))) return '/images/OrmanPark.jpg';
-    if (e.id === 3 || (e.baslik && e.baslik.toLowerCase().includes('acarlar'))) return '/images/Acarlar_Longozu.jpg';
-    if (e.id === 4 || (e.baslik && e.baslik.toLowerCase().includes('kocaali'))) return '/images/Kocaali_Sosyal_Tesisleri.jpg';
-    if (e.id === 5 || (e.baslik && e.baslik.toLowerCase().includes('nehir'))) return '/images/Erenler_Kafe.jpg';
-    return e.resimUrl || '/images/Acarlar_Longozu.jpg';
+  }
+
+  goToSlide(index: number) {
+    if (index === this.activeSlide || this.isAnimating) return;
+    this.prevSlide = this.activeSlide;
+    this.activeSlide = index;
+    this.isAnimating = true;
+
+    setTimeout(() => {
+      this.isAnimating = false;
+    }, 850);
+
+    this.startAutoSlide();
+  }
+
+  nextSlide() {
+    if (this.isAnimating || !this.sliderlar || this.sliderlar.length === 0) return;
+    const nextIdx = (this.activeSlide + 1) % this.sliderlar.length;
+    this.goToSlide(nextIdx);
+  }
+
+  prevSlideAction() {
+    if (this.isAnimating || !this.sliderlar || this.sliderlar.length === 0) return;
+    const prevIdx = (this.activeSlide - 1 + this.sliderlar.length) % this.sliderlar.length;
+    this.goToSlide(prevIdx);
   }
 
   getHaberImage(h: any): string {
@@ -218,6 +204,27 @@ export class Anasayfa implements OnInit, OnDestroy {
   }
 
   verileriYukle() {
+    // 1. Sliderlar API
+    this.sliderService.getSliderlar().subscribe({
+      next: (data) => {
+        if (data && data.length > 0) {
+          this.sliderlar = data.map(s => ({
+            id: s.id,
+            kategori: s.kategori || "BELPAŞ'A HOŞ GELDİNİZ",
+            baslik: s.baslik,
+            altyazi: '',
+            aciklama: s.aciklama || '',
+            btnMetni: s.btnMetni || 'KEŞFEDİN',
+            btnLink: s.btnLink || '/tesisler',
+            resimYolu: s.resimUrl,
+            logoYolu: s.logoUrl || ''
+          }));
+        }
+      },
+      error: (err: any) => console.error('Anasayfa Sliderlar yüklenirken hata oluştu:', err)
+    });
+
+    // 2. Tesisler API
     this.tesisService.getTesisler().subscribe({
       next: (data: any[]) => {
         this.tesisler = data.map((t: any) => ({
@@ -233,6 +240,7 @@ export class Anasayfa implements OnInit, OnDestroy {
       error: (err: any) => console.error('Anasayfa Tesisler yüklenirken hata oluştu:', err)
     });
 
+    // 3. Haberler API
     this.haberService.getHaberler().subscribe({
       next: (data: any[]) => {
         const sorted = [...(data || [])].sort((a, b) => {
@@ -251,23 +259,6 @@ export class Anasayfa implements OnInit, OnDestroy {
         })).slice(0, 4);
       },
       error: (err: any) => console.error('Anasayfa Haberler yüklenirken hata oluştu:', err)
-    });
-
-    this.eventService.getEtkinlikler().subscribe({
-      next: (data: any[]) => {
-        this.etkinlikler = data.map((e: any) => ({
-          id: e.id,
-          baslik: e.baslik,
-          kategori: e.kategori,
-          tarih: e.tarih,
-          saat: e.saat,
-          konum: e.konum,
-          ozet: e.ozet,
-          resimUrl: this.getEventImage(e),
-          link: '/kurumsal/etkinlikler'
-        })).slice(0, 4);
-      },
-      error: (err: any) => console.error('Anasayfa Etkinlikler yüklenirken hata oluştu:', err)
     });
   }
 }

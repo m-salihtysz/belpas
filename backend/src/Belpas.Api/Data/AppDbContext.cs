@@ -12,6 +12,7 @@ public class AppDbContext : DbContext
     public DbSet<Haber> Haberler => Set<Haber>();
     public DbSet<Tesis> Tesisler => Set<Tesis>();
     public DbSet<Calisan> Calisanlar => Set<Calisan>();
+    public DbSet<Slider> Sliderlar => Set<Slider>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

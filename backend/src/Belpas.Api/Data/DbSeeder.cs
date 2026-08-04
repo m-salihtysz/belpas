@@ -102,10 +102,78 @@ public static class DbSeeder
 
         context.Tesisler.AddRange(
             // Restoran, Kafe ve Sosyal Tesisler
-            new Tesis { Sira = 1, Ad = "Ormanpark", Slug = "ormanpark", Kategori = "Restoran & Kafe", Aciklama = string.Empty, Harf = "O", LogoUrl = "/images/logolar/ormanpark.png", ResimUrl = "/images/tesisler/ormanpark.jpg", MenuPdfUrl = "/documents/ormanpark-menu.pdf", MenuGorselUrl = "/images/menuler/ormanpark-menu.png" },
-            new Tesis { Sira = 2, Ad = "Ormanpark - Dört Mevsim", Slug = "ormanpark-dort-mevsim", Kategori = "Restoran & Kafe", Aciklama = string.Empty, Harf = "O", LogoUrl = "/images/logolar/ormanpark-dort-mevsim.png", ResimUrl = "/images/tesisler/ormanpark-dort-mevsim.jpg", MenuPdfUrl = "/documents/ormanpark-dort-mevsim-menu.pdf", MenuGorselUrl = "/images/menuler/ormanpark-dort-mevsim-menu.png" },
-            new Tesis { Sira = 3, Ad = "Ormanpark - Sade Kahve", Slug = "ormanpark-sade-kahve", Kategori = "Restoran & Kafe", Aciklama = string.Empty, Harf = "O", LogoUrl = "/images/logolar/ormanpark-sade-kahve.png", ResimUrl = "/images/tesisler/ormanpark-sade-kahve.jpg", MenuPdfUrl = "/documents/ormanpark-sade-kahve-menu.pdf", MenuGorselUrl = "/images/menuler/ormanpark-sade-kahve-menu.png" },
-            new Tesis { Sira = 4, Ad = "Çark-ı Dem (Aziz Durak Parkı)", Slug = "cark-i-dem", Kategori = "Restoran & Kafe", Aciklama = string.Empty, Harf = "Ç", LogoUrl = "/images/logolar/cark-i-dem.png", ResimUrl = "/images/tesisler/cark-i-dem.jpg", MenuPdfUrl = "/documents/cark-i-dem-menu.pdf", MenuGorselUrl = "/images/menuler/cark-i-dem-menu.png" },
+            new Tesis { 
+                Sira = 1, 
+                Ad = "Ormanpark", 
+                Slug = "ormanpark", 
+                Kategori = "Restoran & Kafe", 
+                Aciklama = "2006 yılında \"Şehrin içinde orman keyfi\" sloganıyla Sakarya halkının hizmetine sunulan Ormanpark; 18 dönümlük dişbudak ağaçlarının gölgesinde 3.250 m² kullanım alanına sahiptir. Dünya mutfağından yerel Sakarya lezzetlerine, serpmeyle sunulan zengin kahvaltı seçeneklerinden meşhur ıslama köfteye kadar geniş bir yelpazede hizmet vermektedir.", 
+                Harf = "O", 
+                LogoUrl = "/images/logolar/ormanpark.png", 
+                ResimUrl = "/images/tesisler/ormanpark.jpg", 
+                MenuPdfUrl = "/documents/ormanpark-menu.pdf", 
+                MenuGorselUrl = "/images/menuler/ormanpark-menu.png",
+                Adres = "Şirinevler Mahallesi, Adnan Menderes Caddesi, No: 293/A, Adapazarı / Sakarya",
+                Telefon = "0264 291 08 78",
+                HaftaIciSaat = "09:00 - 23:00",
+                HaftaSonuSaat = "09:00 - 23:00",
+                KonumUrl = "https://maps.google.com/?q=Ormanpark+Sakarya",
+                Aktif = true
+            },
+            new Tesis { 
+                Sira = 2, 
+                Ad = "Ormanpark - Dört Mevsim", 
+                Slug = "ormanpark-dort-mevsim", 
+                Kategori = "Restoran & Kafe", 
+                Aciklama = "Ormanpark bünyesinde yer alan Dört Mevsim Kafeterya; özel fırın pizzaları, zengin tost ve kumpir çeşitleri, çıtır lahmacun ve pidesiyle dört mevsim boyunca sıcak ve konforlu kapalı alanında misafirlerini ağırlamaktadır.", 
+                Harf = "O", 
+                LogoUrl = "/images/logolar/ormanpark-dort-mevsim.png", 
+                ResimUrl = "/images/tesisler/ormanpark-dort-mevsim.jpg", 
+                MenuPdfUrl = "/documents/ormanpark-dort-mevsim-menu.pdf", 
+                MenuGorselUrl = "/images/menuler/ormanpark-dort-mevsim-menu.png",
+                Adres = "Ormanpark İçi, Şirinevler Mah. Adnan Menderes Cad. Adapazarı / Sakarya",
+                Telefon = "0264 291 08 78",
+                HaftaIciSaat = "09:00 - 23:00",
+                HaftaSonuSaat = "09:00 - 23:00",
+                KonumUrl = "https://maps.google.com/?q=Ormanpark+Sakarya",
+                Aktif = true
+            },
+            new Tesis { 
+                Sira = 3, 
+                Ad = "Ormanpark - Sade Kahve", 
+                Slug = "ormanpark-sade-kahve", 
+                Kategori = "Restoran & Kafe", 
+                Aciklama = "Doğayla baş başa açık hava bahçe konseptine sahip Sade Kahve (Sade Bahçe); közde demlenmiş Rize çayı, geleneksel Türk kahvesi çeşitleri, meşhur Sakarya kabak tatlısı ve taze sıkılmış meyve suları ile doğa içinde huzurlu mola imkanı sunmaktadır.", 
+                Harf = "O", 
+                LogoUrl = "/images/logolar/ormanpark-sade-kahve.png", 
+                ResimUrl = "/images/tesisler/ormanpark-sade-kahve.jpg", 
+                MenuPdfUrl = "/documents/ormanpark-sade-kahve-menu.pdf", 
+                MenuGorselUrl = "/images/menuler/ormanpark-sade-kahve-menu.png",
+                Adres = "Ormanpark İçi, Şirinevler Mah. Adnan Menderes Cad. Adapazarı / Sakarya",
+                Telefon = "0264 291 08 78",
+                HaftaIciSaat = "09:00 - 23:00",
+                HaftaSonuSaat = "09:00 - 23:00",
+                KonumUrl = "https://maps.google.com/?q=Ormanpark+Sakarya",
+                Aktif = true
+            },
+            new Tesis { 
+                Sira = 4, 
+                Ad = "Çark-ı Dem (Aziz Durak Parkı)", 
+                Slug = "cark-i-dem", 
+                Kategori = "Restoran & Kafe", 
+                Aciklama = "Adapazarı'nın kalbinde yer alan Aziz Duran Parkı (Kentpark) gölet manzarası eşliğinde hizmet veren Çark-ı Dem; özel döküm tavada saç kavurma, çökertme kebabı, Sakarya ıslama köfte, kumpir, pizza ve geleneksel çay-kahve ikramlarıyla şehrin en sevilen mekanlarındandır.", 
+                Harf = "Ç", 
+                LogoUrl = "/images/logolar/cark-i-dem.png", 
+                ResimUrl = "/images/tesisler/cark-i-dem.jpg", 
+                MenuPdfUrl = "/documents/cark-i-dem-menu.pdf", 
+                MenuGorselUrl = "/images/menuler/cark-i-dem-menu.png",
+                Adres = "Aziz Duran Parkı (Kentpark) İçi, Mithatpaşa Mahallesi, Adapazarı / Sakarya",
+                Telefon = "0264 273 19 81",
+                HaftaIciSaat = "09:00 - 23:00",
+                HaftaSonuSaat = "09:00 - 23:00",
+                KonumUrl = "https://maps.google.com/?q=Kentpark+Sakarya",
+                Aktif = true
+            },
             new Tesis { Sira = 5, Ad = "Elegant Restoran", Slug = "elegant-restoran", Kategori = "Restoran & Kafe", Aciklama = string.Empty, Harf = "E", LogoUrl = "/images/logolar/elegant-restoran.png", ResimUrl = "/images/tesisler/elegant-restoran.jpg", MenuPdfUrl = "/documents/elegant-restoran-menu.pdf", MenuGorselUrl = "/images/menuler/elegant-restoran-menu.png" },
             new Tesis { Sira = 6, Ad = "Millet Kıraathanesi", Slug = "millet-kiraathanesi", Kategori = "Restoran & Kafe", Aciklama = string.Empty, Harf = "M", LogoUrl = "/images/logolar/millet-kiraathanesi.png", ResimUrl = "/images/tesisler/millet-kiraathanesi.jpg", MenuPdfUrl = "/documents/millet-kiraathanesi-menu.pdf", MenuGorselUrl = "/images/menuler/millet-kiraathanesi-menu.png" },
             new Tesis { Sira = 7, Ad = "Yenikentpark", Slug = "yenikentpark", Kategori = "Restoran & Kafe", Aciklama = string.Empty, Harf = "Y", LogoUrl = "/images/logolar/yenikentpark.png", ResimUrl = "/images/tesisler/yenikentpark.webp", MenuPdfUrl = "/documents/yenikentpark-menu.pdf", MenuGorselUrl = "/images/menuler/yenikentpark-menu.png" },
@@ -158,9 +226,10 @@ public static class DbSeeder
             {
                 AdSoyad = "Ertuğrul Özcan",
                 Unvan = "Genel Müdür",
-                Departman = "Yönetim Kurulu",
-                Eposta = "ertugrul.ozcan@belpas.com.tr",
-                Telefon = "0264 273 78 52",
+                Departman = "Genel Müdürlük",
+                FotoUrl = "/images/ertugrul_ozcan.png",
+                Gorevler = "Söğütlü Belediye Başkanı (2004–2014)\nBelpaş Genel Müdürü (2024–)",
+                Ozgecmis = "2004–2014 yılları arasında iki dönem boyunca Söğütlü Belediye Başkanı olarak görev yapmış, yerel yönetimler ve kamu idaresi alanında geniş bir tecrübe edinmiştir. Belediye başkanlığı döneminde imza attığı projeler ve yönetim başarısıyla tanınan Özcan, kamu hizmeti birikimini Sakarya’nın en büyük iştiraklerinden biri olan BELPAŞ A.Ş. bünyesine taşımıştır.\n\nHâlen Sakarya Büyükşehir Belediyesi iştiraki BELPAŞ A.Ş. Genel Müdürü olarak görevine devam etmektedir.",
                 Sira = 1,
                 Aktif = true
             },
@@ -168,9 +237,10 @@ public static class DbSeeder
             {
                 AdSoyad = "Muzaffer Gül",
                 Unvan = "Genel Müdür Yardımcısı",
-                Departman = "İdari ve Sosyal İşler",
-                Eposta = "muzaffer.gul@belpas.com.tr",
-                Telefon = "0264 273 78 52",
+                Departman = "Genel Müdürlük",
+                FotoUrl = "/images/muzaffer_gul.png",
+                Gorevler = "BELPAŞ A.Ş. Genel Müdür Yardımcısı",
+                Ozgecmis = "17 Mayıs 1976 tarihinde Sakarya’da doğdu. Anadolu Üniversitesi İşletme Fakültesi’nden mezun oldu. Özel Sektörde çeşitli firmalarda yönetici olarak görev yapan Muzaffer GÜL BELPAŞ A.Ş. Genel Müdürlüğünde Genel Müdür Yardımcısı olarak görevine devam etmektedir. Muzaffer GÜL evli ve üç çocuk babasıdır.",
                 Sira = 2,
                 Aktif = true
             },
@@ -178,9 +248,10 @@ public static class DbSeeder
             {
                 AdSoyad = "Mehmet Erdoğan",
                 Unvan = "Genel Müdür Yardımcısı",
-                Departman = "Mali ve Finansal İşler",
-                Eposta = "mehmet.erdogan@belpas.com.tr",
-                Telefon = "0264 273 78 52",
+                Departman = "Genel Müdürlük",
+                FotoUrl = "/images/mehmet_erdogan.png",
+                Gorevler = "Muhasebe Görevlisi (2003–2005)\nMuhasebe Şefi (2005–2007)\nSatınalma Şefi (2007–2009)\nFinans Şefi (2009–2010)\nPazarlama Şefi (2010–2014)\nMuhasebe Müdürü (2015–2023)\nGenel Müdür Yardımcısı (2023–)",
+                Ozgecmis = "Mehmet Erdoğan, 1978 yılında Sakarya’nın Kaynarca ilçesinde doğmuştur. İlk, orta ve lise öğrenimini Sakarya’da tamamlamıştır. 1997-1999 yılları arasında Sakarya Üniversitesi Akyazı Meslek Yüksekokulu İşletme Bölümü’nden mezun olmuş, 2000-2002 yılları arasında Anadolu Üniversitesi İşletme Fakültesi’nde lisans eğitimini tamamlamıştır. 2019 yılında Serbest Muhasebeci Mali Müşavir (SMMM) stajını başarıyla tamamlamıştır.\n\nMeslek hayatına 2003 yılında BELPAŞ A.Ş.’de Muhasebe Görevlisi olarak başlayan Erdoğan, kurum bünyesinde farklı birimlerde görev alarak önemli deneyimler kazanmıştır. 2005-2007 yılları arasında AKM’de Muhasebe Şefi olarak görev yapmış; ardından BELPAŞ’ta sırasıyla Satınalma Şefi (2007-2009), Finans Şefi (2009-2010) ve Pazarlama Şefi (2010-2014) pozisyonlarında bulunmuştur.\n\n2015-2023 yılları arasında BELPAŞ A.Ş.’de Muhasebe Müdürü olarak görev yapan Mehmet Erdoğan, 2023 yılından itibaren Genel Müdür Yardımcısı olarak görevini sürdürmektedir.\n\nMehmet Erdoğan evli ve üç çocuk babasıdır.",
                 Sira = 3,
                 Aktif = true
             },
@@ -188,10 +259,59 @@ public static class DbSeeder
             {
                 AdSoyad = "Yasin Korkut",
                 Unvan = "Genel Müdür Yardımcısı",
-                Departman = "Teknik ve Operasyonel İşler",
-                Eposta = "yasin.korkut@belpas.com.tr",
-                Telefon = "0264 273 78 52",
+                Departman = "Genel Müdürlük",
+                FotoUrl = "/images/yasin_korkut.png",
+                Gorevler = "Park54 İşletme Müdürü\nAkaryakıt İstasyonu İşletme Müdürü\nGenel Müdür Yardımcısı (2025–)",
+                Ozgecmis = "1983 Kocaeli doğumlu olan Yasin Korkut, lisans eğitimini İşletme Fakültesi’nde tamamlamış; yüksek lisans derecesini ise Ahmet Yesevi Üniversitesi Kamu Yönetimi ve Siyaset Bilimi alanında almıştır.\n\nMesleki kariyerine 2009 yılında Adapazarı Şeker Fabrikası bünyesinde İnsan Kaynakları ve Satınalma birimlerinde başlayan Korkut, 2020 yılından itibaren BELPAŞ A.Ş. ailesine katılmıştır. Kurum bünyesinde sırasıyla Park54 İşletme Müdürlüğü ve Akaryakıt İstasyonu İşletme Müdürlüğü görevlerini yürüten Yasin Korkut, 2025 yılı itibarıyla BELPAŞ A.Ş. Genel Müdür Yardımcısı olarak görevine devam etmektedir.\n\nKorkut, evli ve bir çocuk babasıdır.",
                 Sira = 4,
+                Aktif = true
+            }
+        );
+
+        context.SaveChanges();
+
+        // 4. Sliderlar Seeding
+        if (context.Sliderlar.Any())
+        {
+            context.Sliderlar.RemoveRange(context.Sliderlar);
+            context.SaveChanges();
+        }
+
+        context.Sliderlar.AddRange(
+            new Slider
+            {
+                Sira = 1,
+                Kategori = "BELPAŞ'A HOŞ GELDİNİZ",
+                Baslik = "NEHİR ÇİKOLATA EŞSİZ LEZZET DUBAİ LEZZETİ",
+                Aciklama = "Her lokmada geleneksel tatları modern dokunuşlarla buluşturan prestijli Nehir Çikolata serimiz.",
+                ResimUrl = "/images/çikolata.jpeg",
+                LogoUrl = "/images/nehir-logo.png",
+                BtnMetni = "KEŞFEDİN",
+                BtnLink = "/tesisler",
+                Aktif = true
+            },
+            new Slider
+            {
+                Sira = 2,
+                Kategori = "HİZMET NOKTALARI VE TESİSLER",
+                Baslik = "ŞEHRE HAYAT İNSANA DEĞER KATAN MEKANLAR SOSYAL TESİSLER",
+                Aciklama = "Sakarya genelinde konfor, kalite ve lezzeti bir araya getiren prestijli sosyal yaşam alanlarımız.",
+                ResimUrl = "/images/sbb_mekan.jpg",
+                LogoUrl = "/images/sbb_seffaf.png",
+                BtnMetni = "TESİSLERİMİZ",
+                BtnLink = "/tesisler",
+                Aktif = true
+            },
+            new Slider
+            {
+                Sira = 3,
+                Kategori = "DİJİTAL VE AKILLI ŞEHİR ÇÖZÜMLERİ",
+                Baslik = "ULAŞIMDA VE KENTE DİJİTAL KOLAYLIK KENT REHBERİ",
+                Aciklama = "Büyükşehrin tüm ulaşım hatları, harita bilgileri ve sosyal imkanlarına tek tıkla kolayca erişin.",
+                ResimUrl = "/images/kent_rehberi_bg.png",
+                LogoUrl = "/images/screen3.png",
+                BtnMetni = "İNCELEYİN",
+                BtnLink = "/haberler",
                 Aktif = true
             }
         );
